@@ -53,7 +53,13 @@ def setup_logging(app):
     
     admin_logger = logging.getLogger('admin')
     admin_logger.addHandler(admin_handler)
+
+    # CHANGE THIS TO SET THE LOGGING LEVEL FOR THE ADMIN LOGGER
+    # admin_logger.setLevel(logging.DEBUG)
     admin_logger.setLevel(logging.INFO)
+    # admin_logger.setLevel(logging.WARNING)
+    # admin_logger.setLevel(logging.ERROR)
+    # admin_logger.setLevel(logging.CRITICAL)
     
     # User activity logger setup
     user_handler = RotatingFileHandler(
@@ -70,11 +76,11 @@ def setup_logging(app):
     user_logger.addHandler(user_handler)
 
     # CHANGE THIS TO SET THE LOGGING LEVEL FOR THE USER ACTIVITY LOGGER
+    # user_logger.setLevel(logging.DEBUG)
     user_logger.setLevel(logging.INFO)
-    user_logger.setLevel(logging.INFO)
-    user_logger.setLevel(logging.WARNING)
-    user_logger.setLevel(logging.ERROR)
-    user_logger.setLevel(logging.CRITICAL)
+    # user_logger.setLevel(logging.WARNING)
+    # user_logger.setLevel(logging.ERROR)
+    # user_logger.setLevel(logging.CRITICAL)
     
     # Console handler for development
     console_handler = logging.StreamHandler()

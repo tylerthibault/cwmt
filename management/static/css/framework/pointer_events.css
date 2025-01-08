@@ -1,0 +1,37 @@
+/* EVENT POINTER CLASSES */
+.event-pointer-none {
+    pointer-events: none !important;
+}
+
+.event-pointer-auto {
+    pointer-events: auto !important;
+}
+
+.event-pointer-all {
+    pointer-events: all !important;
+}
+
+.event-pointer-inherit {
+    pointer-events: inherit !important;
+}
+
+.event-pointer-initial {
+    pointer-events: initial !important;
+}
+
+.event-pointer-unset {
+    pointer-events: unset !important;
+}
+
+/* SPECIFIC STATES FOR EVENT POINTERS */
+.event-pointer-hover:hover {
+    pointer-events: auto !important;
+}
+
+.event-pointer-focus:focus {
+    pointer-events: auto !important;
+}
+
+.event-pointer-disabled:disabled {
+    pointer-events: none !important;
+}

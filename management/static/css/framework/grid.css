@@ -1,0 +1,157 @@
+/* GRID SYSTEM */
+
+/* Base Grid */
+.grid {
+    display: grid;
+    gap: var(--grid-gap, 1rem); /* Use variable for grid gap, default to 1rem */
+}
+
+/* Column Configuration */
+.grid-cols-1 {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-cols-5 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.grid-cols-6 {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+/* Auto-Adjusting Columns */
+.grid-cols-auto {
+    grid-template-columns: auto;
+}
+
+/* Responsive Grid Columns */
+@media (max-width: 768px) {
+    .grid-cols-2 {
+        grid-template-columns: repeat(1, 1fr); /* Collapse to 1 column */
+    }
+    .grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr); /* Collapse to 2 columns */
+    }
+    .grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr); /* Collapse to 2 columns */
+    }
+}
+
+/* Row Configuration */
+.grid-rows-1 {
+    grid-template-rows: repeat(1, 1fr);
+}
+
+.grid-rows-2 {
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.grid-rows-3 {
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.grid-rows-auto {
+    grid-template-rows: auto;
+}
+
+/* Row and Column Gaps */
+.gap-0 {
+    gap: 0;
+}
+
+.gap-1 {
+    gap: 0.25rem;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.gap-3 {
+    gap: 1rem;
+}
+
+.gap-4 {
+    gap: 1.5rem;
+}
+
+.gap-5 {
+    gap: 2rem;
+}
+
+/* Specific Gaps */
+.row-gap-1 {
+    row-gap: 0.25rem;
+}
+
+.row-gap-2 {
+    row-gap: 0.5rem;
+}
+
+.row-gap-3 {
+    row-gap: 1rem;
+}
+
+.col-gap-1 {
+    column-gap: 0.25rem;
+}
+
+.col-gap-2 {
+    column-gap: 0.5rem;
+}
+
+.col-gap-3 {
+    column-gap: 1rem;
+}
+
+/* Alignment Utilities */
+.grid-items-start {
+    align-items: start;
+}
+
+.grid-items-center {
+    align-items: center;
+}
+
+.grid-items-end {
+    align-items: end;
+}
+
+.grid-justify-start {
+    justify-items: start;
+}
+
+.grid-justify-center {
+    justify-items: center;
+}
+
+.grid-justify-end {
+    justify-items: end;
+}
+
+.grid-justify-stretch {
+    justify-items: stretch;
+}
+
+/* Full-Width Container */
+.grid-full {
+    width: 100%;
+    background-color: var(--color-bg); /* Use background color variable */
+    color: var(--color-text); /* Use text color variable */
+    padding: var(--grid-padding, 1rem); /* Optional grid padding */
+    border: 1px solid var(--color-border); /* Use border color variable */
+    border-radius: var(--border-radius, 0.5rem); /* Optional border radius */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for grid */
+}

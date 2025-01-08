@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/framework/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% block styles %}
+
+    {% endblock styles %}
+</head>
+
+<body>
+    {% block content %}
+
+    <nav>
+        {% block nav %}
+
+        {% endblock nav %}
+    </nav>
+
+    <main>
+        {% block main %}
+
+        {% endblock main %}
+    </main>
+
+    <footer>
+        {% block footer %}
+
+        {% endblock footer %}
+    </footer>
+    {% endblock content %}
+
+    {% include 'components/flash_container.html' %}    
+
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}
+
+    {% endblock scripts %}
+</body>
+
+</html>

@@ -1,11 +1,11 @@
-<form action="/login" method="post" class="form-container">
+<form action="{{ url_for('users.login_user') }}" method="post" class="form-container">
     <div class="form-group">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" class="form-control form-input" required>
+        <input type="text" id="username" name="username" class="form-control form-input" value="TylerT">
     </div>
     <div class="form-group">
         <label for="password">Password:</label>
-        <input type="text" id="password" name="password" class="form-control form-input" required>
+        <input type="password" id="password" name="password" class="form-control form-input" value="Pass123!!">
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Login</button>

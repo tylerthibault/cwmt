@@ -1,11 +1,15 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 
 db = SQLAlchemy()
+bcrypt = Bcrypt()
 
 def create_app():
     app = Flask(__name__)
     app.secret_key = "super secret key"
+
+    bcrypt.init_app(app)
 
     # setup the db
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'

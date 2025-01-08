@@ -1,0 +1,13 @@
+<div class="flex flex-column justify-between items-center h-100 py-3">
+    <div>
+        <p>Welcome</p>
+        <p>User</p>
+    </div>
+    <div>
+        <a href="{{ url_for('users.create_user') }}">Create User</a>
+    </div>
+    <div class="flex flex-column gap-1">
+        <a class="btn border my-3" href="{{ url_for('users.settings') }}">Settings</a>
+        <a class="btn border my-3 bg-danger" href="{{ url_for('users.logout_user') }}">Logout</a>
+    </div>
+</div>

@@ -9,4 +9,5 @@
 @import url(responsive_design.css);
 @import url(components.css);
 @import url(utilities.css);
+@import url(flex.css);
 @import url(animation.css);

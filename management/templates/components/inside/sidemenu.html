@@ -1,13 +1,18 @@
 <div class="flex flex-column justify-between items-center h-100 py-3">
     <div>
         <p>Welcome</p>
-        <p>User</p>
+        <p>{{ session['user']['username'] }}</p>
     </div>
     <div>
-        <a href="{{ url_for('users.create_user') }}">Create User</a>
+        <p>You need to create your menu here</p>
     </div>
     <div class="flex flex-column gap-1">
-        <a class="btn border my-3" href="{{ url_for('users.settings') }}">Settings</a>
-        <a class="btn border my-3 bg-danger" href="{{ url_for('users.logout_user') }}">Logout</a>
+        <p class="btn border my-3 openModalBtn" data-modal-target="userSettingsModal"><i class="fa-solid fa-gear pr-2"></i>Settings</p>
+        <a class="btn border my-3 bg-danger" href="{{ url_for('users.logout_user') }}"><i class="fa-solid fa-right-from-bracket pr-2"></i>Logout</a>
     </div>
 </div>
+
+
+{% block modals %}
+{% include 'components/modals/user_settings.html' %}
+{% endblock modals %}

@@ -1,0 +1,28 @@
+<form method="POST" action="{{ url_for('users.update_user') }}" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control form-input" id="username" name="username" value="{{ session['user']['username'] }}" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control form-input" id="email" name="email" value="{{ session['user']['email'] }}" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="current_password" class="form-label">Current Password</label>
+        <input type="password" class="form-control form-input" id="current_password" name="current_password">
+    </div>
+    
+    <div class="mb-3">
+        <label for="new_password" class="form-label">New Password</label>
+        <input type="password" class="form-control form-input" id="new_password" name="new_password">
+    </div>
+    
+    <div class="mb-3">
+        <label for="confirm_new_password" class="form-label">New Password</label>
+        <input type="password" class="form-control form-input" id="confirm_new_password" name="confirm_new_password">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Update User</button>
+</form>

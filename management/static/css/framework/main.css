@@ -10,4 +10,6 @@
 @import url(components.css);
 @import url(utilities.css);
 @import url(flex.css);
+@import url(modal.css);
+@import url(flash_messages.css);
 @import url(animation.css);

@@ -15,6 +15,9 @@ class User(db.Model):
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
+    # FOREIGN KEYS
+    logs = db.relationship('Log', backref='user', lazy=True)
+
     def __repr__(self):
         return f'<User {self.username}>'
     

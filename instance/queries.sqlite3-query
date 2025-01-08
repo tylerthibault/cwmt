@@ -1,0 +1,5 @@
+-- database: ./db.sqlite
+
+DROP TABLE IF EXISTS "users"; 
+DROP TABLE IF EXISTS "logs";
+

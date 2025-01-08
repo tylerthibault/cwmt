@@ -27,8 +27,9 @@ def create_user():
         flash('User created successfully')
 
         log.Log.create(user, f"created and logged in")
+        helper.load_session_user_data()
         
-        return redirect(url_for('users.get_users'))
+        return redirect(url_for('routes.dashboard'))
     return 'error'
     # return render_template('create_user.html')
 
@@ -40,17 +41,18 @@ def login_user():
         return redirect(url_for('routes.index'))
     
     log.Log.create(user, 'logged in')
+    helper.load_session_user_data()
 
     return redirect(url_for('routes.dashboard'))
 
 @users_bp.route('/users/logout', methods=['GET'])
 def logout_user():
-    user = helper.get_logged_in_user()
+    user = helper.clear_session_user_data()
     log.Log.create(user, 'logged out')
     session.clear()
     return redirect(url_for('routes.index'))
 
-@users_bp.route('/users/<int:user_id>/edit', methods=['GET', 'POST'])
+@users_bp.route('/users/edit', methods=['GET', 'POST'])
 def update_user(user_id):
     user = next((user for user in users if user['id'] == user_id), None)
     if not user:

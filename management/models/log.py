@@ -32,7 +32,7 @@ class Log(db.Model):
 
         return log
 
-    def add_record(self):
+    def update_record_timestamp(self):
         self.updated_at = datetime.datetime.now()
         db.session.commit()
 

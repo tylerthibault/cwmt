@@ -5,7 +5,6 @@
 @import url(grid.css);
 @import url(forms.css);
 @import url(spacing.css);
-@import url(color.css);
 @import url(responsive_design.css);
 @import url(components.css);
 @import url(utilities.css);
@@ -13,3 +12,4 @@
 @import url(modal.css);
 @import url(flash_messages.css);
 @import url(animation.css);
+@import url(color.css);

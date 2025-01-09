@@ -1,0 +1,60 @@
+{% extends 'bases/dashboard.html' %}
+
+{% block main %}
+<div class="mb-3">
+    <h1>Example of built in components</h1>
+    <div class="componentSearch" data-search-container="componentGrid">
+        <input 
+            type="text" 
+            id="componentSearch" 
+            class="search-input" 
+            placeholder="Search components..."
+        >
+    </div>
+    <!-- Change ID to avoid conflict -->
+    <div class="flex flex-wrap gap-3" id="componentGrid">
+        <!-- Add searchable-box class -->
+        <a href="{{ url_for('routes.examples_page', page='tabs') }}" 
+           class="card searchable-box" 
+           data-search="tabs navigation tab component">
+            <div class="card-header">
+                <h2 class="searchable-text">Tabs</h2>
+            </div>
+            <div class="card-body">
+                <p>Examples of tabs on your page</p>
+            </div>
+        </a>
+        
+        <!-- Add searchable-box class -->
+        <a href="" class="card searchable-box" data-search="modals popup dialog overlay">
+            <div class="card-header">
+                <h2 class="searchable-text">Modals</h2>
+            </div>
+            <div class="card-body">
+                <p>Examples of Modals on your page</p>
+            </div>
+        </a>
+        
+        <!-- Add searchable-box class -->
+        <a href="" class="card searchable-box" data-search="cards container box">
+            <div class="card-header">
+                <h2 class="searchable-text">Cards</h2>
+            </div>
+            <div class="card-body">
+                <p>Examples of Cards on your page</p>
+            </div>
+        </a>
+        
+        <!-- Carosel -->
+        <a href="" class="card searchable-box">
+            <div class="card-header">
+                <h2 class="searchable-text">Carousel</h2>
+            </div>
+            <div class="card-body">
+                <p>Examples of Carousel on your page</p>
+            </div>
+        </a>
+
+    </div>
+</div>
+{% endblock main %}

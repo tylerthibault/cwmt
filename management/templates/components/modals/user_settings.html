@@ -5,7 +5,14 @@
             <h2 class="modal-title">User Settings</h2>
         </div>
         <div class="modal-body">
-            {% include 'components/forms/users/edit.html' %}
+            <div class="flex gap-3">
+                <div>
+                    {% include 'components/forms/users/edit.html' %}
+                </div>
+                <div>
+                    {% include 'components/forms/users/edit_password.html' %}
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <button class="close-modal">Close</button>

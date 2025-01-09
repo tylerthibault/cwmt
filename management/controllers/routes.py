@@ -11,4 +11,15 @@ def index():
 @routes_bp.route('/dashboard')
 @login_required
 def dashboard():
+    flash('You are logged in', 'success')
+    flash('You are logged in', 'error')
+    flash('You are logged in')
     return render_template('/pages/dashboard.html')
+
+@routes_bp.route('/examples')
+def examples():
+    return render_template('/pages/examples/main.html')
+
+@routes_bp.route('/examples/<string:page>')
+def examples_page(page):
+    return render_template(f'/pages/examples/{page}.html')

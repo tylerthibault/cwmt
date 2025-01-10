@@ -1,5 +1,9 @@
 {% extends 'bases/dashboard.html' %}
 
+{% block top_nav %}
+{% include 'components/components_top_nav.html' %}
+{% endblock top_nav %}
+
 {% block main %}
 <div class="tab-container">
     <div class="tab-nav">
@@ -12,25 +16,20 @@
         <div class="tab-pane active" id="basic">
             <h2>Basic Tab Implementation</h2>
             <p>Add these files to your project:</p>
-            <pre><code>
-├── static/
-│   ├── css/framework/tabs.css
-│   └── js/framework/tabs.js
-            </code></pre>
-            
-            <h3>Basic HTML Structure:</h3>
-            <pre><code class="language-html">
-&lt;div class="tab-container"&gt;
-    &lt;div class="tab-nav"&gt;
-        &lt;button class="tab-btn active" data-tab="tab1"&gt;Tab 1&lt;/button&gt;
-        &lt;button class="tab-btn" data-tab="tab2"&gt;Tab 2&lt;/button&gt;
-    &lt;/div&gt;
-    &lt;div class="tab-content"&gt;
-        &lt;div class="tab-pane active" id="tab1"&gt;Content 1&lt;/div&gt;
-        &lt;div class="tab-pane" id="tab2"&gt;Content 2&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-            </code></pre>
+            <pre class="language-html">
+                <code>
+            &lt;div class="tab-container"&gt;
+                &lt;div class="tab-nav"&gt;
+                    &lt;button class="tab-btn active" data-tab="tab1"&gt;Tab 1&lt;/button&gt;
+                    &lt;button class="tab-btn" data-tab="tab2"&gt;Tab 2&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class="tab-content"&gt;
+                    &lt;div class="tab-pane active" id="tab1"&gt;Content 1&lt;/div&gt;
+                    &lt;div class="tab-pane" id="tab2"&gt;Content 2&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+                </code>
+            </pre>
             <button class="btn border next-tab" data-next="form">Next: Form Navigation</button>
         </div>
 
@@ -69,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabs = new TabManager(document.querySelector('.tab-container'));
 });
             </code></pre>
-            
+
             <h3>Available Methods:</h3>
             <ul>
                 <li><code>switchTab(tabId)</code>: Switch to specific tab</li>

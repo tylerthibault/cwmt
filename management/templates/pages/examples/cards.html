@@ -1,0 +1,152 @@
+{% extends 'bases/dashboard.html' %}
+
+{% block top_nav %}
+{% include 'components/components_top_nav.html' %}
+{% endblock top_nav %}
+
+{% block main %}
+<div class="tab-container">
+    <div class="tab-nav">
+        <button class="tab-btn active" data-tab="basic">Basic Usage</button>
+        <button class="tab-btn" data-tab="variations">Variations</button>
+        <button class="tab-btn" data-tab="styles">Styling</button>
+        <button class="tab-btn" data-tab="examples">Live Examples</button>
+    </div>
+
+    <div class="tab-content">
+        <!-- Basic Usage -->
+        <div class="tab-pane active" id="basic">
+            <h2>Basic Card Structure</h2>
+            <pre><code class="language-html">
+&lt;div class="card"&gt;
+    &lt;div class="card-header"&gt;
+        &lt;h2&gt;Card Title&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div class="card-body"&gt;
+        Card content here
+    &lt;/div&gt;
+    &lt;div class="card-footer"&gt;
+        Footer content
+    &lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+
+            <!-- Live Basic Example -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h2>Example Card</h2>
+                </div>
+                <div class="card-body">
+                    <p>This is a basic card example with header, body, and footer sections.</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn">Action</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variations -->
+        <div class="tab-pane" id="variations">
+            <h2>Card Variations</h2>
+            
+            <!-- Header Only -->
+            <h3>Header Only</h3>
+            <pre><code class="language-html">
+&lt;div class="card"&gt;
+    &lt;div class="card-header"&gt;
+        &lt;h2&gt;Header Only Card&lt;/h2&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+
+            <!-- Body Only -->
+            <h3>Body Only</h3>
+            <pre><code class="language-html">
+&lt;div class="card"&gt;
+    &lt;div class="card-body"&gt;
+        Simple content card
+    &lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+
+            <!-- Link Card -->
+            <h3>Link Card</h3>
+            <pre><code class="language-html">
+&lt;a href="#" class="card"&gt;
+    &lt;div class="card-body"&gt;
+        Clickable card
+    &lt;/div&gt;
+&lt;/a&gt;
+            </code></pre>
+        </div>
+
+        <!-- Styling -->
+        <div class="tab-pane" id="styles">
+            <h2>CSS Customization</h2>
+            <pre><code class="language-css">
+/* Custom Card Styles */
+.card {
+    --border-radius: 0.5rem;
+    --color-bg: #ffffff;
+    --color-border: #e2e8f0;
+    --color-text: #1a202c;
+    --color-muted: #4a5568;
+}
+
+/* Hover Effects */
+.card:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+            </code></pre>
+        </div>
+
+        <!-- Live Examples -->
+        <div class="tab-pane" id="examples">
+            <h2>Interactive Examples</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Basic Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Basic Card</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Standard card layout</p>
+                    </div>
+                </div>
+
+                <!-- Link Card -->
+                <a href="#" class="card">
+                    <div class="card-body">
+                        <h3>Clickable Card</h3>
+                        <p>Click anywhere on this card</p>
+                    </div>
+                </a>
+
+                <!-- Image Card -->
+                <div class="card">
+                    <img src="{{ url_for('static', filename='img/placeholder.jpg') }}" alt="Card image">
+                    <div class="card-body">
+                        <h3>Card with Image</h3>
+                        <p>Cards can include images</p>
+                    </div>
+                </div>
+
+                <!-- Action Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Action Card</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Card with action buttons</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn">Cancel</button>
+                        <button class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}

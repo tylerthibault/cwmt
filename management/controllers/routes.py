@@ -17,9 +17,11 @@ def dashboard():
     return render_template('/pages/dashboard.html')
 
 @routes_bp.route('/examples')
+@login_required
 def examples():
     return render_template('/pages/examples/main.html')
 
 @routes_bp.route('/examples/<string:page>')
+@login_required
 def examples_page(page):
     return render_template(f'/pages/examples/{page}.html')

@@ -1,0 +1,106 @@
+/* Code Block Container */
+pre {
+    background-color: #1e1e1e;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    position: relative;
+}
+
+/* Code Inside Pre */
+pre code {
+    color: #d4d4d4;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    display: block;
+    tab-size: 4;
+}
+
+/* Inline Code */
+:not(pre) > code {
+    background-color: #f1f1f1;
+    color: #e01e5a;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.85em;
+}
+
+/* Language Label */
+pre[class*="language-"]::before {
+    content: attr(class);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    background: #2a2a2a;
+    color: #888;
+    border-bottom-left-radius: 4px;
+}
+
+/* Copy Button */
+.code-copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    color: #888;
+    font-size: 0.75rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+pre:hover .code-copy-btn {
+    opacity: 1;
+}
+
+.code-copy-btn:hover {
+    background: #3a3a3a;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.code-copy-btn.copied {
+    background: #2ea043;
+    color: #fff;
+    border-color: #238636;
+}
+
+.code-copy-btn:active {
+    transform: translateY(1px);
+}
+
+/* Syntax Highlighting */
+.token.comment { color: #6a9955; }
+.token.string { color: #ce9178; }
+.token.number { color: #b5cea8; }
+.token.keyword { color: #569cd6; }
+.token.function { color: #dcdcaa; }
+.token.class-name { color: #4ec9b0; }
+.token.operator { color: #d4d4d4; }
+.token.punctuation { color: #d4d4d4; }
+
+/* Line Numbers */
+.line-numbers {
+    counter-reset: line;
+    padding-left: 3.5rem;
+}
+
+.line-numbers .line::before {
+    counter-increment: line;
+    content: counter(line);
+    position: absolute;
+    left: -3rem;
+    width: 2.5rem;
+    color: #666;
+    text-align: right;
+}
+
+

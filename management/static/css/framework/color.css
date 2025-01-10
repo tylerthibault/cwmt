@@ -31,6 +31,10 @@
     color: var(--color-primary);
 }
 
+.text-dark {
+    color: var(--color-bg); /* Use background color as text */
+}
+
 .text-def {
     color: var(--color-text);
 }

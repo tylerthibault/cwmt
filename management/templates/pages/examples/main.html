@@ -3,7 +3,7 @@
 {% block main %}
 <div class="mb-3">
     <h1>Example of built in components</h1>
-    <div class="componentSearch" data-search-container="componentGrid">
+    <div class="componentSearch mb-3" data-search-container="componentGrid">
         <input 
             type="text" 
             id="componentSearch" 
@@ -26,7 +26,7 @@
         </a>
         
         <!-- Add searchable-box class -->
-        <a href="" class="card searchable-box" data-search="modals popup dialog overlay">
+        <a href="{{ url_for('routes.examples_page', page='modals') }}" class="card searchable-box" data-search="modals popup dialog overlay">
             <div class="card-header">
                 <h2 class="searchable-text">Modals</h2>
             </div>
@@ -35,8 +35,8 @@
             </div>
         </a>
         
-        <!-- Add searchable-box class -->
-        <a href="" class="card searchable-box" data-search="cards container box">
+        <!-- Add cards -->
+        <a href="{{ url_for('routes.examples_page', page='cards') }}" class="card searchable-box" data-search="cards container box">
             <div class="card-header">
                 <h2 class="searchable-text">Cards</h2>
             </div>
@@ -46,12 +46,32 @@
         </a>
         
         <!-- Carosel -->
-        <a href="" class="card searchable-box">
+        <a href="{{ url_for('routes.examples_page', page='carousel') }}" class="card searchable-box">
             <div class="card-header">
                 <h2 class="searchable-text">Carousel</h2>
             </div>
             <div class="card-body">
                 <p>Examples of Carousel on your page</p>
+            </div>
+        </a>
+        
+        <!-- Search Bar -->
+        <a href="{{ url_for('routes.examples_page', page='search_bar') }}" class="card searchable-box">
+            <div class="card-header">
+                <h2 class="searchable-text">Search Bar</h2>
+            </div>
+            <div class="card-body">
+                <p>Examples of how to use the search bar on your page</p>
+            </div>
+        </a>
+        
+        <!-- Code Blocks -->
+        <a href="{{ url_for('routes.examples_page', page='code_block') }}" class="card searchable-box link-disabled">
+            <div class="card-header">
+                <h2 class="searchable-text">Code Blocks</h2>
+            </div>
+            <div class="card-body">
+                <p>Examples of how to use code blocks on your page</p>
             </div>
         </a>
 

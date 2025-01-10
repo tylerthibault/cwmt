@@ -1,0 +1,113 @@
+{% extends 'bases/dashboard.html' %}
+
+{% block main %}
+<div class="tab-container">
+    <div class="tab-nav">
+        <button class="tab-btn active" data-tab="basic">Basic Usage</button>
+        <button class="tab-btn" data-tab="copy">Copy Feature</button>
+        <button class="tab-btn" data-tab="syntax">Syntax Highlighting</button>
+        <button class="tab-btn" data-tab="advanced">Advanced</button>
+    </div>
+
+    <div class="tab-content">
+        <!-- Basic Usage -->
+        <div class="tab-pane active" id="basic">
+            <h2>Basic Code Block</h2>
+            <p>Add this structure to display code:</p>
+
+            <pre class="language-html">
+                <code>
+&lt;pre class="language-javascript"&gt;
+    &lt;code&gt;
+        const example = "Hello World";
+        console.log(example);
+    &lt;/code&gt;
+&lt;/pre&gt;
+                </code>
+            </pre>
+
+            <h3>Live Example:</h3>
+            <pre class="language-javascript">
+                <code>
+const example = "Hello World";
+console.log(example);
+                </code>
+            </pre>
+        </div>
+
+        <!-- Copy Feature -->
+        <div class="tab-pane" id="copy">
+            <h2>Copy Button Feature</h2>
+            <p>The copy button is automatically added to all code blocks.</p>
+
+            <pre class="language-javascript">
+                <code>
+// Copy button appears on hover
+const data = {
+    title: "Example",
+    description: "Click the copy button!"
+};
+                </code>
+            </pre>
+
+            <h3>JavaScript Implementation:</h3>
+            <pre class="language-javascript">
+                <code>
+import { CodeBlock } from './codeBlock.js';
+
+// Initialize copy buttons
+document.addEventListener('DOMContentLoaded', () => {
+    new CodeBlock();
+});
+                </code>
+            </pre>
+        </div>
+
+        <!-- Syntax Highlighting -->
+        <div class="tab-pane" id="syntax">
+            <h2>Syntax Highlighting</h2>
+            <p>Add language class for syntax highlighting:</p>
+
+            <pre class="language-python">
+                <code>
+def example_function():
+    """Python syntax highlighting"""
+    return "Hello World"
+                </code>
+            </pre>
+
+            <pre class="language-css">
+                <code>
+.example {
+    /* CSS syntax highlighting */
+    color: #569cd6;
+    background: #1e1e1e;
+}
+                </code>
+            </pre>
+        </div>
+
+        <!-- Advanced Features -->
+        <div class="tab-pane" id="advanced">
+            <h2>Line Numbers</h2>
+            <p>Add line numbers to code blocks:</p>
+
+            <pre class="language-javascript line-numbers">
+                <code>
+// Line numbered example
+function example() {
+    const items = [];
+    for (let i = 0; i < 3; i++) {
+        items.push(i);
+    }
+    return items;
+}
+                </code>
+            </pre>
+
+            <h2>Inline Code</h2>
+            <p>Use inline code with <code>code</code> tags.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

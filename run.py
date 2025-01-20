@@ -1,4 +1,4 @@
-from management import create_app
+from cwmt import create_app
 
 app = create_app()
 

@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+:root {
+    --primary: #231C25 !important;    /* Deep blue-gray */
+    --secondary: #383139 !important;  /* Coral red */
+    --accent: #4D474F !important;    /* Bright yellow */
+    --neutral: #959196 !important;   /* Light gray */
+
+    --font-family-base: 'Oswald', sans-serif !important;
+}
+body {
+    font-family: var(--font-family-base);
+}
+.bg-primary {
+    background-color: var(--primary)  !important;
+}
+.bg-secondary {
+    background-color: var(--secondary) !important;
+}
+.bg-accent {
+    background-color: var(--accent) !important;
+}
+.bg-neutral {
+    background-color: var(--neutral) !important;
+}
+.hero-shadow {
+    box-shadow: 10px 0 0 0 #959196;
+}

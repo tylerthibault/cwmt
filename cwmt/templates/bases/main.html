@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cwmt</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://kit.fontawesome.com/4963ddc73f.js" crossorigin="anonymous"></script>
+
+    {% block styles %}
+
+    {% endblock styles %}
+</head>
+
+<body class="bg-primary">
+    {% block content %}
+
+    <nav>
+        {% block nav %}
+
+        {% endblock nav %}
+    </nav>
+
+    <main>
+        {% block main %}
+
+        {% endblock main %}
+    </main>
+
+    <footer>
+        {% block footer %}
+
+        {% endblock footer %}
+    </footer>
+    {% endblock content %}
+
+    {% include 'components/flash_container.html' %}
+
+    {% block modals %}
+
+    {% endblock modals %}
+
+    <script type="module" src="{{ url_for('static', filename='js/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}
+
+    {% endblock scripts %}
+</body>
+
+</html>

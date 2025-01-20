@@ -1,0 +1,20 @@
+html, body {
+    height: 100%;
+    min-height: 100vh;
+}
+.dashboard-container {
+    min-height: 100vh;
+    height: 100%;
+    overflow-x: hidden;
+}
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    width: 250px;
+    overflow-y: auto;
+}
+.main-content {
+    margin-left: 250px;
+    min-height: 100vh;
+}
+

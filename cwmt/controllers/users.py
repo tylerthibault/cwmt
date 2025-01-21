@@ -40,8 +40,8 @@ def login_user():
 
     elif request.method == 'POST':
         print("running login POST")
-        user = users.User.validate_login(**request.form)
-
+        user = users.User.validate_login(request.form)
+        
         if not user:
             current_app.config['admin_logger'].info(f'User tried to log in but was not found.')
             return redirect(url_for('routes.index'))

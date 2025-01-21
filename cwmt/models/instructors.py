@@ -76,6 +76,6 @@ class Instructor(db.Model):
             db.session.commit()
             return instructor
         except Exception as e:
-            print(f"Error creating instructor: {e}")
-            flash(f"Error creating instructor: {e}", 'error')
+            print(f"Error (M-Instructors-001) creating instructor: {e}")
+            flash(f"Error (M-Instructors-001) creating instructor: {e}", 'error')
             return None

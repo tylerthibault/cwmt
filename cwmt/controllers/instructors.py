@@ -25,7 +25,7 @@ def create():
             flash(f'Error creating instructor: {str(e)}', 'error')
             return redirect(url_for('instructors.index'))
         
-    return render_template(url_for('instructors.index'))
+    return redirect(url_for('instructors.index'))
 
 @instructors_bp.route('/instructors/<int:id>/edit', methods=['GET', 'POST'])
 def edit(id):

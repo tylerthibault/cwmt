@@ -36,8 +36,8 @@ class Team(db.Model):
             db.session.commit()
             return team
         except Exception as e:
-            print(f"Error creating team: {e}")
-            flash(f"Error creating team: {e}", 'error')
+            print(f"Error (M-Teams-001) creating team: {e}")
+            flash(f"Error (M-Teams-001) creating team: {e}", 'error')
             return None
         
     @classmethod

@@ -39,11 +39,11 @@ def register_blueprints(app):
     from cwmt.controllers.instructors import instructors_bp
     app.register_blueprint(instructors_bp)
 
+    from cwmt.controllers.courses import courses_bp
+    app.register_blueprint(courses_bp)
+
     # from cwmt.controllers.students import students_bp
     # app.register_blueprint(students_bp)
-
-    # from cwmt.controllers.courses import courses_bp
-    # app.register_blueprint(courses_bp)
 
     # from cwmt.controllers.course_sessions import course_sessions_bp
     # app.register_blueprint(course_sessions_bp)
@@ -62,6 +62,7 @@ def setup_tables(app):
     from cwmt.models.instructors import Instructor
     from cwmt.models.teams import Team
     from cwmt.models.roles import Role, UserRole
+    from cwmt.models.courses import Course
     with app.app_context():
         db.create_all()
         seed_db(User, Role, UserRole, Team)

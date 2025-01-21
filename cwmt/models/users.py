@@ -41,8 +41,8 @@ class User(db.Model):
             db.session.commit()
             return user
         except Exception as e:
-            print(f"Error creating user: {e}")
-            flash(f"Error creating user: {e}", 'error')
+            print(f"Error (M-User-001) creating user: {e}")
+            flash(f"Error (M-User-001) creating user: {e}", 'error')
             return None
     
     @staticmethod

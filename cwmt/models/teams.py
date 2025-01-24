@@ -36,8 +36,8 @@ class Team(db.Model):
             db.session.commit()
             return team
         except Exception as e:
-            print(f"Error (M-Teams-001) creating team: {e}")
-            flash(f"Error (M-Teams-001) creating team: {e}", 'error')
+            print(f"Error (E0012) creating team: {e}")
+            flash(f"Error (E0012) creating team: {e}", 'error')
             return None
         
     @classmethod
@@ -49,4 +49,9 @@ class Team(db.Model):
 
         returns list: A list of Team objects
         """
-        return cls.query.filter_by(owner_id=owner_id).all()
+        try:
+            return cls.query.filter_by(owner_id=owner_id).all()
+        except Exception as e:
+            print(f"Error (E0013) getting teams: {e}")
+            flash(f"Error (E0013) getting teams: {e}", 'error')
+            return []

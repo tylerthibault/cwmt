@@ -41,8 +41,8 @@ class User(db.Model):
             db.session.commit()
             return user
         except Exception as e:
-            print(f"Error (M-User-001) creating user: {e}")
-            flash(f"Error (M-User-001) creating user: {e}", 'error')
+            print(f"Error (E0014) creating user: {e}")
+            flash(f"Error (E0014) creating user: {e}", 'error')
             return None
     
     @staticmethod
@@ -54,7 +54,12 @@ class User(db.Model):
 
         returns str: The hashed password
         """
-        return bcrypt.generate_password_hash(password).decode('utf-8')
+        try:
+            return bcrypt.generate_password_hash(password).decode('utf-8')
+        except Exception as e:
+            print(f"Error (E0015) hashing password: {e}")
+            flash(f"Error (E0015) hashing password: {e}", 'error')
+            return None
     
     
     @staticmethod
@@ -67,11 +72,16 @@ class User(db.Model):
 
         returns User: A User object if successful, else None
         """
-        user = User.query.filter_by(username=data['username']).first()
-        if user and bcrypt.check_password_hash(user.password, data['password']):
-            print("checked password")
-            return user
-        
-        print('Invalid login credentials')
-        flash('Invalid login credentials', 'error')
-        return None
+        try:
+            user = User.query.filter_by(username=data['username']).first()
+            if user and bcrypt.check_password_hash(user.password, data['password']):
+                print("checked password")
+                return user
+            
+            print('Invalid login credentials')
+            flash('Invalid login credentials', 'error')
+            return None
+        except Exception as e:
+            print(f"Error (E0016) validating login: {e}")
+            flash(f"Error (E0016) validating login: {e}", 'error')
+            return None

@@ -7,26 +7,26 @@
 <div>
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" href="#calendar" data-toggle="tab">Calendar</a>
+            <a class="nav-link {% if active_tab == 'course-calendar' %}active{% endif %}" href="#calendar" data-toggle="tab">Calendar</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#course-types" data-toggle="tab">Course Types</a>
+            <a class="nav-link {% if active_tab == 'courses' %}active{% endif %}" href="#course-types" data-toggle="tab">Course Types</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#add-sessions" data-toggle="tab">Add New Sessions</a>
+            <a class="nav-link {% if active_tab == 'course-sessions' %}active{% endif %}" href="#add-sessions" data-toggle="tab">Add New Sessions</a>
         </li>
     </ul>
 </div>
 
 <div class="tab-content">
-    <div class="tab-pane active" id="calendar">
+    <div class="tab-pane {% if active_tab == 'course-calendar' %}active{% endif %}" id="calendar">
         <div class="card">
             <div class="card-body">
                 {% include 'pages/courses/subpages/calendar_view.html' %}
             </div>
         </div>
     </div>
-    <div class="tab-pane" id="course-types">
+    <div class="tab-pane {% if active_tab == 'courses' %}active{% endif %}" id="course-types">
         <div class="card">
             <div class="card-body">
                 {% include 'pages/courses/subpages/course_types.html' %}
@@ -34,10 +34,10 @@
             </div>
         </div>
     </div>
-    <div class="tab-pane" id="add-sessions">
+    <div class="tab-pane {% if active_tab == 'course-sessions' %}active{% endif %}" id="add-sessions">
         <div class="card">
             <div class="card-body">
-                {% include 'pages/courses/subpages/sessions.html' %}
+                {% include 'pages/courses/subpages/course_sessions.html' %}
             </div>
         </div>
     </div>
@@ -47,4 +47,5 @@
 
 {% block modals %}
 {% include 'pages/courses/modals/courses.html' %}
+{% include 'pages/courses/modals/course_sessions.html' %}
 {% endblock modals %}

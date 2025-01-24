@@ -37,8 +37,8 @@ class UserRole(db.Model):
             db.session.commit()
             return user_role
         except Exception as e:
-            flash(f"Error (M-UserRoles-001) creating user role: {e}", 'error')
-            print(f"Error (M-UserRoles-001) creating user role: {e}")
+            flash(f"Error (E0010) creating user role: {e}", 'error')
+            print(f"Error (E0010) creating user role: {e}")
             return None
 
 
@@ -69,7 +69,7 @@ class Role(db.Model):
             db.session.commit()
             return role
         except Exception as e:
-            print(f"Error (M-Roles-001) creating role: {e}")
-            flash(f"Error (M-Roles-001) creating role: {e}", 'error')
+            print(f"Error (E0011) creating role: {e}")
+            flash(f"Error (E0011) creating role: {e}", 'error')
             return None
 

@@ -20,8 +20,8 @@
                     <td>{{ course.name }}</td>
                     <td>{{ course.description }}</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#editCourseTypeModal">
+                        <button type="button" class="btn btn-primary modal-btn" data-toggle="modal"
+                            data-target="#editCourseTypeModal" data-id="{{ course.id }}" data-description="{{ course.description }}" data-name="{{ course.name }}" data-total_days="{{ course.total_days }}" data-max_students="{{ course.max_students }}">
                             Edit
                         </button>
                         <!-- Example button to trigger modal -->

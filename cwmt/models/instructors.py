@@ -30,25 +30,21 @@ class Instructor(db.Model):
 
         returns Instructor: An Instructor object
         """
-        print("*"*80)
         # create a User object
         data = {**data}
         data['username'] = f"{data['first_name']} {data['last_name']}"
         data['password'] = f"{data['first_name']}.{data['last_name']}.{data['phone_number'][-4:]}"
         user = User.create(data)
-        print("*"*80)
         # get the team_id
         team_id = data['team_id']
 
         # create an Instructor object
         data['user_id'] = user.id
         instructor = cls.create(data)
-        print("*"*80)
         # find the id for "instructor" role
         role_id = Role.query.filter_by(name="instructor").first().id
 
         print(f"Role ID: {role_id}")
-        print("*"*80)
         # add user to UserRole table
         UserRole.create({'user_id': user.id, 'role_id': role_id})
 
@@ -76,6 +72,6 @@ class Instructor(db.Model):
             db.session.commit()
             return instructor
         except Exception as e:
-            print(f"Error (M-Instructors-001) creating instructor: {e}")
-            flash(f"Error (M-Instructors-001) creating instructor: {e}", 'error')
+            print(f"Error (E0009) creating instructor: {e}")
+            flash(f"Error (E0009) creating instructor: {e}", 'error')
             return None

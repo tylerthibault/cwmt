@@ -1,0 +1,57 @@
+<div>
+    <div>
+        <h5 class="card-title">Add New Course Session</h5>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCourseSessionModal">
+            Add Course Session
+        </button>
+    </div>
+</div>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">Session Date</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">Location</th>
+                <th scope="col">Course Type</th>
+                <th scope="col">Session Notes</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course_session in all_course_sessions %}
+            <tr class="text-center">
+                <td>{{ course_session.date }}</td>
+                <td>{{ course_session.start_time }}</td>
+                <td>{{ course_session.location }}</td>
+                <td>{{ course_session.course.name }}</td>
+                <td class="">
+                    {% if course_session.notes %}
+                    <i class="fa-regular fa-file-lines h3"></i>
+                    {% else %}
+                    <i class="fa-regular fa-file h3"></i>
+                    {% endif %}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary modal-btn"             
+                        data-toggle="modal"
+                        data-target="#editCourseSessionModal" 
+                        data-id="{{ course_session.id }}" 
+                        data-date="{{ course_session.date }}" 
+                        data-start_time="{{ course_session.start_time }}" 
+                        data-location="{{ course_session.location }}" 
+                        data-course_id="{{ course_session.course.id }}" 
+                        data-notes="{{ course_session.notes }}">
+                        Edit
+                    </button>
+                    <button type="button" class="btn btn-danger modal-btn" data-toggle="modal"
+                        data-target="#deleteCourseSessionModal" data-id="{{ course_session.id }}">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

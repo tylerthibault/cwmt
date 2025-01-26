@@ -1,0 +1,45 @@
+{% extends 'bases/dashboard.html' %}
+
+{% block main %}
+<div>
+    <h1>{{ course_session.course.name }}</h1>
+</div>
+<div>
+    <form action="{{ url_for('course_sessions.update') }}" method="POST">
+        <input type="hidden" name="id" id="id" value="{{ course_session.id }}">
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" name="date" value="{{ course_session.date }}">
+        </div>
+        <div class="d-flex gap-3 ">
+            <div class="mb-3 d-flex flex-column w-50">
+                <label for="primary_instructor_id" class="form-label">Primary Instructors</label>
+                <select class="form-select form-control" id="primary_instructor_id" name="primary_instructor_id">
+                    <option value="" {% if not session.primary_instructor_id %}selected{% endif %}>No One</option>
+                    {% for instructor in all_instructors %}
+                    <option value="{{ instructor.id }}" {% if instructor in session.primary_instructor_id %}selected{% endif %}>
+                        {{ instructor.user.username }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3 d-flex flex-column w-50">
+                <label for="secondary_instructor_id" class="form-label">Secondary Instructors</label>
+                <select class="form-select form-control" id="secondary_instructor_id" name="secondary_instructor_id">
+                    <option value="">No One</option>
+                    {% for instructor in all_instructors %}
+                    <option value="{{ instructor.id }}" {% if instructor in session.secondary_instructor_id %}selected{% endif %}>
+                        {{ instructor.user.username }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="notes" class="form-label">Notes</label>
+            <textarea class="form-control" id="notes" name="notes" rows="3">{{ course_session.notes }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Session</button>
+    </form>
+</div>
+{% endblock main %}

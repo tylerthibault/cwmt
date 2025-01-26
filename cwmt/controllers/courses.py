@@ -1,5 +1,6 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from cwmt.models.courses import Course, CourseSession
+from cwmt.models.instructors import Instructor
 from cwmt.config.app_core import AppCore
 from datetime import datetime
 
@@ -62,4 +63,22 @@ def create():
         CourseSession.create(request.form)
     except Exception as e:
         AppCore.MyLogger.log(e, AppCore.StatusCodes.e_creating_course_session, should_print=True, should_flash=True)
+    return redirect(url_for('courses.index', tab="course-sessions"))
+
+@course_sessions_bp.route('/course_sessions/view/<int:id>', methods=['GET'])
+def view(id):
+    course_session = CourseSession.query.get_or_404(id)
+    context = {
+        'course_session': course_session,
+        'all_instructors': Instructor.get_all()
+        # 'all_courses': Course.get_all()
+    }
+    return render_template('pages/courses/course_session_view.html', **context)
+
+@course_sessions_bp.route('/course_sessions/update', methods=['POST'])
+def update():
+    try:
+        CourseSession.update_one(request.form)
+    except Exception as e:
+        AppCore.MyLogger.log(e, AppCore.StatusCodes.e_updating_course_session, should_print=True, should_flash=True)
     return redirect(url_for('courses.index', tab="course-sessions"))

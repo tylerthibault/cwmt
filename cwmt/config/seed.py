@@ -98,7 +98,6 @@ def seed_courses():
     for course_data in courses:
         course = Course.query.filter_by(name=course_data['name']).first()
         if not course:
-            print("course_data: ", course_data)
             course = Course.create(course_data)
             if course:
                 created_courses.append(course)
@@ -121,7 +120,7 @@ def seed_course_sessions(courses):
         for i in range(3):
             session_data = {
                 'course_id': course.id,
-                'date': date(2024, 1, i+10),  # Sessions on Jan 10, 11, 12
+                'session_date': date(2024, 1, i+10),  # Sessions on Jan 10, 11, 12
                 'start_time': time(9, 0),  # 9:00 AM
                 'primary_instructor_id': instructors[0].id if instructors else None,
                 'secondary_instructor_id': instructors[1].id if len(instructors) > 1 else None,
@@ -132,7 +131,7 @@ def seed_course_sessions(courses):
             # Check if session already exists
             existing_session = CourseSession.query.filter_by(
                 course_id=session_data['course_id'],
-                date=session_data['date']
+                date=session_data['session_date']
             ).first()
             
             if not existing_session:

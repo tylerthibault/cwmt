@@ -1,226 +1,249 @@
-<div>
-    <h5 class="card-title">Calendar View</h5>
-    <div>
-        <div class="d-flex justify-content-between align-items-start mb-4">
+<div class="calendar-wrapper">
+    <div class="calendar-controls mb-3">
+        <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
                 <button class="btn btn-outline-primary" id="prevMonth">&lt;</button>
                 <button class="btn btn-outline-primary" id="currentMonth"></button>
                 <button class="btn btn-outline-primary" id="nextMonth">&gt;</button>
             </div>
-            <div class="button-panel">
-                <button class="btn btn-outline-primary w-100" id="todayButton">Today</button>
-            </div>
-        </div>
-    
-        <div class="calendar-container">
-            <div class="calendar-header d-flex">
-                <div class="calendar-cell">Sun</div>
-                <div class="calendar-cell">Mon</div>
-                <div class="calendar-cell">Tue</div>
-                <div class="calendar-cell">Wed</div>
-                <div class="calendar-cell">Thu</div>
-                <div class="calendar-cell">Fri</div>
-                <div class="calendar-cell">Sat</div>
-            </div>
-            <div id="calendar-body"></div>
-        </div>
-
-        <div class="modal fade" id="monthYearModal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Select Month & Year</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="d-flex justify-content-center align-items-center mb-3">
-                            <button class="btn btn-outline-secondary me-2" id="prevYear">&lt;</button>
-                            <span id="yearDisplay" class="h4 mb-0"></span>
-                            <button class="btn btn-outline-secondary ms-2" id="nextYear">&gt;</button>
-                        </div>
-                        <div class="month-grid" id="monthGrid"></div>
-                    </div>
-                </div>
-            </div>
+            <button class="btn btn-outline-primary" id="today">Today</button>
         </div>
     </div>
-    
-    <style>
-        .calendar-container {
-            border: 1px solid #dee2e6;
-        }
-        .calendar-cell {
-            flex: 1;
-            min-height: 100px;
-            border: 1px solid #dee2e6;
-            padding: 8px;
-        }
-        .calendar-header .calendar-cell {
-            min-height: auto;
-            padding: 10px;
-            text-align: center;
-            background-color: #f8f9fa;
-            font-weight: bold;
-        }
-        .calendar-row {
-            display: flex;
-        }
-        .session-dot {
-            height: 8px;
-            width: 8px;
-            background-color: #007bff;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 4px;
-        }
-        .session-item {
-            font-size: 0.8rem;
-            padding: 2px 4px;
-            margin: 2px 0;
-            background-color: #e9ecef;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-        .button-panel {
-            width: 120px;
-            margin-left: 16px;
-        }
-        .month-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            padding: 15px;
-        }
-        .month-item {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #dee2e6;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .month-item:hover {
-            background-color: #f8f9fa;
-        }
-        .month-item.selected {
-            background-color: #007bff;
-            color: white;
-        }
-    </style>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let currentDate = new Date();
-            const sessions = {{ all_course_sessions|tojson|safe }};
-            const monthYearModal = new bootstrap.Modal(document.getElementById('monthYearModal'));
-            const months = ['January', 'February', 'March', 'April', 'May', 'June',
-                          'July', 'August', 'September', 'October', 'November', 'December'];
-            
-            function renderCalendar(date) {
-                const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-                const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-                
-                document.getElementById('currentMonth').textContent = 
-                    date.toLocaleString('default', { month: 'long', year: 'numeric' });
-                
-                const calendarBody = document.getElementById('calendar-body');
-                calendarBody.innerHTML = '';
-                
-                let currentRow = document.createElement('div');
-                currentRow.className = 'calendar-row';
-                
-                // Add empty cells for days before first of month
-                for(let i = 0; i < firstDay.getDay(); i++) {
-                    const cell = document.createElement('div');
-                    cell.className = 'calendar-cell';
-                    currentRow.appendChild(cell);
-                }
-                
-                for(let day = 1; day <= lastDay.getDate(); day++) {
-                    if(currentRow.children.length === 7) {
-                        calendarBody.appendChild(currentRow);
-                        currentRow = document.createElement('div');
-                        currentRow.className = 'calendar-row';
-                    }
-                    
-                    const cell = document.createElement('div');
-                    cell.className = 'calendar-cell';
-                    cell.innerHTML = `<div>${day}</div>`;
-                    
-                    // Add sessions for this day
-                    const currentDateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                    const daySessions = sessions.filter(session => session.date === currentDateStr);
-                    
-                    daySessions.forEach(session => {
-                        const sessionEl = document.createElement('div');
-                        sessionEl.className = 'session-item';
-                        sessionEl.innerHTML = `<span class="session-dot"></span>${session.course.name} - ${session.start_time}`;
-                        cell.appendChild(sessionEl);
-                    });
-                    
-                    currentRow.appendChild(cell);
-                }
-                
-                // Fill remaining cells
-                while(currentRow.children.length < 7) {
-                    const cell = document.createElement('div');
-                    cell.className = 'calendar-cell';
-                    currentRow.appendChild(cell);
-                }
-                calendarBody.appendChild(currentRow);
-            }
-            
-            document.getElementById('prevMonth').addEventListener('click', () => {
-                currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1);
-                renderCalendar(currentDate);
-            });
-            
-            document.getElementById('nextMonth').addEventListener('click', () => {
-                currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
-                renderCalendar(currentDate);
-            });
-            
-            document.getElementById('todayButton').addEventListener('click', () => {
-                currentDate = new Date();
-                renderCalendar(currentDate);
-            });
 
-            function renderMonthGrid() {
-                const monthGrid = document.getElementById('monthGrid');
-                monthGrid.innerHTML = '';
-                document.getElementById('yearDisplay').textContent = currentDate.getFullYear();
-                
-                months.forEach((month, index) => {
-                    const monthElement = document.createElement('div');
-                    monthElement.className = 'month-item';
-                    if (index === currentDate.getMonth()) {
-                        monthElement.classList.add('selected');
-                    }
-                    monthElement.textContent = month;
-                    monthElement.addEventListener('click', () => {
-                        currentDate.setMonth(index);
-                        renderCalendar(currentDate);
-                        monthYearModal.hide();
-                    });
-                    monthGrid.appendChild(monthElement);
-                });
-            }
-
-            document.getElementById('currentMonth').addEventListener('click', () => {
-                renderMonthGrid();
-                monthYearModal.show();
-            });
-
-            document.getElementById('prevYear').addEventListener('click', () => {
-                currentDate.setFullYear(currentDate.getFullYear() - 1);
-                renderMonthGrid();
-            });
-
-            document.getElementById('nextYear').addEventListener('click', () => {
-                currentDate.setFullYear(currentDate.getFullYear() + 1);
-                renderMonthGrid();
-            });
-            
-            renderCalendar(currentDate);
-        });
-    </script>
+    <div class="calendar">
+        <div class="calendar-header">
+            <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div>
+            <div>Thu</div><div>Fri</div><div>Sat</div>
+        </div>
+        <div id="calendar-body"></div>
+    </div>
 </div>
+
+<style>
+    .calendar-wrapper {
+        padding: 20px;
+    }
+    .calendar {
+        border: 1px solid #ddd;
+    }
+    .calendar-header {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        background: #f8f9fa;
+        border-bottom: 1px solid #ddd;
+    }
+    .calendar-header div {
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
+    .calendar-week {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        position: relative; /* Added for absolute positioning context */
+    }
+    .calendar-day {
+        min-height: 100px;
+        padding: 5px;
+        border: 1px solid #ddd;
+        position: relative;
+        overflow: visible; /* Allow events to be visible outside the cell */
+    }
+    .date-number {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: #666;
+    }
+    .session-container {
+        margin-top: 25px;
+        position: relative;
+        min-height: 30px;
+    }
+    .session {
+        font-size: 12px;
+        padding: 6px;
+        margin: 2px 0;
+        background: #007bff;
+        color: white;
+        border-radius: 3px;
+        position: absolute; /* Changed back to absolute */
+        white-space: nowrap;
+        overflow: hidden;
+        z-index: 1;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        left: 0;
+        right: 0;
+    }
+    .session-span {
+        width: calc(var(--span-days) * 100%);
+    }
+    .session-title {
+        font-weight: bold;
+        margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .session-details {
+        font-size: 10px;
+        opacity: 0.9;
+    }
+    .other-month {
+        background: #f8f9fa;
+    }
+    .session-continuation {
+        background: #4a9eff;
+        opacity: 0.8;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sessions = {{ all_course_sessions|tojson|safe }};
+    let currentDate = new Date();
+
+    function formatDate(date) {
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    }
+
+    function renderCalendar(date) {
+        const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        
+        document.getElementById('currentMonth').textContent = 
+            date.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+        const calendarBody = document.getElementById('calendar-body');
+        calendarBody.innerHTML = '';
+
+        let currentWeek = createWeek();
+        let dayCount = 0;
+
+        // Add empty cells for previous month
+        for (let i = 0; i < firstDay.getDay(); i++) {
+            currentWeek.appendChild(createDay('', true));
+            dayCount++;
+        }
+
+        // Add days for current month
+        for (let day = 1; day <= lastDay.getDate(); day++) {
+            if (dayCount % 7 === 0) {
+                calendarBody.appendChild(currentWeek);
+                currentWeek = createWeek();
+            }
+
+            const dayCell = createDay(day, false);
+            const dayDate = new Date(date.getFullYear(), date.getMonth(), day);
+            addSessionsToDayCell(dayCell, dayDate);
+            
+            currentWeek.appendChild(dayCell);
+            dayCount++;
+        }
+
+        // Fill remaining days
+        while (dayCount % 7 !== 0) {
+            currentWeek.appendChild(createDay('', true));
+            dayCount++;
+        }
+
+        calendarBody.appendChild(currentWeek);
+    }
+
+    function createWeek() {
+        const week = document.createElement('div');
+        week.className = 'calendar-week';
+        return week;
+    }
+
+    function createDay(dayNumber, isOtherMonth) {
+        const day = document.createElement('div');
+        day.className = `calendar-day${isOtherMonth ? ' other-month' : ''}`;
+        if (dayNumber) {
+            day.innerHTML = `<div class="date-number">${dayNumber}</div>
+                           <div class="session-container"></div>`;
+        }
+        return day;
+    }
+
+    function addSessionsToDayCell(cell, date) {
+        const sessionContainer = cell.querySelector('.session-container');
+        const currentDateStr = formatDate(date);
+
+        sessions.forEach(session => {
+            const [sessionYear, sessionMonth, sessionDay] = session.date.split('-').map(Number);
+            const sessionStart = new Date(sessionYear, sessionMonth - 1, sessionDay);
+            const sessionEnd = new Date(sessionStart);
+            sessionEnd.setDate(sessionEnd.getDate() + (session.total_days - 1));
+
+            if (date >= sessionStart && date <= sessionEnd) {
+                const isFirstDay = formatDate(date) === session.date;
+                
+                // Only create session element if it's the first day or first day of week
+                if (isFirstDay || date.getDay() === 0) {
+                    const sessionEl = document.createElement('div');
+                    sessionEl.className = 'session';
+                    
+                    // Calculate remaining days in current week
+                    const daysUntilWeekEnd = 7 - date.getDay();
+                    const remainingDays = Math.floor((sessionEnd - date) / (1000 * 60 * 60 * 24)) + 1;
+                    const spanDays = Math.min(daysUntilWeekEnd, remainingDays);
+                    
+                    sessionEl.classList.add('session-span');
+                    sessionEl.style.setProperty('--span-days', spanDays);
+
+                    // Show full details on first day, simplified on continuation
+                    if (isFirstDay) {
+                        sessionEl.innerHTML = `
+                            <div class="session-title">${session.course.name}</div>
+                            <div class="session-details">
+                                ${session.start_time} | ${session.location}
+                                <br>${session.total_days} days
+                            </div>
+                        `;
+                    } else {
+                        sessionEl.innerHTML = `
+                            <div class="session-title">${session.course.name}</div>
+                        `;
+                        sessionEl.style.backgroundColor = '#4a9eff';
+                    }
+
+                    sessionEl.addEventListener('click', () => {
+                        alert(`
+                            Course: ${session.course.name}
+                            Date: ${session.date}
+                            Time: ${session.start_time}
+                            Location: ${session.location}
+                            Duration: ${session.total_days} days
+                            ${session.notes ? '\nNotes: ' + session.notes : ''}
+                        `);
+                    });
+
+                    sessionContainer.appendChild(sessionEl);
+                }
+            }
+        });
+    }
+
+    // Event Listeners
+    document.getElementById('prevMonth').addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar(currentDate);
+    });
+
+    document.getElementById('nextMonth').addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar(currentDate);
+    });
+
+    document.getElementById('today').addEventListener('click', () => {
+        currentDate = new Date();
+        renderCalendar(currentDate);
+    });
+
+    // Initial render
+    renderCalendar(currentDate);
+});
+</script>

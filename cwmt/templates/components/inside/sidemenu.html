@@ -1,50 +1,70 @@
 <div class="d-flex flex-column justify-content-between h-100 p-3">
     <!-- User Info -->
     <div class="text-center mb-4">
-        <p class="h5 mb-1">Welcome</p>
-        <p class="text-light">{{ session['user']['username'] }}</p>
+        <p class="h5 mb-1 sidemenu-text">Welcome</p>
+        <p class="text-light sidemenu-text">{{ session['user']['username'] }}</p>
     </div>
 
     <!-- Navigation Menu -->
     <div class="nav flex-column mb-auto">
         <div class="nav-item">
             <a href="{{ url_for('routes.index') }}" class="nav-link text-white">
-                <i class="fa-solid fa-house mr-2"></i>Landing Page
+                <i class="fa-solid fa-house mr-2"></i><span class="sidemenu-text ">Landing Page</span>
             </a>
         </div>
         <div class="nav-item">
             <a href="{{ url_for('routes.dashboard') }}" class="nav-link text-white">
-                <i class="fa-solid fa-house mr-2"></i>Dashboard
+                <i class="fa-solid fa-house mr-2"></i><span class="sidemenu-text ">Dashboard</span>
             </a>
         </div>
         <div class="nav-item">
             <a href="{{ url_for('instructors.index') }}" class="nav-link text-white">
-                <i class="fa-solid fa-chalkboard-user mr-2"></i>Instructors
+                <i class="fa-solid fa-chalkboard-user mr-2"></i><span class="sidemenu-text ">Instructors</span>
             </a>
         </div>
         <div class="nav-item">
             <a href="{{ url_for('courses.index') }}" class="nav-link text-white">
-                <i class="fa-solid fa-book mr-2"></i>Courses
+                <i class="fa-solid fa-book mr-2"></i><span class="sidemenu-text ">Courses</span>
             </a>
         </div>
         <!-- <div class="nav-item">
             <a href="{{ url_for('routes.examples')}}" class="nav-link text-white">
-                <i class="fa-solid fa-code me-2"></i>Components
+                <i class="fa-solid fa-code me-2"></i><span class="sidemenu-text ">Components</span>
             </a>
         </div> -->
-        <!-- Add more menu items here -->
     </div>
 
     <!-- Bottom Actions -->
     <div class="mt-auto">
-        <button class="btn btn-secondary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#userSettingsModal">
-            <i class="fa-solid fa-gear me-2"></i>Settings
+        <!-- <button id="sidebarCollapseBtn" class="menu-btn btn btn-secondary w-100 mb-2 ">
+            Collapse
+        </button> -->
+        <button class="menu-btn btn btn-secondary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#userSettingsModal">
+            <i class="fa-solid fa-gear me-2"></i><span class="sidemenu-text ">Settings</span>
         </button>
-        <a class="btn btn-danger w-100" href="{{ url_for('users.logout_user') }}">
-            <i class="fa-solid fa-right-from-bracket me-2"></i>Logout
+        <a class="menu-btn btn btn-danger w-100" href="{{ url_for('users.logout_user') }}">
+            <i class="fa-solid fa-right-from-bracket me-2"></i><span class="sidemenu-text ">Logout</span>
         </a>
     </div>
 </div>
+
+
+<script>
+const collapseBtn = document.querySelector('#sidebarCollapseBtn');
+const collapsedText = document.querySelectorAll('.sidemenu-text');
+const menuBtns = document.querySelectorAll('.menu-btn');
+
+collapseBtn.addEventListener('click', () => {
+    collapsedText.forEach(text => {
+        text.classList.toggle('d-none');
+    });
+    menuBtns.forEach(btn => {
+        btn.classList.toggle('px-0');
+    });
+
+    collapseBtn.innerHTML = collapseBtn.innerHTML === 'Expand' ? 'Collapse' : 'Expand';
+});
+</script>
 
 {% block modals %}
 {% include 'components/modals/user_settings.html' %}

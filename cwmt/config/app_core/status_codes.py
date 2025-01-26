@@ -95,6 +95,11 @@ class StatusCodes():
     'pub_msg': 'Controller error',
     'flash_color': 'error',
     })
+    e_getting_instructors = StatusCode({
+    'code': 'E0018',
+    'pub_msg': 'Error getting instructors',
+    'flash_color': 'error',
+    })
 
 
     # Statuses

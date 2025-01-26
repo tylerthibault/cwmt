@@ -4,6 +4,7 @@ from cwmt.config.helper import get_logged_in_user
 from cwmt.models.users import User
 from cwmt.models.roles import Role, UserRole
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from cwmt.config.app_core import AppCore
 import datetime
 
 class Instructor(db.Model):
@@ -75,3 +76,16 @@ class Instructor(db.Model):
             print(f"Error (E0009) creating instructor: {e}")
             flash(f"Error (E0009) creating instructor: {e}", 'error')
             return None
+
+    @classmethod
+    def get_all(cls):
+        """
+        Get all instructors
+
+        returns list: A list of Instructor objects
+        """
+        try:
+            return cls.query.all()
+        except Exception as e:
+            AppCore.MyLogger.log(AppCore.StatusCodes.e_getting_instructors, e, should_print=True, should_flash=True)
+            return []

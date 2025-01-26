@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 # import datetime
 from datetime import datetime
 from cwmt.config.app_core import AppCore
+from cwmt.models.instructors import Instructor
 
 
 
@@ -121,6 +122,13 @@ class CourseSession(db.Model):
     def course(self):
         return Course.query.get(self.course_id)
     
+    @property
+    def primary_instructor(self):
+        return Instructor.query.get(self.primary_instructor_id)
+    
+    @property
+    def secondary_instructor(self):
+        return Instructor.query.get(self.secondary_instructor_id)
     
     def to_dict(self):
         return {
@@ -130,6 +138,9 @@ class CourseSession(db.Model):
             'start_time': self.start_time.strftime('%H:%M'),
             'location': self.location,
             'notes': self.notes,
+            'primary_instructor_id': self.primary_instructor_id,
+            'secondary_instructor_id': self.secondary_instructor_id,
+            'total_days': self.course.total_days,
             'course': {
                 'id': self.course.id,
                 'name': self.course.name
@@ -191,13 +202,44 @@ class CourseSession(db.Model):
         returns bool: True if successful, False otherwise
         """
         try:
-            course_session = cls.query.get(data['session_id'])
-            course_session.course_id = data['course_id']
-            course_session.session_date = data['session_date']
-            course_session.start_time = data['start_time']
-            course_session.end_time = data.get('end_time')
-            course_session.primary_instructor_id = data.get('primary_instructor_id')
-            course_session.secondary_instructor_id = data.get('secondary_instructor_id')
+            # Debug print incoming data
+            print("Received data:", data)
+
+            
+            course_session = cls.query.get(data['id'])
+            print("Found session:", course_session)
+            
+            if not course_session:
+                print("No session found with id:", data['session_id'])
+                return False
+            
+            # Print each field update
+            for key, value in data.items():
+                if hasattr(course_session, key):
+                    print(f"Updating {key}: {value}")
+                    
+            if 'course_id' in data:
+                print("Setting course_id:", data['course_id'])
+                course_session.course_id = data['course_id']
+            if 'date' in data:
+                print("Setting date:", data['date'])
+                course_session.date = datetime.strptime(data['date'], '%Y-%m-%d').date()
+            if 'start_time' in data:
+                print("Setting start_time:", data['start_time'])
+                course_session.start_time = datetime.strptime(data['start_time'], '%H:%M').time()
+            if 'location' in data:
+                print("Setting location:", data['location'])
+                course_session.location = data['location']
+            if 'notes' in data:
+                print("Setting notes:", data['notes'])
+                course_session.notes = data['notes']
+            if 'primary_instructor_id' in data:
+                print("Setting primary_instructor_id:", data['primary_instructor_id'])
+                course_session.primary_instructor_id = data['primary_instructor_id']
+            if 'secondary_instructor_id' in data:
+                print("Setting secondary_instructor_id:", data['secondary_instructor_id'])
+                course_session.secondary_instructor_id = data['secondary_instructor_id']
+            
             db.session.commit()
             AppCore.MyLogger.log(AppCore.StatusCodes.s_updating_course_session, should_print=True, should_flash=True)
             return True
@@ -226,3 +268,4 @@ class CourseSession(db.Model):
             AppCore.MyLogger.log(AppCore.StatusCodes.e_deleting_course_session, e, should_print=True, should_flash=True)
             db.session.rollback()
             return False
+        

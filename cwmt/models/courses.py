@@ -75,6 +75,8 @@ class Course(db.Model):
             course = cls.query.get(data['id'])
             course.name = data['name']
             course.description = data.get('description')
+            course.max_students = data.get('max_students')
+            course.total_days = data.get('total_days')
             db.session.commit()
             AppCore.MyLogger.log(AppCore.StatusCodes.s_updating_course, should_print=True, should_flash=True)
             return True

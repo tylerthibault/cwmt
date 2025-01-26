@@ -9,7 +9,7 @@ def seed_roles():
     """Create system roles if they don't exist."""
     admin_role = Role.query.filter_by(name='sys-admin').first()
     if not admin_role:
-        admin_role = Role.create({'name': 'sys-admin', 'description': 'System Administrator'})
+        admin_role = Role.create({'name': 'admin', 'description': 'Administrator'})
 
     instructor_role = Role.query.filter_by(name='instructor').first()
     if not instructor_role:
@@ -120,7 +120,7 @@ def seed_course_sessions(courses):
         for i in range(3):
             session_data = {
                 'course_id': course.id,
-                'session_date': date(2024, 1, i+10),  # Sessions on Jan 10, 11, 12
+                'date': date(2024, 1, i+10),  # Sessions on Jan 10, 11, 12
                 'start_time': time(9, 0),  # 9:00 AM
                 'primary_instructor_id': instructors[0].id if instructors else None,
                 'secondary_instructor_id': instructors[1].id if len(instructors) > 1 else None,
@@ -131,7 +131,7 @@ def seed_course_sessions(courses):
             # Check if session already exists
             existing_session = CourseSession.query.filter_by(
                 course_id=session_data['course_id'],
-                date=session_data['session_date']
+                date=session_data['date']
             ).first()
             
             if not existing_session:

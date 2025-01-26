@@ -1,3 +1,30 @@
+{% set navigation_items = [
+    {
+        'name': 'Landing Page',
+        'url': 'routes.index',
+        'icon': 'fa-globe',
+        'roles': ['admin', 'instructor', 'student']
+    },
+    {
+        'name': 'Dashboard',
+        'url': 'routes.dashboard',
+        'icon': 'fa-house',
+        'roles': ['admin', 'instructor', 'student']
+    },
+    {
+        'name': 'Instructors',
+        'url': 'instructors.index',
+        'icon': 'fa-chalkboard-user',
+        'roles': ['admin']
+    },
+    {
+        'name': 'Courses',
+        'url': 'courses.index',
+        'icon': 'fa-book',
+        'roles': ['admin']
+    }
+] %}
+
 <div class="d-flex flex-column justify-content-between h-100 p-3">
     <!-- User Info -->
     <div class="text-center mb-4">
@@ -7,47 +34,28 @@
 
     <!-- Navigation Menu -->
     <div class="nav flex-column mb-auto">
-        <div class="nav-item">
-            <a href="{{ url_for('routes.index') }}" class="nav-link text-white">
-                <i class="fa-solid fa-house mr-2"></i><span class="sidemenu-text ">Landing Page</span>
-            </a>
-        </div>
-        <div class="nav-item">
-            <a href="{{ url_for('routes.dashboard') }}" class="nav-link text-white">
-                <i class="fa-solid fa-house mr-2"></i><span class="sidemenu-text ">Dashboard</span>
-            </a>
-        </div>
-        <div class="nav-item">
-            <a href="{{ url_for('instructors.index') }}" class="nav-link text-white">
-                <i class="fa-solid fa-chalkboard-user mr-2"></i><span class="sidemenu-text ">Instructors</span>
-            </a>
-        </div>
-        <div class="nav-item">
-            <a href="{{ url_for('courses.index') }}" class="nav-link text-white">
-                <i class="fa-solid fa-book mr-2"></i><span class="sidemenu-text ">Courses</span>
-            </a>
-        </div>
-        <!-- <div class="nav-item">
-            <a href="{{ url_for('routes.examples')}}" class="nav-link text-white">
-                <i class="fa-solid fa-code me-2"></i><span class="sidemenu-text ">Components</span>
-            </a>
-        </div> -->
+        {% for item in navigation_items %}
+            {% if session['user']['roles'] in item['roles'] %}
+                <div class="nav-item">
+                    <a href="{{ url_for(item['url']) }}" class="nav-link text-white">
+                        <i class="fa-solid {{ item['icon'] }} mr-2"></i>
+                        <span class="sidemenu-text">{{ item['name'] }}</span>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
 
     <!-- Bottom Actions -->
     <div class="mt-auto">
-        <!-- <button id="sidebarCollapseBtn" class="menu-btn btn btn-secondary w-100 mb-2 ">
-            Collapse
-        </button> -->
         <button class="menu-btn btn btn-secondary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#userSettingsModal">
-            <i class="fa-solid fa-gear me-2"></i><span class="sidemenu-text ">Settings</span>
+            <i class="fa-solid fa-gear me-2"></i><span class="sidemenu-text">Settings</span>
         </button>
         <a class="menu-btn btn btn-danger w-100" href="{{ url_for('users.logout_user') }}">
-            <i class="fa-solid fa-right-from-bracket me-2"></i><span class="sidemenu-text ">Logout</span>
+            <i class="fa-solid fa-right-from-bracket me-2"></i><span class="sidemenu-text">Logout</span>
         </a>
     </div>
 </div>
-
 
 <script>
 const collapseBtn = document.querySelector('#sidebarCollapseBtn');

@@ -13,7 +13,7 @@ def index():
     context = {
         'all_teams': teams,
     }
-    return render_template('pages/instructors/index.html', **context)
+    return render_template('/pages/admin/instructors/index.html', **context)
 
 @instructors_bp.route('/instructors/new', methods=['GET', 'POST'])
 def create():

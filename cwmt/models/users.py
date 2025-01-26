@@ -11,6 +11,7 @@ class User(db.Model):
     username = Column(String(50), unique=True, nullable=False)
     email = Column(String(120), unique=True, nullable=False)
     password = Column(String(128), nullable=False)
+    phone_number = Column(String(15), nullable=True)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
     
@@ -35,7 +36,8 @@ class User(db.Model):
             user = cls(
                 username=data['username'],
                 email=data['email'],
-                password=data['password']
+                password=data['password'],
+                phone_number=data.get('phone_number')
             )
             db.session.add(user)
             db.session.commit()

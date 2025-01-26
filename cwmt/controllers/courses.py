@@ -17,7 +17,7 @@ def index():
         'all_course_sessions': [session.to_dict() for session in CourseSession.query.all()],
         
     }
-    return render_template('pages/courses/index.html', **context)
+    return render_template('/pages/admin/courses/index.html', **context)
 
 # @courses_bp.route('/courses/<int:id>', methods=['GET'])
 # def get_course(id):
@@ -73,7 +73,7 @@ def view(id):
         'all_instructors': Instructor.get_all()
         # 'all_courses': Course.get_all()
     }
-    return render_template('pages/courses/course_session_view.html', **context)
+    return render_template('/pages/admin/courses/course_session_view.html', **context)
 
 @course_sessions_bp.route('/course_sessions/update', methods=['POST'])
 def update():

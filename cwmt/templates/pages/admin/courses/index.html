@@ -22,14 +22,14 @@
     <div class="tab-pane {% if active_tab == 'course-calendar' %}active{% endif %}" id="calendar">
         <div class="card">
             <div class="card-body">
-                {% include 'pages/courses/subpages/calendar_view.html' %}
+                {% include '/pages/admin/courses/subpages/calendar_view.html' %}
             </div>
         </div>
     </div>
     <div class="tab-pane {% if active_tab == 'courses' %}active{% endif %}" id="course-types">
         <div class="card">
             <div class="card-body">
-                {% include 'pages/courses/subpages/course_types.html' %}
+                {% include '/pages/admin/courses/subpages/course_types.html' %}
                 
             </div>
         </div>
@@ -37,7 +37,7 @@
     <div class="tab-pane {% if active_tab == 'course-sessions' %}active{% endif %}" id="add-sessions">
         <div class="card">
             <div class="card-body">
-                {% include 'pages/courses/subpages/course_sessions.html' %}
+                {% include '/pages/admin/courses/subpages/course_sessions.html' %}
             </div>
         </div>
     </div>
@@ -46,6 +46,6 @@
 
 
 {% block modals %}
-{% include 'pages/courses/modals/courses.html' %}
-{% include 'pages/courses/modals/course_sessions.html' %}
+{% include '/pages/admin/courses/modals/courses.html' %}
+{% include '/pages/admin/courses/modals/course_sessions.html' %}
 {% endblock modals %}

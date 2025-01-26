@@ -1,0 +1,51 @@
+{% extends 'bases/dashboard.html' %}
+
+{% block main %}
+<div>
+    <h1 class="h3 mb-3">Courses</h1>
+</div>
+<div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link {% if active_tab == 'course-calendar' %}active{% endif %}" href="#calendar" data-toggle="tab">Calendar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if active_tab == 'courses' %}active{% endif %}" href="#course-types" data-toggle="tab">Course Types</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if active_tab == 'course-sessions' %}active{% endif %}" href="#add-sessions" data-toggle="tab">Add New Sessions</a>
+        </li>
+    </ul>
+</div>
+
+<div class="tab-content">
+    <div class="tab-pane {% if active_tab == 'course-calendar' %}active{% endif %}" id="calendar">
+        <div class="card">
+            <div class="card-body">
+                {% include '/pages/admin/courses/subpages/calendar_view.html' %}
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane {% if active_tab == 'courses' %}active{% endif %}" id="course-types">
+        <div class="card">
+            <div class="card-body">
+                {% include '/pages/admin/courses/subpages/course_types.html' %}
+                
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane {% if active_tab == 'course-sessions' %}active{% endif %}" id="add-sessions">
+        <div class="card">
+            <div class="card-body">
+                {% include '/pages/admin/courses/subpages/course_sessions.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block modals %}
+{% include '/pages/admin/courses/modals/courses.html' %}
+{% include '/pages/admin/courses/modals/course_sessions.html' %}
+{% endblock modals %}

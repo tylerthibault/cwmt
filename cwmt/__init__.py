@@ -5,12 +5,14 @@ import logging
 from logging.handlers import RotatingFileHandler
 import os
 
+
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 
 def create_app():
     app = Flask(__name__)
     app.secret_key = "super secret key"
+
 
     bcrypt.init_app(app)
 
@@ -21,12 +23,12 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
     db.init_app(app)
 
-    # from cwmt.models import User
-    from cwmt.models.log import Log
-    from cwmt.models.users import User
-    with app.app_context():
-        db.create_all()
+    setup_tables(app)
+    register_blueprints(app)
 
+    return app
+
+def register_blueprints(app):
     # register the blueprints
     from cwmt.controllers.routes import routes_bp
     app.register_blueprint(routes_bp)
@@ -34,7 +36,37 @@ def create_app():
     from cwmt.controllers.users import users_bp
     app.register_blueprint(users_bp)
 
-    return app
+    from cwmt.controllers.instructors import instructors_bp
+    app.register_blueprint(instructors_bp)
+
+    from cwmt.controllers.courses import courses_bp, course_sessions_bp
+    app.register_blueprint(courses_bp)
+    app.register_blueprint(course_sessions_bp)
+
+    # from cwmt.controllers.students import students_bp
+    # app.register_blueprint(students_bp)
+
+    # from cwmt.controllers.course_sessions import course_sessions_bp
+    # app.register_blueprint(course_sessions_bp)
+
+    # from cwmt.controllers.enrollments import enrollments_bp
+    # app.register_blueprint(enrollments_bp)
+
+    # from cwmt.controllers.locations import locations_bp
+    # app.register_blueprint(locations_bp)
+    
+
+def setup_tables(app):
+    # from cwmt.models import User
+    from cwmt.models.log import Log
+    from cwmt.models.users import User
+    from cwmt.models.instructors import Instructor
+    from cwmt.models.teams import Team
+    from cwmt.models.roles import Role, UserRole
+    from cwmt.models.courses import Course
+    with app.app_context():
+        db.create_all()
+
 
 def setup_logging(app):
     if not os.path.exists('logs'):
@@ -113,3 +145,6 @@ def setup_logging(app):
     # app.logger.setLevel(logging.WARNING)
     # app.logger.setLevel(logging.ERROR)
     # app.logger.setLevel(logging.CRITICAL)
+    
+
+                

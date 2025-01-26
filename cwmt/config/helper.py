@@ -19,6 +19,7 @@ def load_session_user_data():
             session['user'] = {}
         session['user']['username'] = user.username
         session['user']['email'] = user.email
+        session['user']['roles'] = user.roles[0].role.name if user.roles else None
         return user
     return None
 

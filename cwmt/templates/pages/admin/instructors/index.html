@@ -1,0 +1,46 @@
+{% extends 'bases/dashboard.html' %}
+
+{% block main %}
+<div class="d-flex justify-content-between align-items-center px-3">
+    <h1>Instructors</h1>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#createInstructorModal">Create Instructor</button>
+</div>
+
+{% for team in all_teams %}
+<div>
+    <h2>{{ team.name }}</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for instructor in team.instructors %}
+                <tr>
+                    <td>{{ instructor.user.username }}</td>
+                    <td>
+                        {% for role in instructor.user.roles %}
+                            <span class="text-capitalize">{{ role }}</span>
+                            {% if loop.index0 > 1 %}
+                            <span>,</span>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="" class="btn">Edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endfor %}
+
+{% endblock main %}
+
+{% block modals %}
+{% include '/pages/admin/instructors/components/create.html' %}
+{% endblock modals %}

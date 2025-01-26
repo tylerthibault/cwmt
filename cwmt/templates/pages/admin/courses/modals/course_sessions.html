@@ -1,0 +1,65 @@
+
+<div class="modal fade" id="addCourseSessionModal" tabindex="-1" role="dialog" aria-labelledby="addCourseSessionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCourseSessionModalLabel">Add New Course Session</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('course_sessions.create') }}" id="addCourseSessionForm" method="POST">
+                    <div class="form-group">
+                        <label for="date">Session Date</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="start_time">Start Time</label>
+                        <input type="time" class="form-control" id="start_time" name="start_time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sessionLocation">Location</label>
+                        <input type="text" class="form-control" id="sessionLocation" name="location">
+                    </div>
+                    <div class="form-group">
+                        <label for="course_id">Course Type</label>
+                        <select class="form-control" id="course_id" name="course_id" required>
+                            {% for course in all_courses %}
+                                <option value="{{ course.id }}">{{ course.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sessionNotes">Session Notes</label>
+                        <textarea class="form-control" id="sessionNotes" name="notes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" form="addCourseSessionForm" class="btn btn-primary">Save Course Session</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editCourseSessionNotes" tabindex="-1" role="dialog" aria-labelledby="editCourseSessionNotesLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCourseSessionNotesLabel">Edit Session Notes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('course_sessions.update') }}" method="POST">
+                    <input type="hidden" id="editCourseSessionNotes-id" name="id">
+                    <div class="form-group">
+                        <label for="editSessionNotes">Notes</label>
+                        <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

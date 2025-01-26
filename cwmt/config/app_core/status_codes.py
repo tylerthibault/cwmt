@@ -100,6 +100,16 @@ class StatusCodes():
     'pub_msg': 'Error getting instructors',
     'flash_color': 'error',
     })
+    e_getting_team = StatusCode({
+    'code': 'E0019',
+    'pub_msg': 'Error getting team',
+    'flash_color': 'error',
+    })
+    e_signing_up_instructor = StatusCode({
+    'code': 'E0020',
+    'pub_msg': 'Error signing up instructor',
+    'flash_color': 'error',
+    })
 
 
     # Statuses

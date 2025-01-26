@@ -71,26 +71,29 @@ def seed_instructors(team):
                 'team_id': team.id
             })
 
-def seed_courses():
+def seed_courses(team):
     """Create courses if they don't exist."""
     courses = [
         {
             'name': 'Introduction to Riding',
             'description': 'Learn the basics of Motorcycles',
             'max_students': 20,
-            'total_days': 5
+            'total_days': 5,
+            'team_id': team.id
         },
         {
             'name': 'Basic Fundamentals',
             'description': 'Basic Riding Fundamentals',
             'max_students': 15,
-            'total_days': 10
+            'total_days': 10,
+            'team_id': team.id
         },
         {
             'name': 'Advanced Riding',
             'description': 'Advanced Riding Techniques',
             'max_students': 12,
-            'total_days': 8
+            'total_days': 8,
+            'team_id': team.id
         }
     ]
 
@@ -104,7 +107,7 @@ def seed_courses():
     
     return created_courses
 
-def seed_course_sessions(courses):
+def seed_course_sessions(courses, team):
     """Create course sessions if they don't exist."""
     if not courses:
         return
@@ -120,11 +123,12 @@ def seed_course_sessions(courses):
         for i in range(3):
             session_data = {
                 'course_id': course.id,
-                'date': date(2024, 1, i+10),  # Sessions on Jan 10, 11, 12
-                'start_time': time(9, 0),  # 9:00 AM
+                'date': f"2025-0{1 + i}-{i+9}",  # Sessions on Jan 10, 11, 12
+                'start_time': "09:00",  # 9:00 AM
                 'primary_instructor_id': instructors[0].id if instructors else None,
                 'secondary_instructor_id': instructors[1].id if len(instructors) > 1 else None,
                 'location': f'Room {i+101}',
+                'team_id': team.id,
                 'notes': f'Session {i+1} of {course.name}'
             }
             
@@ -143,5 +147,5 @@ def seed_db():
     admin_user, team = seed_admin_user(admin_role)
     if admin_user:
         seed_instructors(team)
-        courses = seed_courses()
-        seed_course_sessions(courses)
+        courses = seed_courses(team)
+        seed_course_sessions(courses, team)

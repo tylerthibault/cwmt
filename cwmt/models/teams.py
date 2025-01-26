@@ -3,6 +3,9 @@ from cwmt import db, bcrypt
 from sqlalchemy import Column, Integer, String, DateTime
 import datetime
 
+from cwmt.models import courses
+from cwmt.config.app_core import AppCore
+
 class Team(db.Model):
     __tablename__ = 'teams'
     
@@ -15,6 +18,22 @@ class Team(db.Model):
     # Relationships
     instructors = db.relationship('Instructor', backref='team', lazy=True)
 
+    @property
+    def get_all_sessions(self):
+        """
+        Get all sessions for a given team
+
+        args team_id: int: The id of the team
+
+        returns list: A list of CourseSession objects
+        """
+        try:
+            course_sessions = courses.CourseSession.query.filter_by(team_id=self.id).all()
+            return course_sessions
+
+        except Exception as e:
+            AppCore.MyLogger.log(AppCore.StatusCodes.e_getting_course_sessions, e, should_flash=True, should_print=True)
+            return []
 
     @classmethod
     def create(cls, data:dict):

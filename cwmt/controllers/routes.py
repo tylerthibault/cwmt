@@ -4,6 +4,7 @@ from cwmt.config.seed import seed_db
 from cwmt.config.decorators import login_required
 # from cwmt.config.status_codes import ErrorCodes
 from cwmt.config.app_core import AppCore
+from cwmt.models.instructors import Instructor
 
 routes_bp = Blueprint('routes', __name__)
 
@@ -45,10 +46,10 @@ def admin_dashboard():
 @routes_bp.route('/instructor/dashboard')
 # @login_required
 def instructor_dashboard():
-    print("*"*80)
-    print(session['user'])
-    print("*"*80)
-    return render_template('/pages/instructors/dashboard.html')
+    context = {
+        'team': Instructor.get_team(session['user']['team_id'])
+    }
+    return render_template('/pages/instructors/dashboard.html', **context)
 
 @routes_bp.route('/student/dashboard')
 # @login_required

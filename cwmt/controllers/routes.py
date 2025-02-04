@@ -5,16 +5,39 @@ from cwmt.config.decorators import login_required
 # from cwmt.config.status_codes import ErrorCodes
 from cwmt.config.app_core import AppCore
 from cwmt.models.instructors import Instructor
+from cwmt.models.courses import Course, CourseSession
 
 routes_bp = Blueprint('routes', __name__)
 
 @routes_bp.route('/')
 def index():
-    return render_template('/pages/landing.html')
+    
+    return render_template('/pages/public/landing.html')
 
-@routes_bp.route('/test/<int:num>')
-def test(num):
-    return render_template(f'/pages/test_pages/test{num}.html')   
+@routes_bp.route('/<string:page>')
+def public_page(page):
+    context = {
+        'all_course_sessions': [session.to_dict() for session in CourseSession.query.all()],
+    }
+    return render_template(f'/pages/public/{page}.html', **context)
+
+@routes_bp.route('/signup')
+def calendar():
+    context = {
+        'all_course_sessions': [session.to_dict() for session in CourseSession.query.all()],
+    }
+    return render_template('/pages/public/signup.html', **context)
+
+# TEST Routes
+
+@routes_bp.route('/test/<string:page>')
+def test_page(page):
+    context = {
+        'all_course_sessions': [session.to_dict() for session in CourseSession.query.all()],
+    }
+    return render_template(f'/pages/test/{page}.html', **context)
+
+# Dashboards **************************
 
 @routes_bp.route('/dashboard')
 # @login_required

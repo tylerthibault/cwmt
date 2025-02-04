@@ -1,0 +1,147 @@
+<style>
+    /* Updated container style for scrolling */
+    .testimonial-container {
+        overflow-x: auto;
+        /* Enable scrolling */
+        white-space: nowrap;
+        padding: 1rem;
+        scroll-behavior: smooth;
+        position: relative;
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .testimonial-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Individual testimonial styles */
+    .testimonial-item {
+        display: inline-block;
+        background: #f5f5f5;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-right: 1rem;
+        width: 300px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Horizontal scrolling testimonials Used on: testimonials section with class="testimonials-scroll" */
+    .testimonials-scroll {
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+        -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+        scrollbar-width: none; /* Hide scrollbar in Firefox */
+    }
+
+    .testimonials-scroll::-webkit-scrollbar {
+        display: none; /* Hide scrollbar in WebKit browsers */
+    }
+
+    .testimonials-scroll .card {
+        display: inline-block;
+        animation: scroll 30s linear infinite;
+        border: 5px solid var(--accent);
+        /* box-shadow: 0 2px 5px var(--accent); */
+    }
+
+    /* Updated rule for paragraph text wrapping */
+    .testimonials-scroll .card p {
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .testimonials-scroll:hover .card {
+        animation-play-state: paused;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0%);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+</style>
+
+<section>
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="testimonials-scroll d-flex overflow-auto pb-3">
+                <div class="card bg-dark text-white p-4 me-3" style="min-width: 300px;">
+                    <p class="font-italic">"The hands-on experience was invaluable. I learned more in two days than I
+                        thought possible."</p>
+                    <p class="mb-0 fw-bold">- Michael R.</p>
+                </div>
+                <div class="card bg-dark text-white p-4 me-3" style="min-width: 300px;">
+                    <p class="font-italic">"Excellent instruction that covers both practical skills and safety mindset.
+                        Worth every penny!"</p>
+                    <p class="mb-0 fw-bold">- Emma K.</p>
+                </div>
+                <div class="card bg-dark text-white p-4 me-3" style="min-width: 300px;">
+                    <p class="font-italic">"The instructors made learning fun while maintaining a strong focus on
+                        safety. Highly recommend!"</p>
+                    <p class="mb-0 fw-bold">- David P.</p>
+                </div>
+                <div class="card bg-dark text-white p-4 me-3" style="min-width: 300px;">
+                    <p class="font-italic">"From complete beginner to confident rider. This course exceeded all my
+                        expectations."</p>
+                    <p class="mb-0 fw-bold">- Lisa M.</p>
+                </div>
+                <div class="card bg-dark text-white p-4 me-3" style="min-width: 300px;">
+                    <p class="font-italic">"The step-by-step approach to learning made the process less intimidating.
+                        Great experience!"</p>
+                    <p class="mb-0 fw-bold">- James T.</p>
+                </div>
+                <div class="card bg-dark text-white p-4 me-3" style="min-width: 300px;">
+                    <p class="font-italic">"Professional, thorough, and patient instructors. A perfect start for any
+                        aspiring rider."</p>
+                    <p class="mb-0 fw-bold">- Rachel S.</p>
+                </div>
+                <div class="card bg-dark text-white p-4" style="min-width: 300px;">
+                    <p class="font-italic">"Best investment in my riding journey. The skills I learned here are
+                        priceless."</p>
+                    <p class="mb-0 fw-bold">- Thomas W.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const counters = document.querySelectorAll('.counter-number');
+    const speed = 200;
+
+    const startCounting = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        let count = 0;
+        const inc = target / speed;
+
+        const updateCount = () => {
+            if (count < target) {
+                count += inc;
+                counter.innerText = Math.ceil(count);
+                setTimeout(updateCount, 1);
+            } else {
+                counter.innerText = target;
+            }
+        }
+        updateCount();
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startCounting(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
+</script>

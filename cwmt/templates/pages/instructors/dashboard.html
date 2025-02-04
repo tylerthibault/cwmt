@@ -6,21 +6,25 @@
 </div>
 <div class="d-flex flex-wrap">
     {% for session in team.get_all_sessions %}
-        <div class="session-card ml-5">
-            <h3>Session: {{ session.title }}</h3>
-            <p>Date: {{ session.date }}</p>
-            <p>Time: {{ session.start_time }}</p>
+        <div class="session-card ml-5 card p-3">
+            <div>
+                <h3>{{ session.date }}</h3>
+                <div class="d-flex flex-column p-2 mb-3 border rounded">
+                    <p class="m-0 p-0">{{ session.course.name }}</p>
+                    <p class="m-0 p-0">{{ session.start_time }}</p>
+                </div>
+            </div>
             
             {% if session.primary_instructor_id and session.secondary_instructor_id %}
-                <p>Primary Instructor: {{ session.primary_instructor.user.username }}</p>
-                <p>Secondary Instructor: {{ session.secondary_instructor.user.username }}</p>
+                <p>Primary Instructor: <span class="font-weight-bold">{{ session.primary_instructor.user.username }}</span></p>
+                <p>Secondary Instructor: <span class="font-weight-bold">{{ session.secondary_instructor.user.username }}</span></p>
             {% elif session.primary_instructor_id %}
-                <p>Primary Instructor: {{ session.primary_instructor.user.username }}</p>
+                <p>Primary Instructor: <span class="font-weight-bold">{{ session.primary_instructor.user.username }}</span></p>
                 <p>Secondary Instructor: 
                     <form action="{{ url_for('course_sessions.signup_instructor') }}" method="POST" class="d-inline">
                         <input type="hidden" name="id" id="id" value="{{ session.id }}">
                         <input type="hidden" name="instructor_position" value="secondary">
-                        <button type="submit" class="btn btn-primary">Sign Up as Secondary</button>
+                        <button type="submit" class="btn btn-secondary">Sign Up as Secondary</button>
                     </form>
                 </p>
             {% elif session.secondary_instructor_id %}
@@ -31,7 +35,7 @@
                         <button type="submit" class="btn btn-primary">Sign Up as Primary</button>
                     </form>
                 </p>
-                <p>Secondary Instructor: {{ session.secondary_instructor.user.username }}</p>
+                <p>Secondary Instructor: <span class="font-weight-bold">{{ session.secondary_instructor.user.username }}</span></p>
             {% else %}
                 <p>Primary Instructor: 
                     <form action="{{ url_for('course_sessions.signup_instructor') }}" method="POST" class="d-inline">
@@ -44,7 +48,7 @@
                     <form action="{{ url_for('course_sessions.signup_instructor') }}" method="POST" class="d-inline">
                         <input type="hidden" name="id" id="id" value="{{ session.id }}">
                         <input type="hidden" name="instructor_position" value="secondary">
-                        <button type="submit" class="btn btn-primary">Sign Up as Secondary</button>
+                        <button type="submit" class="btn btn-secondary">Sign Up as Secondary</button>
                     </form>
                 </p>
             {% endif %}

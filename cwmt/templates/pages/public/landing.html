@@ -1,0 +1,31 @@
+{% extends 'bases/main.html' %}
+
+{% block main %}
+<div class="page-wrapper">
+    <!-- Hero Section -->
+    {% include 'pages/public/components/hero.html' %}
+    
+    <!-- navbar -->
+    {% include 'pages/public/components/navbar.html' %}
+    
+    <div class="p-4">
+        <!-- About Section -->
+        {% include 'pages/public/components/about.html' %}
+    </div>
+    <!-- statistics -->
+    {% include 'pages/public/components/statistics.html' %}
+    
+    <div class="p-4">
+        <!-- locations and courses -->
+        {% include 'pages/public/components/locations.html' %}
+    </div>
+
+    <!-- testimonials -->
+    {% include 'pages/public/components/testimonials.html' %}
+    
+</div>
+{% endblock main %}
+
+{% block scripts %}
+
+{% endblock scripts %}

@@ -2,7 +2,6 @@ from flask import flash
 from cwmt import db, bcrypt
 from sqlalchemy import Column, Integer, String, DateTime
 import datetime
-from cwmt.models.teams import Team
 
 class User(db.Model):
     __tablename__ = 'users'

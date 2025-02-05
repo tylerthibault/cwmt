@@ -1,0 +1,608 @@
+/* Reset & Base Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #fff;
+  transition: background 0.3s ease, color 0.3s ease;
+  padding: 0 !important;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HERO SECTION */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url('https://source.unsplash.com/1600x900/?motorcycle,ride') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: background 0.3s ease;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 1rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.cta-btn {
+  padding: 1rem 2rem;
+  background: #ff5a5f;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.cta-btn:hover {
+  background: #e04e52;
+}
+
+/* NAVIGATION BAR */
+nav {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+nav .logo h2 {
+  font-size: 1.5rem;
+  color: #ff5a5f;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+nav ul li {
+  margin-left: 2rem;
+}
+
+nav ul li a {
+  font-weight: 700;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #ff5a5f;
+}
+
+/* Dark mode toggle button in nav */
+.dark-mode-toggle {
+  margin-left: 2rem;
+}
+
+#darkModeToggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+/* ABOUT SECTION */
+section.about {
+  padding: 4rem 0;
+  background: #f9f9f9;
+  transition: background 0.3s ease;
+}
+
+section.about .content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+section.about .text,
+section.about .image {
+  flex: 1 1 500px;
+  padding: 1rem;
+}
+
+section.about .image img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* COURSES SECTION */
+section.courses {
+  padding: 4rem 0;
+}
+
+.courses-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.course-card {
+  flex: 1 1 calc(33.333% - 2rem);
+  background: #fff;
+  padding: 1.5rem;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.course-card h3 {
+  margin-bottom: 1rem;
+}
+
+.course-card p {
+  margin-bottom: 1.5rem;
+}
+
+.course-card .btn {
+  padding: 0.75rem 1.5rem;
+  background: #ff5a5f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.course-card .btn:hover {
+  background: #e04e52;
+}
+
+/* BENEFITS SECTION */
+section.benefits {
+  padding: 4rem 0;
+  background: #f9f9f9;
+  transition: background 0.3s ease;
+}
+
+.benefits-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  text-align: center;
+}
+
+.benefit-item {
+  flex: 1 1 calc(33.333% - 2rem);
+  padding: 1.5rem;
+}
+
+.benefit-item i {
+  font-size: 3rem;
+  color: #ff5a5f;
+  margin-bottom: 1rem;
+}
+
+/* TESTIMONIALS SECTION */
+section.testimonials {
+  padding: 4rem 0;
+}
+
+.testimonial-item {
+  margin-bottom: 2rem;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.testimonial-item p {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.testimonial-item .author {
+  font-weight: 700;
+  text-align: right;
+}
+
+/* INSTRUCTORS SECTION */
+section.instructors {
+  padding: 4rem 0;
+  background: #f9f9f9;
+  transition: background 0.3s ease;
+}
+
+.instructors-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.instructor-card {
+  flex: 1 1 calc(33.333% - 2rem);
+  background: #fff;
+  padding: 1.5rem;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  text-align: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.instructor-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* HOW IT WORKS SECTION */
+section.how-it-works {
+  padding: 4rem 0;
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.step {
+  flex: 1 1 calc(25% - 2rem);
+  background: #fff;
+  padding: 2rem;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  text-align: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* FAQ SECTION */
+section.faq {
+  padding: 4rem 0;
+  background: #f9f9f9;
+  transition: background 0.3s ease;
+}
+
+.faq-item {
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+}
+
+.faq-item h4 {
+  cursor: pointer;
+  position: relative;
+  padding-right: 20px;
+}
+
+.faq-item h4::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 1.5rem;
+}
+
+.faq-item.active h4::after {
+  content: '-';
+}
+
+.faq-answer {
+  display: none;
+  margin-top: 0.5rem;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+/* CALL TO ACTION SECTION */
+section.cta {
+  padding: 4rem 0;
+  text-align: center;
+  background: #ff5a5f;
+  color: #fff;
+}
+
+section.cta h2 {
+  margin-bottom: 1rem;
+}
+
+section.cta p {
+  margin-bottom: 2rem;
+}
+
+section.cta .cta-btn {
+  background: #fff;
+  color: #ff5a5f;
+}
+
+section.cta .cta-btn:hover {
+  background: #eee;
+}
+
+/* CONTACT SECTION */
+section.contact {
+  padding: 4rem 0;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 1rem;
+  background: #ff5a5f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: #e04e52;
+}
+
+/* CALENDAR SECTION (for the calendar & signup page) */
+section.calendar {
+  padding: 4rem 0;
+}
+
+#calendar {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* SIGNUP SECTION (for the calendar & signup page) */
+section.signup {
+  padding: 4rem 0;
+  background: #f9f9f9;
+  transition: background 0.3s ease;
+}
+
+.signup-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.signup-form input,
+.signup-form select {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.signup-form button {
+  width: 100%;
+  padding: 1rem;
+  background: #ff5a5f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.signup-form button:hover {
+  background: #e04e52;
+}
+
+/* FOOTER */
+footer {
+  padding: 2rem 0;
+  background: #333;
+  color: #fff;
+  text-align: center;
+}
+
+footer a {
+  color: #ff5a5f;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin: 0.5rem 0;
+  }
+
+  .courses-grid,
+  .benefits-list,
+  .instructors-grid,
+  .steps {
+    flex-direction: column;
+  }
+}
+
+/* DARK MODE OVERRIDES */
+body.dark-mode {
+  background: #121212;
+  color: #eee;
+}
+
+body.dark-mode nav {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+body.dark-mode nav ul li a {
+  color: #eee;
+}
+
+body.dark-mode #darkModeToggle {
+  color: #eee;
+}
+
+body.dark-mode .hero::after {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode section.about,
+body.dark-mode section.benefits,
+body.dark-mode section.instructors,
+body.dark-mode section.faq {
+  background: #1e1e1e;
+}
+
+body.dark-mode .course-card,
+body.dark-mode .instructor-card,
+body.dark-mode .testimonial-item,
+body.dark-mode .step {
+  background: #2c2c2c;
+  border-color: #444;
+  color: #eee;
+}
+
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+  background: #2c2c2c;
+  border-color: #444;
+  color: #eee;
+}
+
+body.dark-mode .signup-form {
+  background: #2c2c2c;
+  border-color: #444;
+  color: #eee;
+}
+
+body.dark-mode .signup-form input,
+body.dark-mode .signup-form select {
+  background: #2c2c2c;
+  border-color: #444;
+  color: #eee;
+}
+
+body.dark-mode .signup-form button {
+  background: #ff5a5f;
+  color: #fff;
+}
+
+/* Dark mode for FullCalendar */
+body.dark-mode .fc {
+  background: #2c2c2c;
+  color: #000000;
+}
+
+body.dark-mode .fc .fc-scrollgrid,
+body.dark-mode .fc .fc-scrollgrid-liquid {
+  background: #2c2c2c;
+}
+
+body.dark-mode .fc-theme-standard td,
+body.dark-mode .fc-theme-standard th {
+  border-color: #444;
+}
+
+/* ==============================
+   DARK MODE OVERRIDES - Signup Section
+   ============================== */
+body.dark-mode .signup,
+body.dark-mode .signup-form {
+  background-color: #2c2c2c !important;
+  border-color: #444 !important;
+  color: #eee !important;
+}
+
+body.dark-mode .signup-form input,
+body.dark-mode .signup-form select {
+  background-color: #2c2c2c !important;
+  border: 1px solid #444 !important;
+  color: #eee !important;
+}
+
+body.dark-mode .signup-form button {
+  background-color: #ff5a5f !important;
+  color: #fff !important;
+}
+
+body.dark-mode .about-training {
+  background: #1e1e1e;
+  color: #eee;
+}
+body.dark-mode .about-training img {
+  filter: brightness(0.9);
+}

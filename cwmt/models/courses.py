@@ -3,8 +3,9 @@ from cwmt import db
 from sqlalchemy import Column, Integer, String, DateTime
 # import datetime
 from datetime import datetime
+
 from cwmt.config.app_core import AppCore
-from cwmt.models.instructors import Instructor
+from cwmt.models import instructors
 
 
 
@@ -16,6 +17,7 @@ class Course(db.Model):
     description = db.Column(db.Text, nullable=True)
     max_students = db.Column(db.Integer, nullable=True)
     total_days = db.Column(db.Integer, nullable=False)
+    team_id = db.Column(db.Integer, db.ForeignKey('teams.id'), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -35,7 +37,8 @@ class Course(db.Model):
                 name=data['name'],
                 description=data.get('description'),
                 max_students=data.get('max_students'),
-                total_days=data.get('total_days')
+                total_days=data.get('total_days'),
+                team_id=data.get('team_id')
             )
             db.session.add(course)
             db.session.commit()
@@ -117,6 +120,7 @@ class CourseSession(db.Model):
     secondary_instructor_id = db.Column(db.Integer, db.ForeignKey('instructors.id'), nullable=True)
     notes = db.Column(db.Text, nullable=True)
     location = db.Column(db.String(100), nullable=True)
+    team_id = db.Column(db.Integer, db.ForeignKey('teams.id'), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -126,11 +130,11 @@ class CourseSession(db.Model):
     
     @property
     def primary_instructor(self):
-        return Instructor.query.get(self.primary_instructor_id)
+        return instructors.Instructor.query.get(self.primary_instructor_id)
     
     @property
     def secondary_instructor(self):
-        return Instructor.query.get(self.secondary_instructor_id)
+        return instructors.Instructor.query.get(self.secondary_instructor_id)
     
     def to_dict(self):
         return {
@@ -148,6 +152,7 @@ class CourseSession(db.Model):
                 'name': self.course.name
             }
         }
+    
 
     @classmethod
     def create(cls, data:dict):
@@ -170,6 +175,7 @@ class CourseSession(db.Model):
                 primary_instructor_id=data.get('primary_instructor_id'),
                 secondary_instructor_id=data.get('secondary_instructor_id'),
                 notes=data.get('notes'),
+                team_id=data['team_id']
             )
             db.session.add(course_session)
             db.session.commit()

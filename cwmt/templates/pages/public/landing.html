@@ -1,0 +1,39 @@
+{% extends 'bases/main.html' %}
+
+{% block main %}
+<div class="page-wrapper">
+    <!-- Hero Section -->
+    {% include 'pages/public/components/landingpage/hero.html' %}
+    
+    <!-- navbar -->
+    {% include 'pages/public/components/landingpage/navbar.html' %}
+    
+    <div class="p-4">
+        <!-- About Section -->
+        {% include 'pages/public/components/landingpage/about.html' %}
+    </div>
+    <!-- statistics -->
+    {% include 'pages/public/components/landingpage/statistics.html' %}
+    
+    <div class="p-4">
+        <!-- locations and courses -->
+        {% include 'pages/public/components/landingpage/locations.html' %}
+    </div>
+
+    <!-- testimonials -->
+    {% include 'pages/public/components/landingpage/testimonials.html' %}
+    
+    <div class="p-4">
+        <!-- Why CWMT -->
+    {% include 'pages/public/components/landingpage/why_cwmt.html' %}
+    </div>
+
+    <!-- banner -->
+    {% include 'pages/public/components/landingpage/banner.html' %}
+    
+    <div class="p-4">
+        <!-- instructors -->
+        
+    </div>
+</div>
+{% endblock main %}

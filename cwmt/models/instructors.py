@@ -2,6 +2,7 @@ from flask import flash
 from cwmt import db, bcrypt
 from cwmt.config.helper import get_logged_in_user
 from cwmt.models.users import User
+from cwmt.models.teams import Team
 from cwmt.models.roles import Role, UserRole
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from cwmt.config.app_core import AppCore
@@ -20,6 +21,21 @@ class Instructor(db.Model):
 
     # Relationships
     user = db.relationship('User', backref='instructor_profile', uselist=False, lazy=True)
+
+    @classmethod
+    def get_team(cls, team_id:int):
+        """
+        Get the team for a given team_id
+
+        args team_id: int: The team_id to search for
+
+        returns Team: A Team object
+        """
+        try:
+            return Team.query.get(team_id)
+        except Exception as e:
+            AppCore.MyLogger.log(AppCore.StatusCodes.e_getting_team, e, should_print=True, should_flash=True)
+            return
 
     @classmethod
     def create_new_instructor(cls, data:dict):

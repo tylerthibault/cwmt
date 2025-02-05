@@ -22,6 +22,14 @@
                         </div>
                     </div>
                     <div class="mb-3">
+                        <label for="team_id" class="form-label">Team</label>
+                        <select class="form-control" id="team_id" name="team_id" required>
+                            {% for team in teams %}
+                                <option value="{{ team.id }}">{{ team.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                     </div>
@@ -53,6 +61,14 @@
                     <div class="mb-3">
                         <label for="max_students" class="form-label">Max Students</label>
                         <input type="number" class="form-control" id="max_students" name="max_students" min="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="team_id" class="form-label">Team</label>
+                        <select class="form-control" id="team_id" name="team_id" required>
+                            {% for team in teams %}
+                                <option value="{{ team.id }}">{{ team.name }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>

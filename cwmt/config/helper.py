@@ -1,5 +1,5 @@
 from flask import session
-from cwmt.models import users, log
+from cwmt.models import users, log, instructors
 
 
 def get_logged_in_user():
@@ -20,8 +20,16 @@ def load_session_user_data():
         session['user']['username'] = user.username
         session['user']['email'] = user.email
         session['user']['roles'] = user.roles[0].role.name if user.roles else None
+        if session['user']['roles'] == 'instructor':
+            instructor_info = instructors.Instructor.query.filter_by(user_id=user.id).first()
+            session['user']['team_id'] = instructor_info.team_id
+            session['user']['instructor_id'] = instructor_info.id
         return user
     return None
+
+def get_user_id():
+    user = get_logged_in_user()
+    return user.id if user else None
 
 def clear_session_user_data():
     user = get_logged_in_user()

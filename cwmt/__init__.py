@@ -65,7 +65,10 @@ def setup_tables(app):
     from cwmt.models.roles import Role, UserRole
     from cwmt.models.courses import Course
     with app.app_context():
-        db.create_all()
+        # Check if tables exist by inspecting one of the models
+        inspector = db.inspect(db.engine)
+        if not inspector.has_table("user"):
+            db.create_all()
 
 
 def setup_logging(app):

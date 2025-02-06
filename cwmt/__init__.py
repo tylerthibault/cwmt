@@ -1,154 +1,88 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-import logging
 from logging.handlers import RotatingFileHandler
-import os
 from sqlalchemy.exc import OperationalError
 
-
+# Initialize extensions
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = "super secret key"
+    
+    # Application Configuration
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key')
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///app.db')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
-    bcrypt.init_app(app)
-
-    # Setup logging
-    setup_logging(app)
-
-    # setup the db
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    # Initialize extensions
     db.init_app(app)
-
+    bcrypt.init_app(app)
+    
+    # Setup database tables and logging
     setup_tables(app)
-    register_blueprints(app)
-
-    return app
-
-def register_blueprints(app):
-    # register the blueprints
-    from cwmt.controllers.routes import routes_bp
-    app.register_blueprint(routes_bp)
-
-    from cwmt.controllers.users import users_bp
-    app.register_blueprint(users_bp)
-
-    from cwmt.controllers.instructors import instructors_bp
-    app.register_blueprint(instructors_bp)
-
-    from cwmt.controllers.courses import courses_bp, course_sessions_bp
-    app.register_blueprint(courses_bp)
-    app.register_blueprint(course_sessions_bp)
-
+    setup_logging(app)
+    
+    # Register Blueprints (uncomment and modify as required)
     # from cwmt.controllers.students import students_bp
     # app.register_blueprint(students_bp)
-
     # from cwmt.controllers.course_sessions import course_sessions_bp
     # app.register_blueprint(course_sessions_bp)
-
     # from cwmt.controllers.enrollments import enrollments_bp
     # app.register_blueprint(enrollments_bp)
-
     # from cwmt.controllers.locations import locations_bp
     # app.register_blueprint(locations_bp)
     
+    # Added test endpoint to verify server response
+    @app.route("/status")
+    def status():
+        return "Server is running", 200
+    
+    return app
 
 def setup_tables(app):
-    # from cwmt.models import User
-    from cwmt.models.log import Log
-    from cwmt.models.users import User
-    from cwmt.models.instructors import Instructor
-    from cwmt.models.teams import Team
-    from cwmt.models.roles import Role, UserRole
-    from cwmt.models.courses import Course
     with app.app_context():
+        # Import models here to avoid circular imports
+        from cwmt.models.log import Log
+        from cwmt.models.users import User  # added import to resolve foreign key reference
+        # import other models as needed, e.g.:
+        # from cwmt.models.users import User
+        # from cwmt.models.instructors import Instructor
+        # from cwmt.models.teams import Team
+        # from cwmt.models.roles import Role, UserRole
+        # from cwmt.models.courses import Course
         try:
             db.create_all()
         except OperationalError:
             print("Tables already exist, skipping creation.")
 
-
 def setup_logging(app):
+    # Create logs directory if it doesn't exist
     if not os.path.exists('logs'):
         os.mkdir('logs')
     
-    # Admin logger setup
+    # Set up an admin logger
     admin_handler = RotatingFileHandler(
         'logs/admin.log',
         maxBytes=10240,
         backupCount=5
     )
-    admin_handler.setFormatter(logging.Formatter(
-        '[ADMIN] %(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
-    ))
-    admin_handler.setLevel(logging.INFO)
+    admin_handler.setLevel('INFO')
+    app.logger.addHandler(admin_handler)
     
-    admin_logger = logging.getLogger('admin')
-    admin_logger.addHandler(admin_handler)
-
-    # CHANGE THIS TO SET THE LOGGING LEVEL FOR THE ADMIN LOGGER
-    # admin_logger.setLevel(logging.DEBUG)
-    admin_logger.setLevel(logging.INFO)
-    # admin_logger.setLevel(logging.WARNING)
-    # admin_logger.setLevel(logging.ERROR)
-    # admin_logger.setLevel(logging.CRITICAL)
-    
-    # User activity logger setup
-    user_handler = RotatingFileHandler(
+    # Set up additional logging for user activity
+    user_activity_handler = RotatingFileHandler(
         'logs/user_activity.log',
         maxBytes=10240,
         backupCount=5
     )
-    user_handler.setFormatter(logging.Formatter(
-        '[USER] %(asctime)s: %(message)s'
-    ))
-    user_handler.setLevel(logging.INFO)
-    
-    user_logger = logging.getLogger('user_activity')
-    user_logger.addHandler(user_handler)
+    user_activity_handler.setLevel('INFO')
+    app.logger.addHandler(user_activity_handler)
 
-    # CHANGE THIS TO SET THE LOGGING LEVEL FOR THE USER ACTIVITY LOGGER
-    # user_logger.setLevel(logging.DEBUG)
-    user_logger.setLevel(logging.INFO)
-    # user_logger.setLevel(logging.WARNING)
-    # user_logger.setLevel(logging.ERROR)
-    # user_logger.setLevel(logging.CRITICAL)
-    
-    # Console handler for development
-    console_handler = logging.StreamHandler()
+# Expose the app callable for WSGI servers
+app = create_app()
 
-    # CHANGE THIS TO SET THE LOGGING LEVEL FOR THE CONSOLE
-    # console_handler.setLevel(logging.DEBUG)
-    console_handler.setLevel(logging.INFO)
-    # console_handler.setLevel(logging.WARNING)
-    # console_handler.setLevel(logging.ERROR)
-    # console_handler.setLevel(logging.CRITICAL)
-
-
-    console_handler.setFormatter(logging.Formatter(
-        '%(name)s - %(levelname)s: %(message)s'
-    ))
-    
-    # Add console handler to both loggers
-    admin_logger.addHandler(console_handler)
-    user_logger.addHandler(console_handler)
-    
-    # Store loggers in app config for easy access
-    app.config['admin_logger'] = admin_logger
-    app.config['user_logger'] = user_logger
-    
-    admin_logger.info('Admin logging started')
-    user_logger.info('User activity logging started')
-
-    # app.logger.setLevel(logging.DEBUG)
-    # app.logger.setLevel(logging.INFO)
-    # app.logger.setLevel(logging.WARNING)
-    # app.logger.setLevel(logging.ERROR)
-    # app.logger.setLevel(logging.CRITICAL)
-    
-
-                
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=5000, debug=True)

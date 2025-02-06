@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 import logging
 from logging.handlers import RotatingFileHandler
 import os
+from sqlalchemy.exc import OperationalError
 
 
 db = SQLAlchemy()
@@ -65,10 +66,10 @@ def setup_tables(app):
     from cwmt.models.roles import Role, UserRole
     from cwmt.models.courses import Course
     with app.app_context():
-        # Check if tables exist by inspecting one of the models
-        inspector = db.inspect(db.engine)
-        if not inspector.has_table("user"):
+        try:
             db.create_all()
+        except OperationalError:
+            print("Tables already exist, skipping creation.")
 
 
 def setup_logging(app):

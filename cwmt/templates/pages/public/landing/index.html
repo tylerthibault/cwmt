@@ -1,0 +1,40 @@
+{% extends 'bases/main.html' %}
+
+{% block main %}
+<div>
+    {% include 'pages/public/landing/parts/hero.html' %}
+    {% include 'pages/public/landing/parts/navbar.html' %}
+</div>
+
+<div class="container">
+    {% include 'pages/public/landing/parts/about.html' %}
+</div>
+
+{% include 'pages/public/landing/parts/counter.html' %}
+
+<div class="container">
+    {% include 'pages/public/landing/parts/locations.html' %}
+</div>
+
+{% include 'pages/public/landing/parts/testimonials.html' %}
+
+<div class="container">
+    {% include 'pages/public/landing/parts/why_choose.html' %}
+    {% include 'pages/public/landing/parts/motorcycle_types.html' %}
+</div>
+
+{% include 'pages/public/landing/parts/ride_banner.html' %}
+
+<div class="container">
+    {% include 'pages/public/landing/parts/instructors.html' %}
+
+    {% include 'pages/public/landing/parts/faq.html' %}
+</div>
+{% include 'pages/public/landing/parts/contact_banner.html' %}
+
+<div class="container">
+    {% include 'pages/public/landing/parts/contact_form.html' %}
+</div>
+
+
+{% endblock main %}

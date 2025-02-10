@@ -1,0 +1,128 @@
+<style>
+    .faq-container {
+        margin: 0 auto;
+        background: var(--primary);
+        overflow: hidden;
+        color: var(--light);
+    }
+
+    .faq-item {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .faq-item:last-child {
+        border-bottom: none;
+    }
+
+    /* FAQ question styling */
+    .faq-question {
+        background: var(--primary);
+        cursor: pointer;
+        padding: 15px 20px;
+        margin: 0;
+        font-size: 18px;
+        position: relative;
+        transition: background 0.3s ease;
+    }
+
+    .faq-question:hover {
+        background: var(--accent);
+    }
+
+    .faq-question:after {
+        content: '+';
+        font-size: 24px;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s ease;
+    }
+
+    .faq-question.active:after {
+        content: '-';
+    }
+
+    /* FAQ answer styling */
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        background: var(--primary);
+        transition: max-height 0.5s ease;
+    }
+
+    .faq-answer-inner {
+        padding: 0 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease 0.3s;
+    }
+
+    .faq-answer.active .faq-answer-inner {
+        opacity: 1;
+        padding: 15px 20px;
+    }
+</style>
+
+<section class="mt-4" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <h3 class="faq-question" data-offset="300">What is your return policy?</h3>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    <p>Our return policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we
+                        can’t offer you a refund or exchange.</p>
+                </div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <h3 class="faq-question" data-offset="600">How do I track my order?</h3>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    <p>You can track your order using the tracking number provided in your shipping confirmation email.
+                        Simply visit our tracking page and enter your tracking number.</p>
+                </div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <h3 class="faq-question" data-offset="900">Do you offer international shipping?</h3>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    <p>Yes, we offer international shipping. Shipping fees and delivery times vary based on your
+                        location. Please refer to our shipping information page for details.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Function to handle FAQ accordion toggling
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', function () {
+            const answer = this.nextElementSibling;
+            const offset = parseInt(this.getAttribute('data-offset')) || 0;
+
+            // If the answer is already open, close it.
+            if (answer.classList.contains('active')) {
+                answer.style.maxHeight = null;
+                answer.classList.remove('active');
+                this.classList.remove('active');
+            } else {
+                // Optionally close all others if you want a single open at a time:
+                document.querySelectorAll('.faq-answer.active').forEach(openAnswer => {
+                    openAnswer.style.maxHeight = null;
+                    openAnswer.classList.remove('active');
+                    openAnswer.previousElementSibling.classList.remove('active');
+                });
+                // Use a timeout based on data-offset for individual start delays.
+                setTimeout(() => {
+                    answer.classList.add('active');
+                    // Set maxHeight to allow smooth transition (using scrollHeight)
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }, offset);
+                this.classList.add('active');
+            }
+        });
+    });
+</script>

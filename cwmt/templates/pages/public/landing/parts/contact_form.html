@@ -1,0 +1,50 @@
+
+
+<section id="contact_form" class="mt-4">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div>
+                <h2>Contact Us</h2>
+                <p>At Central Washington Motorcycle Training , we are passionate about motorcycles and our team consists of experienced riders who are dedicated to providing exceptional customer service. Our team's expertise covers everything from basic maintenance to advanced customization</p>
+            </div>
+
+            <form class="col-md-12" action="" method="POST">
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="first_name" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="last_name" class="form-label">last Name</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="_replyto" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <img class="contact-img" src="{{ url_for('static', filename='img/contact-image.png') }}" alt="">
+        </div>
+    </div>
+
+</section>

@@ -1,60 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-@import url(flash_messages.css);
-
 :root {
-    --primary: #231C25 !important;    /* Deep blue-gray */
-    --secondary: #383139 !important;  /* Coral red */
-    --accent: #A43D34 !important;    /* Coral red */
-    --neutral: #959196 !important;   /* Light gray */
-
-    --font-family-base: 'Oswald', sans-serif !important;
+    --primary: #2D2430;
+    --secondary: #534257;
+    --accent: #A43D34;
+    --light: #F2F2F2;
+    --dark: #1D1D1D;
 }
+
 body {
-    font-family: var(--font-family-base);
-    
-    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 50%, var(--primary) 100%);
-    min-height: 100vh;
-    width: 100%;
-}
-
-main {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-
-    /* background-color: var(--primary); */
-}
-
-.page-wrapper {
-    max-width: 1440px;
-    outline: 15px solid black;
-    min-height: 100vh;
-    z-index: 10;
+    color: var(--light);
     background-color: var(--primary);
 }
 
-
-
-.bg-primary {
-    background-color: var(--primary)  !important;
-}
-.bg-secondary {
-    background-color: var(--secondary) !important;
-}
-.bg-accent {
-    background-color: var(--accent) !important;
-}
-.bg-neutral {
-    background-color: var(--neutral) !important;
-}
-.hero-shadow {
-    box-shadow: 10px 0 0 0 #959196;
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
 }
 
-h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    text-decoration: underline;
+main {
+    width: 100%;
+    max-width: 1440px;
+    border-left: 0.5em solid black;
+    border-right: 0.5em solid black;
+    background-color: var(--primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Oswald', sans-serif;
+}
+
+p,
+span,
+div,
+a,
+li {
+    font-family: 'Lora', serif;
+}
+
+
+/* New smooth hover gradient effect with directional gradient */
+.hover-gradient {
+    transition: background 0.8s ease-in-out, color 0.8s ease-in-out;
+}
+.hover-gradient:hover {
+    background: linear-gradient(to bottom right, var(--secondary), var(--accent));
+    color: white;
 }

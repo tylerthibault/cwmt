@@ -1,0 +1,65 @@
+<section class="bg-light my-4" id="counter">
+    <div class="d-flex justify-content-evenly align-items-center container text-dark py-5">
+      <div class="d-flex flex-column align-items-center">
+        <span class="display-4 count" data-offset="300">1000</span>
+        <span>Graduates</span>
+      </div>
+      <div class="d-flex flex-column align-items-center">
+        <span class="display-4 count" data-offset="1600">15</span>
+        <span>Years Experience</span>
+      </div>
+      <div class="d-flex flex-column align-items-center">
+        <span><span class="display-4 count" data-offset="2900">98</span>%</span>
+        <span>Success Rate</span>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    // Select all elements with the "count" class.
+    const allCounts = document.querySelectorAll('.count');
+  
+    // For each counter, use its data-offset attribute (if set) for a custom delay.
+    allCounts.forEach(el => {
+      const offset = el.getAttribute('data-offset') ? parseInt(el.getAttribute('data-offset')) : 0;
+      animateCount(el, offset);
+    });
+  
+    /**
+     * Animate a number from 0 to its target value using an ease-out cubic function.
+     * @param {HTMLElement} el - The element whose number will be animated.
+     * @param {number} delay - Delay (in milliseconds) before starting the animation.
+     */
+    function animateCount(el, delay) {
+      const target = +el.innerText; // The target value.
+      el.innerText = '0';           // Start at 0.
+      let start = null;
+      const duration = 2000;        // Duration of the animation in milliseconds.
+  
+      // Ease-out cubic function: accelerates quickly then decelerates.
+      const easeOutCubic = t => (--t) * t * t + 1;
+  
+      // Animation step.
+      const step = timestamp => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        let t = progress / duration;
+        if (t > 1) t = 1;
+        const easedT = easeOutCubic(t);
+        const currentCount = Math.floor(easedT * target);
+        el.innerText = currentCount;
+  
+        if (progress < duration) {
+          requestAnimationFrame(step);
+        } else {
+          el.innerText = target; // Ensure the final value is exact.
+        }
+      };
+  
+      // Start the animation after the specified delay.
+      setTimeout(() => {
+        requestAnimationFrame(step);
+      }, delay);
+    }
+  </script>
+  

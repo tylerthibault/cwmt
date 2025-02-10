@@ -1,0 +1,49 @@
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0.5em solid var(--accent);
+    border-radius: 1em;
+}
+
+.text-over-image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dark overlay covers the entire image */
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border-radius: 1em;
+}
+
+/* Location name styling */
+.text-over-image {
+    position: absolute;
+    top: 110%;
+    /* start below the container */
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: top 0.5s ease, opacity 0.5s ease;
+}
+
+/* On hover, fade in the overlay and move the name to the center */
+.text-over-image-wrapper:hover .dark-overlay {
+    opacity: 1;
+}
+
+.text-over-image-wrapper:hover .text-over-image {
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}

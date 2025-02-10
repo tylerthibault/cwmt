@@ -1,0 +1,60 @@
+<style>
+    /* Modified keyframes animation with fade in and fade out */
+    @keyframes scroll {
+      0%   { transform: translateX(20%); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateX(-20%); opacity: 0; }
+    }
+  
+    /* Testimonials slider */
+    .testimonials-slider {
+      display: flex;
+      gap: 1rem;
+      animation: scroll 20s linear infinite;
+    }
+    
+    /* Pause the animation when hovering over the slider */
+    .testimonials-slider:hover {
+      animation-play-state: paused;
+    }
+  
+    .testimonial-card {
+      flex: 0 0 auto;
+      background: var(--light);
+      color: var(--dark);
+      padding: 1rem;
+      border: 1px solid #ddd;
+      min-width: 300px;
+      border-radius: 0.5rem;
+    }
+  </style>
+  
+  <section id="testimonials" class="my-4">
+    <div class="testimonials-slider">
+      <div class="testimonial-card">
+        <p>"This service changed my career!"</p>
+        <p>- John Doe</p>
+      </div>
+      <div class="testimonial-card">
+        <p>"Amazing training and support."</p>
+        <p>- Jane Smith</p>
+      </div>
+      <div class="testimonial-card">
+        <p>"Highly recommend to anyone wanting to improve their skills."</p>
+        <p>- Bob Johnson</p>
+      </div>
+      <div class="testimonial-card">
+        <p>"An excellent experience from start to finish."</p>
+        <p>- Alice Williams</p>
+      </div>
+      <div class="testimonial-card">
+        <p>"This service changed my career!"</p>
+        <p>- John Doe</p>
+      </div>
+      <div class="testimonial-card">
+        <p>"Amazing training and support."</p>
+        <p>- Jane Smith</p>
+      </div>
+    </div>
+  </section>

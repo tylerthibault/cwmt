@@ -1,10 +1,12 @@
 from flask import flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from cwmt import app
+from cwmt import AppCore
+# Added import for cohort_users join table
+from cwmt.models.cohorts import cohort_users
 
-db = app.db
-bcrypt = app.bcrypt
+db = AppCore.app.db
+bcrypt = AppCore.app.bcrypt
 
 # -------------------------
 # Users Table
@@ -25,11 +27,11 @@ class User(db.Model):
 
     
     # Many-to-Many with roles via a join table.
-    roles = db.relationship('Role', secondary='user_roles', back_populates='users', lazy='dynamic')
+    roles = db.relationship('Roles', secondary='user_roles', back_populates='users', lazy='dynamic')
     # Many-to-Many with teams.
     teams = db.relationship('Team', secondary='team_members', back_populates='members', lazy='dynamic')
-    # Many-to-Many with cohorts (course instances).
-    cohorts = db.relationship('Cohort', secondary='cohort_users', back_populates='participants', lazy='dynamic')
+    # Updated relationship: using imported cohort_users join table object.
+    cohorts = db.relationship('Cohort', secondary=cohort_users, back_populates='participants', lazy='dynamic')
 
     @classmethod
     def create(cls, data:dict):

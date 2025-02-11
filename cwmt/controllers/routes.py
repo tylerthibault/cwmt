@@ -24,3 +24,9 @@ def handle_data():
 @main_bp.route('/login')
 def login():
     return render_template('pages/public/login/index.html')
+
+@main_bp.route('/seed')
+def seed():
+    from cwmt.helpers.db.seed import seed_data
+    seed_data()
+    return 'Seed data inserted successfully'

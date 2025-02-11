@@ -1,19 +1,19 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from cwmt.helpers.app_core.core import AppCore
 
 from flask_bcrypt import Bcrypt
+from cwmt.helpers.app_core.core import AppCore
 
 
 def create_app():
     app = Flask(__name__)
 
+    AppCore.app = app
     app.bcrypt = Bcrypt(app)
 
-    init_blueprints(app)
     init_db(app)
+    init_blueprints(app)
 
-    app.core = AppCore()
 
     return app
 

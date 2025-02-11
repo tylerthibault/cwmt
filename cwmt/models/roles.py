@@ -16,6 +16,9 @@ class Roles(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     name = db.Column(db.String(255), nullable=False)
+    
+    # Added relationship to link Users via the user_roles table
+    users = db.relationship('User', secondary='user_roles', back_populates='roles', lazy='dynamic')
 
     @classmethod
     def create(cls, name):

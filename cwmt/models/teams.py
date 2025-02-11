@@ -5,6 +5,12 @@ from cwmt import app
 db = app.db
 bcrypt = app.bcrypt
 
+# Add join table for teams and users
+team_members = db.Table('team_members',
+    db.Column('team_id', db.Integer, db.ForeignKey('team.id'), primary_key=True),
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+)
+
 # -------------------------
 # Team Table
 # -------------------------
@@ -16,6 +22,9 @@ class Team(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     name = db.Column(db.String(255), nullable=False)
+
+    # Updated relationship to use the join table object
+    members = db.relationship('User', secondary=team_members, back_populates='teams', lazy='dynamic')
 
     @classmethod
     def create(cls, name):

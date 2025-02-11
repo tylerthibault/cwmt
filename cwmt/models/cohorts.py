@@ -1,15 +1,23 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from cwmt import app
+from cwmt import AppCore
+
+app = AppCore.app
 
 db = app.db
 bcrypt = app.bcrypt
+
+# Add join table for cohorts and users
+cohort_users = db.Table('cohort_users',
+    db.Column('cohort_id', db.Integer, db.ForeignKey('cohorts.id'), primary_key=True),
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+)
 
 # -------------------------
 # Cohort Table
 # -------------------------
 class Cohort(db.Model):
-    __tablename__ = 'cohort'
+    __tablename__ = 'cohorts'
 
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -25,9 +33,13 @@ class Cohort(db.Model):
     team_id = db.Column(db.Integer, db.ForeignKey('teams.id'), nullable=False)
     cohort_template_id = db.Column(db.Integer, db.ForeignKey('cohort_templates.id'), nullable=False)
 
-    location = db.relationship('Locations', backref='cohorts')
+    # Change relationship to use the correct model name for location
+    location = db.relationship('Location', backref='cohorts')
     team = db.relationship('Teams', backref='cohorts')
     cohort_template = db.relationship('CohortTemplates', backref='cohorts')
+
+    # Updated relationship using the join table object
+    participants = db.relationship('User', secondary=cohort_users, back_populates='cohorts', lazy='dynamic')
 
     @classmethod
     def create(cls, data:dict):

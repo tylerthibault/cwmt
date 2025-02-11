@@ -15,6 +15,18 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+	"Flask Blueprint Basic": {
+		"scope": "python",
+		"prefix": "flaskbp",
+		"body": [
+			"from flask import Blueprint, render_template, request, jsonify",
+			"",
+			"# Create a Blueprint instance",
+			"${1:main} = Blueprint('${1:main}', __name__)",
+			""
+		],
+		"description": "Basic Flask Blueprint initialization with common imports"
+	},
 	"SQLAlchemy Model CRUD Template": {
 		"scope": "python",
 		"prefix": "sqmodelcrud",

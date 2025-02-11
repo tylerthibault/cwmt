@@ -23,10 +23,17 @@
     {% block container %}
     <div class="page-wrapper">
         <main class="overflow-hidden">
+            {% block navbar %}
+                {% include 'pages/public/components/navbar.html' %}
+            {% endblock navbar %}
+
             {% block main %}
             
             {% endblock main %}
-            {% include 'pages/public/components/footer.html' %}
+            
+            {% block footer %}
+                {% include 'pages/public/components/footer.html' %}
+            {% endblock footer %}
         </main>
     </div>
 

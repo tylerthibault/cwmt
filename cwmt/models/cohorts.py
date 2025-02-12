@@ -1,16 +1,27 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from cwmt import AppCore
+from cwmt import core
 
-app = AppCore.app
-
+app = core.app
 db = app.db
 bcrypt = app.bcrypt
 
 # Add join table for cohorts and users
-cohort_users = db.Table('cohort_users',
+cohort_students = db.Table('cohort_students',
     db.Column('cohort_id', db.Integer, db.ForeignKey('cohorts.id'), primary_key=True),
     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+)
+
+cohort_locations = db.Table('cohort_locations',
+    db.Model.metadata,
+    db.Column('location_id', db.Integer, db.ForeignKey('locations.id'), primary_key=True),
+    db.Column('template_id', db.Integer, db.ForeignKey('cohort_templates.id'), primary_key=True)
+)
+
+cohort_instructors = db.Table('instructors',
+    db.Model.metadata,
+    db.Column('instructor_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('cohort_id', db.Integer, db.ForeignKey('cohorts.id'), primary_key=True)
 )
 
 # -------------------------
@@ -29,17 +40,11 @@ class Cohort(db.Model):
     start_date = db.Column(db.DateTime, nullable=False)
     number_of_days = db.Column(db.Integer, nullable=False)
 
-    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
-    team_id = db.Column(db.Integer, db.ForeignKey('teams.id'), nullable=False)
-    cohort_template_id = db.Column(db.Integer, db.ForeignKey('cohort_templates.id'), nullable=False)
+    # RELATIONSHIPS
+    # locations = db.relationship('Location', secondary=cohort_locations, backref='cohorts')
+    students = db.relationship('User', secondary=cohort_students, backref='cohorts')
+    # instructors = db.relationship('User', secondary=cohort_instructors, backref='cohorts')
 
-    # Change relationship to use the correct model name for location
-    location = db.relationship('Location', backref='cohorts')
-    team = db.relationship('Teams', backref='cohorts')
-    cohort_template = db.relationship('CohortTemplates', backref='cohorts')
-
-    # Updated relationship using the join table object
-    participants = db.relationship('User', secondary=cohort_users, back_populates='cohorts', lazy='dynamic')
 
     @classmethod
     def create(cls, data:dict):
@@ -82,53 +87,53 @@ class Cohort(db.Model):
 
 
 
-# -------------------------
-# CohortHasUsers Table
-# -------------------------
-class CohortHasUsers(db.Model):
-    __tablename__ = 'cohort_has_users'
+# # -------------------------
+# # CohortHasUsers Table
+# # -------------------------
+# class CohortHasUsers(db.Model):
+#     __tablename__ = 'cohort_has_users'
 
-    id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+#     id = db.Column(db.Integer, primary_key=True)
+#     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+#     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    cohort_id = db.Column(db.Integer, db.ForeignKey('cohort.id'), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    role = db.Column(db.String(255), nullable=False)
-    has_paid = db.Column(db.Boolean, default=False)
+#     cohort_id = db.Column(db.Integer, db.ForeignKey('cohorts.id'), nullable=False)
+#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+#     role = db.Column(db.String(255), nullable=False)
+#     has_paid = db.Column(db.Boolean, default=False)
 
 
-    @classmethod
-    def create(cls, data:dict):
-        cohort_has_users = cls(
-            cohort_id=data['cohort_id'],
-            user_id=data['user_id'],
-            role=data['role'],
-            has_paid=data.get('has_paid', False)
-        )
-        db.session.add(cohort_has_users)
-        db.session.commit()
-        return cohort_has_users
+#     @classmethod
+#     def create(cls, data:dict):
+#         cohort_has_users = cls(
+#             cohort_id=data['cohort_id'],
+#             user_id=data['user_id'],
+#             role=data['role'],
+#             has_paid=data.get('has_paid', False)
+#         )
+#         db.session.add(cohort_has_users)
+#         db.session.commit()
+#         return cohort_has_users
     
-    @classmethod
-    def get_all(cls):
-        return cls.query.all()
+#     @classmethod
+#     def get_all(cls):
+#         return cls.query.all()
     
-    @classmethod
-    def get_by_id(cls, id):
-        return cls.query.get(id)
+#     @classmethod
+#     def get_by_id(cls, id):
+#         return cls.query.get(id)
     
-    @classmethod
-    def update(cls, data:dict):
-        cohort_has_users = cls.get_by_id(data['id'])
-        for key, value in data.items():
-            setattr(cohort_has_users, key, value)
-        db.session.commit()
-        return cohort_has_users
+#     @classmethod
+#     def update(cls, data:dict):
+#         cohort_has_users = cls.get_by_id(data['id'])
+#         for key, value in data.items():
+#             setattr(cohort_has_users, key, value)
+#         db.session.commit()
+#         return cohort_has_users
     
-    @classmethod
-    def delete(cls, id):
-        cohort_has_users = cls.get_by_id(id)
-        db.session.delete(cohort_has_users)
-        db.session.commit()
-        return cohort_has_users
+#     @classmethod
+#     def delete(cls, id):
+#         cohort_has_users = cls.get_by_id(id)
+#         db.session.delete(cohort_has_users)
+#         db.session.commit()
+#         return cohort_has_users

@@ -1,14 +1,15 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from cwmt import app
+from cwmt import core
 
+app = core.app
 db = app.db
 bcrypt = app.bcrypt
 
 # -------------------------
 # Locations Table
 # -------------------------
-class Locations(db.Model):
+class Location(db.Model):
     __tablename__ = 'locations'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -17,6 +18,8 @@ class Locations(db.Model):
 
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=True)
+
+    # RELATIONSHIPS
 
     @classmethod
     def create(cls, data:dict):

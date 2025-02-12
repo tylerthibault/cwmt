@@ -1,12 +1,22 @@
 from flask import flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from cwmt import AppCore
+from cwmt import core
 # Added import for cohort_users join table
-from cwmt.models.cohorts import cohort_users
+from cwmt.models.teams import team_members
 
-db = AppCore.app.db
-bcrypt = AppCore.app.bcrypt
+db = core.app.db
+app = core.app
+bcrypt = core.app.bcrypt
+
+# -------------------------
+# Users Has Roles Table
+# -------------------------
+user_roles = db.Table('user_roles',
+    db.Model.metadata,
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('role_id', db.Integer, db.ForeignKey('roles.id'), primary_key=True)
+)   
 
 # -------------------------
 # Users Table
@@ -26,12 +36,9 @@ class User(db.Model):
     has_verified_email = db.Column(db.Boolean, default=False)
 
     
-    # Many-to-Many with roles via a join table.
-    roles = db.relationship('Roles', secondary='user_roles', back_populates='users', lazy='dynamic')
-    # Many-to-Many with teams.
-    teams = db.relationship('Team', secondary='team_members', back_populates='members', lazy='dynamic')
-    # Updated relationship: using imported cohort_users join table object.
-    cohorts = db.relationship('Cohort', secondary=cohort_users, back_populates='participants', lazy='dynamic')
+    # RELATIONSHIPS
+    roles = db.relationship('Role', secondary=user_roles, lazy='subquery', backref=db.backref('users', lazy=True))
+    teams = db.relationship('Team', secondary=team_members, lazy='subquery', backref=db.backref('users', lazy=True))
 
     @classmethod
     def create(cls, data:dict):
@@ -80,6 +87,33 @@ class User(db.Model):
         db.session.commit()
         return user
     
+    @staticmethod
+    def validate_login(data:dict):
+        is_valid = True
+
+        print(core.show_attributes())
+
+        if not data.get('email'):
+            is_valid = False
+            core.logger.log('Email is required.', with_flash=True, status='error')
+        if not data.get('password'):
+            is_valid = False
+            core.logger.log('Password is required.', with_flash=True, status='error')
+
+        user = User.query.filter_by(email=data.get('email')).first()
+        if not user:
+            is_valid = False
+            core.logger.log('User not found.', with_flash=True, status='error')
+
+        if user and not bcrypt.check_password_hash(user.password, data.get('password')):
+            is_valid = False
+            core.logger.log('Invalid password.', with_flash=True, status='error')
+
+        if is_valid:
+            return user
+        return is_valid
+
+        
     @staticmethod
     def validate(data:dict):
         is_valid = True

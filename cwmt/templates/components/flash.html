@@ -1,0 +1,80 @@
+<div id="flash-message" class="flash-container {% if message %}show{% endif %}">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                    <div id="progress-bar"></div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <!-- New progress bar element -->
+</div>
+
+<style>
+    .flash-container {
+        position: fixed;
+        bottom: 20px;
+        right: 0%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .flash-container.show {
+        opacity: 1;
+    }
+
+    .flash-message {
+        padding: 12px 24px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        background-color: #f8f9fa;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .flash-message.success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .flash-message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .flash-message.warning {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    /* New progress bar styles */
+    #progress-bar {
+        height: 4px;
+        width: 100%;
+        background-color: #007bff;
+        transition: width 10s linear;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const flashContainer = document.getElementById('flash-message');
+        const progressBar = document.getElementById('progress-bar');
+        if (flashContainer.querySelector('.flash-message')) {
+            flashContainer.classList.add('show');
+            // Trigger progress bar animation
+            if(progressBar) {
+                // Allow a reflow to ensure transition works
+                setTimeout(() => {
+                    progressBar.style.width = '0%';
+                }, 50);
+            }
+            setTimeout(() => {
+                flashContainer.classList.remove('show');
+            }, 10000); // 10 seconds
+        }
+    });
+</script>

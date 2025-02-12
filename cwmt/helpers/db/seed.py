@@ -1,37 +1,45 @@
 from cwmt import AppCore
-from cwmt.models.roles import Roles
-from cwmt.models.users import User  # ...existing code: adjust import as necessary...
-from cwmt.models.teams import Team  # ...existing code: adjust import as necessary...
+from cwmt.models.roles import Role
+from cwmt.models.users import User  
+from cwmt.models.teams import Team  
 
 db = AppCore.app.db
 app = AppCore.app
 
+def create_roles():
+    roles = [
+        "Sys Admin",
+        "Owner",
+        "Admin",
+        "Instructor",
+        "Student"
+    ]
+    for role in roles:
+        Role.create(role)
+
+def create_users():
+    users = [
+        {
+            "first_name": "art",
+            "last_name": "Ivanenko",
+            "email": "ai@email.com",
+            "password": "password",
+            "is_active": True,
+            "has_verified_email": True,
+            "roles": ["Owner"]
+        },
+    ]
+    for user in users:
+        user_roles = user.pop("roles")
+        user = User.create(user)
+        for role in user_roles:
+            role = Role.get_by_name(role)
+            user.roles.append(role)
+        db.session.commit()
+
 def seed_data():
-    # Seed roles
-    for role_name in ['admin', 'user']:
-        if not Roles.get_by_name(role_name):
-            Roles.create(role_name)
-    # Seed user "art"
-    # Assuming User has a field 'username' and a class method get_by_username
-    art_user = User.get_by_username("art")
-    if not art_user:
-        art_user = User(
-            username="art",
-            email="art@example.com",
-            password=app.bcrypt.generate_password_hash("password").decode('utf-8')
-            # ...other required fields...
-        )
-        db.session.add(art_user)
-        db.session.commit()
-    # Seed team for user "art"
-    if not Team.query.filter_by(name="Team Art").first():
-        team_art = Team(
-            name="Team Art",
-            owner_id=art_user.id  # Assuming 'owner_id' field exists
-            # ...other required fields...
-        )
-        db.session.add(team_art)
-        db.session.commit()
+    create_roles()
+    create_users()
 
 if __name__ == '__main__':
     with app.app_context():

@@ -1,14 +1,17 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from cwmt import app
+from cwmt import core
 
+from cwmt.models.users import user_roles
+
+app = core.app
 db = app.db
 bcrypt = app.bcrypt
 
 # -------------------------
 # Roles Table
 # -------------------------
-class Roles(db.Model):
+class Role(db.Model):
     __tablename__ = 'roles'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -17,8 +20,8 @@ class Roles(db.Model):
 
     name = db.Column(db.String(255), nullable=False)
     
-    # Added relationship to link Users via the user_roles table
-    users = db.relationship('User', secondary='user_roles', back_populates='roles', lazy='dynamic')
+    # # RELATIONSHIPS
+    # users = db.relationship('User', secondary=user_roles, lazy='subquery', backref=db.backref('roles', lazy=True))
 
     @classmethod
     def create(cls, name):
@@ -54,50 +57,3 @@ class Roles(db.Model):
         db.session.commit()
         return role
     
-class UserRoles(db.Model):
-    __tablename__ = 'user_roles'
-    
-    id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
-
-    @classmethod
-    def create(cls, user_id, role_id):
-        user_role = cls(user_id=user_id, role_id=role_id)
-        db.session.add(user_role)
-        db.session.commit()
-        return user_role
-    
-    @classmethod
-    def get_all(cls):
-        return cls.query.all()
-    
-    @classmethod
-    def get_by_id(cls, id):
-        return cls.query.get(id)
-    
-    @classmethod
-    def get_by_user_id(cls, user_id):
-        return cls.query.filter_by(user_id=user_id).all()
-    
-    @classmethod
-    def get_by_role_id(cls, role_id):
-        return cls.query.filter_by(role_id=role_id).all()
-    
-    @classmethod
-    def update(cls, data:dict):
-        user_role = cls.query.get(data['id'])
-        for key, value in data.items():
-            setattr(user_role, key, value)
-        db.session.commit()
-        return user_role
-    
-    @classmethod
-    def delete(cls, id):
-        user_role = cls.query.get(id)
-        db.session.delete(user_role)
-        db.session.commit()
-        return user_role

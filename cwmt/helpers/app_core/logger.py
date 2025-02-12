@@ -37,9 +37,8 @@ class Logger:
         return log_file
 
     def log(self, message, with_flash=False, status='info'):
-        if Logger.level['status'] >= self.level:
+        if Logger.level[status] >= self.level:
             with open(self.log_file, 'a') as f:
-                status = self.level.get(status, 'info')
                 msg = f'{status.upper()} | {datetime.datetime.utcnow()}: {message}'
                 f.write(msg + '\n')
 

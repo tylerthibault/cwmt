@@ -1,0 +1,78 @@
+{% extends 'bases/main.html' %}
+
+{% block styles %}
+
+
+<style>
+    /* Global Styles */
+    body {
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f5f7fa;
+        color: #333;
+    }
+
+    /* Header */
+    header {
+        /* background: linear-gradient(90deg, #09203f, #537895); */
+        color: #fff;
+        padding: 15px 20px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    /* Main Content */
+    .main {
+        margin-left: 260px;
+        /* sidebar width plus margin */
+        padding: 20px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .sidenav {
+            width: 200px;
+        }
+
+        .main {
+            margin-left: 220px;
+        }
+    }
+</style>
+{% endblock styles %}
+
+
+{% block container %}
+
+{% block header %}
+<header class="gradient">
+    <p>CWMT Dashboard</p>
+</header>
+{% endblock header %}
+
+
+{% block sidenav %}
+{% include 'pages/private/components/sidenav.html' %}
+{% endblock sidenav %}
+
+
+{% block main %}
+    
+<div class="main">
+    <div class="card hover-gradient">
+        <h3>Dashboard Overview</h3>
+        <p>Welcome to your dashboard. Monitor metrics and gain insights into your training sessions.</p>
+    </div>
+    <div class="card hover-gradient">
+        <h3>Recent Activity</h3>
+        <p>View the latest updates from cohorts and user activities here.</p>
+    </div>
+    <div class="card hover-gradient">
+        <h3>Performance Metrics</h3>
+        <p>Analyze performance data and track key metrics for improvement.</p>
+    </div>
+</div>
+{% endblock main %}
+
+
+{% endblock container %}

@@ -46,8 +46,11 @@ li {
     font-family: 'Lora', serif;
 }
 
+.gradient {
+    background: linear-gradient(to bottom right, var(--secondary), var(--accent));
+    color: white;
+}
 
-/* New smooth hover gradient effect with directional gradient */
 .hover-gradient {
     transition: background 0.8s ease-in-out, color 0.8s ease-in-out;
 }

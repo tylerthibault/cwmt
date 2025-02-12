@@ -1,14 +1,24 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from cwmt import app
+from cwmt import core
 
+app = core.app
 db = app.db
 bcrypt = app.bcrypt
 
 # -------------------------
+# template-location Table
+# -------------------------
+template_cohort_locations = db.Table('template_locations',
+    db.Model.metadata,
+    db.Column('location_id', db.Integer, db.ForeignKey('locations.id'), primary_key=True),
+    db.Column('template_id', db.Integer, db.ForeignKey('cohort_templates.id'), primary_key=True)
+)
+
+# -------------------------
 # CohortTemplates Table
 # -------------------------
-class CohortTemplates(db.Model):
+class CohortTemplate(db.Model):
     __tablename__ = 'cohort_templates'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -21,7 +31,8 @@ class CohortTemplates(db.Model):
     default_number_of_days = db.Column(db.Integer, nullable=False)
     default_location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
 
-    location = db.relationship('Locations', backref='cohort_templates')
+    # RELATIONSHIPS
+    # locations = db.relationship('Location', secondary=TemplateCohortLocations, backref='cohort_templates')
 
     @classmethod
     def create(cls, data:dict):

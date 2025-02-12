@@ -1,0 +1,55 @@
+<style>
+    /* Sidebar */
+    .sidenav {
+        position: fixed;
+        top: 5%;
+        /* height of header */
+        left: 0;
+        width: 240px;
+        height: 95% !important;
+        /* height: calc(100% - 60px); */
+        /* background-color: #2e3d49; */
+        overflow-y: auto;
+        padding: 20px 0;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidenav h2 {
+        color: #fff;
+        margin: 0 20px 15px;
+        font-size: 18px;
+    }
+
+    .sidenav a {
+        display: block;
+        padding: 12px 20px;
+        color: #ccc;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .sidenav a:hover {
+        background-color: #1f2a33;
+        color: #fff;
+    }
+</style>
+
+<div class="sidenav bg-dark">
+    <h2 class="text-capitalize">{{ user.first_name }} {{ user.last_name }}</h2>
+    <div class="d-flex flex-column justify-content-between py-3 h-90 ">
+        <div>
+            <a href="/">Home</a>
+            <a href="#">Dashboard</a>
+            <a href="#">Overview</a>
+            <a href="#">Instructors</a>
+            <a href="#">Cohorts</a>
+            <a href="#">Templates</a>
+        </div>
+        <!-- <a href="#">Reports</a> -->
+        <div>
+            <a href="#">Settings</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+</div>

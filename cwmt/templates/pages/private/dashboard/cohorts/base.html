@@ -1,0 +1,33 @@
+{% extends 'bases/dashboard.html' %}
+
+{% block dash_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tabs.css') }}">
+{% endblock dash_styles %}
+
+{% block dash_main %}
+<div class="main">
+    <!-- Tab bar -->
+    <ul class="tabbar">
+        <li class="tab {% if tab == 'cohorts' %}active{% endif %}" data-tab="cohorts">Cohorts</li>
+        <li class="tab {% if tab == 'templates' %}active{% endif %}" data-tab="templates">Templates</li>
+        <li class="tab {% if tab == 'locations' %}active{% endif %}" data-tab="locations">Locations</li>
+    </ul>
+    
+    <!-- Tab panels -->
+    <div class="tab-content">
+        <div id="cohorts" class="tab-panel {% if tab == 'cohorts' %}active{% endif %}">
+            {% include 'pages/private/dashboard/cohorts/index.html' %}
+        </div>
+        <div id="templates" class="tab-panel {% if tab == 'templates' %}active{% endif %}">
+            {% include 'pages/private/dashboard/templates/index.html' %}
+        </div>
+        <div id="locations" class="tab-panel {% if tab == 'locations' %}active{% endif %}">
+            {% include 'pages/private/dashboard/locations/index.html' %}
+        </div>
+    </div>
+</div>
+{% endblock dash_main %}
+
+{% block dash_scripts %}
+<script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+{% endblock dash_scripts %}

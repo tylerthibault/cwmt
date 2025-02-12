@@ -40,11 +40,11 @@
     <div class="d-flex flex-column justify-content-between py-3 h-90 ">
         <div>
             <a href="/">Home</a>
-            <a href="#">Dashboard</a>
-            <a href="#">Overview</a>
-            <a href="#">Instructors</a>
-            <a href="#">Cohorts</a>
-            <a href="#">Templates</a>
+            <a href="/dashboard">Dashboard</a>
+            <!-- <a href="#">Overview</a> -->
+            <a href="{{ url_for('instructors.dash_index') }}">Instructors</a>
+            <a href="{{ url_for('teams.dash_index') }}">Teams</a>
+            <a href="{{ url_for('cohorts.dash_index') }}">Cohorts</a>
         </div>
         <!-- <a href="#">Reports</a> -->
         <div>

@@ -39,6 +39,11 @@
         }
     }
 </style>
+
+{% block dash_styles %}
+    
+{% endblock dash_styles %}
+
 {% endblock styles %}
 
 
@@ -56,7 +61,7 @@
 {% endblock sidenav %}
 
 
-{% block main %}
+{% block dash_main %}
     
 <div class="main">
     <div class="card hover-gradient">
@@ -72,7 +77,15 @@
         <p>Analyze performance data and track key metrics for improvement.</p>
     </div>
 </div>
-{% endblock main %}
+{% endblock dash_main %}
 
 
 {% endblock container %}
+
+{% block scripts %}
+    
+{% block dash_scripts %}
+
+{% endblock dash_scripts %}
+
+{% endblock scripts %}

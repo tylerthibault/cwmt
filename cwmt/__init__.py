@@ -27,6 +27,21 @@ def init_blueprints(app):
     from cwmt.controllers.users import users_bp
     app.register_blueprint(users_bp)
 
+    from cwmt.controllers.teams import teams_bp
+    app.register_blueprint(teams_bp)
+
+    from cwmt.controllers.cohorts import cohorts_bp
+    app.register_blueprint(cohorts_bp)
+
+    from cwmt.controllers.locations import locations_bp
+    app.register_blueprint(locations_bp)
+
+    from cwmt.controllers.templates import templates_bp
+    app.register_blueprint(templates_bp)
+
+    from cwmt.controllers.instructors import instructors_bp
+    app.register_blueprint(instructors_bp)
+
     return app
 
 def init_db(app):

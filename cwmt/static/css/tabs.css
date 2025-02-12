@@ -1,0 +1,23 @@
+
+.tabbar {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+.tabbar .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-bottom: none;
+}
+.tabbar .tab.active {
+    border-color: #ccc;
+    border-bottom: 1px solid white;
+}
+.tab-content .tab-panel {
+    display: none;
+}
+.tab-content .tab-panel.active {
+    display: block;
+}

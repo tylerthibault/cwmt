@@ -27,10 +27,21 @@ class Team(db.Model):
 
 
     @classmethod
-    def create(cls, name):
-        team = cls(name=name)
+    def create(cls, data: dict):
+        is_valid = cls.validate(data)
+        if not is_valid:
+            return None
+
+        team = cls(name=data.get('name'))
         db.session.add(team)
-        db.session.commit()
+        try:
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            core.logger.log(f'Error creating team: {e}', with_flash=True, status='error')
+            return None
+
+        core.logger.log(f'Team {team.name} created.', with_flash=True, flash_category='success')
         return team
     
     @classmethod
@@ -39,6 +50,7 @@ class Team(db.Model):
     
     @classmethod
     def get_by_id(cls, id):
+        print(id)
         return cls.query.get(id)
     
     @classmethod
@@ -59,4 +71,18 @@ class Team(db.Model):
         db.session.delete(team)
         db.session.commit()
         return
+    
+    @staticmethod
+    def validate(data:dict):
+        is_valid = True
+
+        if not data.get('name'):
+            is_valid = False
+            core.logger.log('name is required.', with_flash=True, status='error')
+        elif Team.get_by_name(data.get('name')):
+            is_valid = False
+            core.logger.log('Name must be unique.', with_flash=True, status='error')
+   
+        
+        return is_valid
     

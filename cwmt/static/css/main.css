@@ -3,7 +3,9 @@
     --secondary: #534257;
     --accent: #A43D34;
     --light: #F2F2F2;
+    --light-grey: #cecece;
     --dark: #1D1D1D;
+    /* --dark: #2b9f21; */
 }
 
 body {

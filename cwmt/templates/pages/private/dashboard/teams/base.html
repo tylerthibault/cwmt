@@ -1,0 +1,29 @@
+{% extends 'bases/dashboard.html' %}
+
+{% block dash_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tabs.css') }}">
+{% endblock dash_styles %}
+
+{% block dash_main %}
+<div class="main">
+    <!-- Tab bar -->
+    <ul class="tabbar">
+        <li class="tab {% if tab == 'teams' %}active{% endif %}" data-tab="cohorts">Teams</li>
+        <li class="tab {% if tab == 'members' %}active{% endif %}" data-tab="templates">Members</li>
+    </ul>
+    
+    <!-- Tab panels -->
+    <div class="tab-content">
+        <div id="cohorts" class="tab-panel {% if tab == 'teams' %}active{% endif %}">
+            {% include 'pages/private/dashboard/teams/index.html' %}
+        </div>
+        <div id="templates" class="tab-panel {% if tab == 'members' %}active{% endif %}">
+            {% include 'pages/private/dashboard/users/index.html' %}
+        </div>
+    </div>
+</div>
+{% endblock dash_main %}
+
+{% block dash_scripts %}
+<script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+{% endblock dash_scripts %}

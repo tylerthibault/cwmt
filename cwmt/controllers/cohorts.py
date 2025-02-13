@@ -6,9 +6,8 @@ cohorts_bp = Blueprint('cohorts', __name__)
 
 @cohorts_bp.route('/dashboard/cohorts')
 def dash_index():
-    params = request.args
     context = {
         'user': User.get(session.get('user')),
-        'tab': params.get('tab', 'cohorts')
+        'tab': request.args.get('tab', 'cohorts')
     }
     return render_template('pages/private/dashboard/cohorts/base.html', **context)

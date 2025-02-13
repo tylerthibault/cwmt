@@ -39,8 +39,8 @@ def init_blueprints(app):
     from cwmt.controllers.templates import templates_bp
     app.register_blueprint(templates_bp)
 
-    from cwmt.controllers.instructors import instructors_bp
-    app.register_blueprint(instructors_bp)
+    # from cwmt.controllers.instructors import instructors_bp
+    # app.register_blueprint(instructors_bp)
 
     return app
 

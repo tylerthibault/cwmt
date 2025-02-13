@@ -42,14 +42,13 @@
             <a href="/">Home</a>
             <a href="/dashboard">Dashboard</a>
             <!-- <a href="#">Overview</a> -->
-            <a href="{{ url_for('instructors.dash_index') }}">Instructors</a>
             <a href="{{ url_for('teams.dash_index') }}">Teams</a>
             <a href="{{ url_for('cohorts.dash_index') }}">Cohorts</a>
         </div>
         <!-- <a href="#">Reports</a> -->
         <div>
             <a href="#">Settings</a>
-            <a href="#">Logout</a>
+            <a href="{{ url_for('main.logout') }}">Logout</a>
         </div>
     </div>
 </div>

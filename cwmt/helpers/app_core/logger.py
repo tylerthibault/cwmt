@@ -10,6 +10,7 @@ class Logger:
         'error': 3,
         'critical': 4,
     }
+
     def __init__(self, log_file=None):
         # Accept an optional log_file parameter
         self.log_file = self.init_log_file(log_file)
@@ -36,11 +37,11 @@ class Logger:
         
         return log_file
 
-    def log(self, message, with_flash=False, status='info'):
+    def log(self, message, with_flash=False, flash_category='error', status='info'):
         if Logger.level[status] >= self.level:
             with open(self.log_file, 'a') as f:
                 msg = f'{status.upper()} | {datetime.datetime.utcnow()}: {message}'
                 f.write(msg + '\n')
 
         if with_flash:
-            flash(message, 'error')
+            flash(message, flash_category)

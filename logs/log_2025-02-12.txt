@@ -1,1 +1,59 @@
 Log file created on 2025-02-12
+ERROR | 2025-02-13 04:01:54.654591: name is required.
+ERROR | 2025-02-13 04:02:14.821555: name is required.
+INFO | 2025-02-13 04:06:49.943080: Team test created.
+INFO | 2025-02-13 04:09:24.112900: Team test created.
+INFO | 2025-02-13 04:11:55.370457: Team team created.
+ERROR | 2025-02-13 04:12:10.160734: Name must be unique.
+INFO | 2025-02-13 04:19:49.852176: Team wenatchee created.
+INFO | 2025-02-13 04:23:56.891479: Team Yakima created.
+ERROR | 2025-02-13 04:30:42.456461: Team with ID None not found.
+ERROR | 2025-02-13 04:30:48.998504: Team with ID None not found.
+ERROR | 2025-02-13 04:31:00.682518: Team with ID None not found.
+ERROR | 2025-02-13 04:32:22.023447: Team with ID None not found.
+ERROR | 2025-02-13 04:32:37.142599: Team with ID None not found.
+ERROR | 2025-02-13 04:33:29.651836: Team with ID None not found.
+ERROR | 2025-02-13 04:33:32.574547: Team with ID None not found.
+ERROR | 2025-02-13 04:34:34.412526: Team with ID None not found.
+ERROR | 2025-02-13 04:38:24.509377: Team with ID None not found.
+ERROR | 2025-02-13 05:08:14.866944: Team with ID None not found.
+ERROR | 2025-02-13 05:08:36.975842: Team with ID None not found.
+ERROR | 2025-02-13 05:08:54.444209: Team with ID None not found.
+INFO | 2025-02-13 05:10:09.171007: Team wenatchee3 updated.
+INFO | 2025-02-13 05:10:50.717599: Team wenatchee updated.
+INFO | 2025-02-13 05:10:59.267721: Team Yakima downtown updated.
+INFO | 2025-02-13 05:11:06.211905: Team Yakima updated.
+INFO | 2025-02-13 05:12:49.791610: Team wenatchee2 updated.
+INFO | 2025-02-13 05:16:29.097002: Team wenatchee23 updated.
+INFO | 2025-02-13 05:16:33.545814: Team wenatchee updated.
+ERROR | 2025-02-13 05:55:21.546660: Error creating user: 'ImmutableMultiDict' objects are immutable
+INFO | 2025-02-13 05:56:43.143247: User Tyler Tbo created.
+ERROR | 2025-02-13 06:02:37.221405: Email already exists.
+ERROR | 2025-02-13 06:02:37.222407: User creation failed.
+ERROR | 2025-02-13 06:03:22.901146: Email already exists.
+ERROR | 2025-02-13 06:03:22.902144: User creation failed.
+ERROR | 2025-02-13 06:03:38.782334: Email already exists.
+ERROR | 2025-02-13 06:03:38.782334: User creation failed.
+INFO | 2025-02-13 06:04:11.067437: User Joe Tbo created.
+INFO | 2025-02-13 06:08:57.619134: User Tyler Tbo created.
+INFO | 2025-02-13 06:12:32.959801: User Tyler Tbo created.
+INFO | 2025-02-13 06:13:01.870513: User joe tbo created.
+INFO | 2025-02-13 06:13:53.732567: User curtis tbo created.
+INFO | 2025-02-13 06:14:14.286425: User kendal tbo created.
+INFO | 2025-02-13 06:15:30.167535: User kyndyl Tbo created.
+INFO | 2025-02-13 06:16:00.041850: User kara tbo created.
+INFO | 2025-02-13 06:16:23.354336: User kim tbo created.
+INFO | 2025-02-13 06:17:22.729336: User steve tbo created.
+INFO | 2025-02-13 06:17:39.960409: User Tyler Tbo created.
+INFO | 2025-02-13 06:17:51.110544: User joe tbo created.
+INFO | 2025-02-13 06:30:23.222198: User Tyler updated.
+INFO | 2025-02-13 06:31:00.012692: User Tyler updated.
+INFO | 2025-02-13 06:32:35.802399: User Tyler updated.
+INFO | 2025-02-13 06:32:41.774384: User Tyler updated.
+INFO | 2025-02-13 06:33:36.124465: User Tyler updated.
+INFO | 2025-02-13 06:34:41.339499: User Tyler updated.
+INFO | 2025-02-13 06:34:56.690166: User Tyler updated.
+INFO | 2025-02-13 06:35:07.820531: User Tyler updated.
+INFO | 2025-02-13 06:37:42.879157: User Tyler3 updated.
+INFO | 2025-02-13 06:38:29.109299: User Tyler3 updated.
+INFO | 2025-02-13 06:38:35.482244: User Tyler updated.

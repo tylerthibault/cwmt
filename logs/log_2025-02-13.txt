@@ -11,3 +11,4 @@ INFO | 2025-02-14 06:01:07.963474: User Kendal Tbo created.
 INFO | 2025-02-14 06:01:11.195554: Tyler Tbo added to Wenatchee.
 INFO | 2025-02-14 06:01:13.557214: Kendal Tbo added to Wenatchee.
 INFO | 2025-02-14 06:01:17.523236: Tyler Tbo added to Yakima.
+ERROR | 2025-02-14 06:18:50.367615: User is already a member of this team.

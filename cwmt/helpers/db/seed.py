@@ -1,10 +1,10 @@
-from cwmt import AppCore
 from cwmt.models.roles import Role
 from cwmt.models.users import User  
 from cwmt.models.teams import Team  
+from cwmt import core
 
-db = AppCore.app.db
-app = AppCore.app
+db = core.app.db
+app = core.app
 
 def create_roles():
     roles = [
@@ -27,6 +27,15 @@ def create_users():
             "is_active": True,
             "has_verified_email": True,
             "roles": ["Owner"]
+        },
+        {
+            "first_name": "shy",
+            "last_name": "Picard",
+            "email": "sp@email.com",
+            "password": "password",
+            "is_active": True,
+            "has_verified_email": True,
+            "roles": ["Admin"]
         },
     ]
     for user in users:

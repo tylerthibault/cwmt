@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from cwmt import core
+from cwmt.models import users
 
 app = core.app
 db = app.db
@@ -64,6 +65,36 @@ class Team(db.Model):
             setattr(team, key, value)
         db.session.commit()
         return team
+    
+    @classmethod
+    def add_member(cls, data:dict):
+        team = cls.query.get(data['team_id'])
+        user = users.User.query.get(data['user_id'])
+        
+        # Check if user is already in team
+        if user in team.users:
+            core.logger.log('User is already a member of this team.', with_flash=True, status='error')
+            return False
+            
+        team.users.append(user)
+        db.session.commit()
+        core.logger.log(f'{user.name} added to {team.name}.', with_flash=True, flash_category='success')
+        return True
+    
+    @classmethod
+    def remove_member(cls, data:dict):
+        team = cls.query.get(data['team_id'])
+        user = users.User.query.get(data['user_id'])
+        
+        # Check if user is not in team
+        if user not in team.users:
+            core.logger.log('User is not a member of this team.', with_flash=True, status='error')
+            return False
+            
+        team.users.remove(user)
+        db.session.commit()
+        core.logger.log(f'{user.name} removed from {team.name}.', with_flash=True, flash_category='success')
+        return True
     
     @classmethod
     def delete(cls, id):

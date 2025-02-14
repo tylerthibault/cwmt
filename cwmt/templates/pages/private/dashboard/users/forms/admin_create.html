@@ -15,20 +15,20 @@
         <input type="email" id="email" name="email">
     </div>
 
-    <div>
+    <!-- <div>
         <label for="team">Team</label>
         <select id="team" name="team">
             {% for team in teams %}
             <option class="capitalize" value="{{ team.id }}">{{ team.name }}</option>
             {% endfor %}
         </select>
-    </div>
+    </div> -->
     
     <div>
         <label for="role_id">Role</label>
         <select id="role_id" name="role_id">
             {% for role in roles %}
-            {% if role.name != 'Sys Admin' and role.name != 'Owner' %}
+            {% if role.name != 'Sys Admin' and role.name != 'Owner' and role.name != 'Student' %}
             <option value="{{ role.id }}">{{ role.name }}</option>
             {% endif %}
             {% endfor %}

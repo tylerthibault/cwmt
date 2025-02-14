@@ -10,10 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Activate selected tab and its panel
             this.classList.add('active');
             document.getElementById(this.getAttribute('data-tab')).classList.add('active');
+            // Update URL parameter for the selected tab
+            let url = new URL(window.location);
+            url.searchParams.set('tab', this.getAttribute('data-tab'));
+            history.pushState({}, '', url);
         });
     });
 });
-
-
 
 console.log('tabs.js loaded');

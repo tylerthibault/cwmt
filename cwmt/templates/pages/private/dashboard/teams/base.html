@@ -8,16 +8,16 @@
 <div class="main">
     <!-- Tab bar -->
     <ul class="tabbar">
-        <li class="tab {% if tab == 'teams' %}active{% endif %}" data-tab="cohorts">Teams</li>
-        <li class="tab {% if tab == 'members' %}active{% endif %}" data-tab="templates">Members</li>
+        <li class="tab {% if tab == 'teams' %}active{% endif %}" data-tab="teams">Teams</li>
+        <li class="tab {% if tab == 'members' %}active{% endif %}" data-tab="members">Members</li>
     </ul>
     
     <!-- Tab panels -->
     <div class="tab-content">
-        <div id="cohorts" class="tab-panel {% if tab == 'teams' %}active{% endif %}">
+        <div id="teams" class="tab-panel {% if tab == 'teams' %}active{% endif %}">
             {% include 'pages/private/dashboard/teams/index.html' %}
         </div>
-        <div id="templates" class="tab-panel {% if tab == 'members' %}active{% endif %}">
+        <div id="members" class="tab-panel {% if tab == 'members' %}active{% endif %}">
             {% include 'pages/private/dashboard/users/index.html' %}
         </div>
     </div>

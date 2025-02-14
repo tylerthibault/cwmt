@@ -44,6 +44,10 @@ class User(db.Model):
     @property
     def show_roles(self):
         return ', '.join([role.name for role in self.roles])
+    
+    @property
+    def name(self):
+        return f'{self.first_name.capitalize()} {self.last_name.capitalize()}'
 
     @classmethod
     def create(cls, data:dict):

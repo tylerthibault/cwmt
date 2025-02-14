@@ -37,33 +37,13 @@
 }
 
 .btn-secondary {
-    background-color: transparent;
-    color: var(--light);
-    border: 1px solid var(--secondary);
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    background-color: var(--light);
+    color: var(--dark);
 }
 
 .btn-secondary:hover {
-    /* background-color: var(--accent); */
-    background: linear-gradient(to bottom right, var(--dark), var(--light));
-    color: var(--accent);
-    border: none;
-    box-shadow: 5px 5px 0 black;
-}
-
-.btn-secondary:active {
-    background-color: var(--secondary);
-    transform: translateY(2px);
-    box-shadow: none;
-}
-
-.btn-secondary:focus {
-    background-color: var(--secondary);
-    transform: translateY(2px);
-    box-shadow: none;
+    background-color: var(--dark);
+    color: var(--light);
 }
 
 /* Forms */

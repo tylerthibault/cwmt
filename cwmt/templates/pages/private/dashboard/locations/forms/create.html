@@ -1,0 +1,28 @@
+<form action="{{ url_for('locations.create') }}" method="POST">
+    <h2>Add Location</h2>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" maxlength="255" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="street">Street</label>
+        <input type="text" class="form-control" id="street" name="street" maxlength="255">
+    </div>
+    <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" name="city" maxlength="255">
+    </div>
+    <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" class="form-control" id="state" name="state" maxlength="255">
+    </div>
+    <div class="form-group">
+        <label for="zip_code">Zip Code</label>
+        <input type="text" class="form-control" id="zip_code" name="zip_code" maxlength="255">
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Create Location</button>
+</form>

@@ -15,7 +15,7 @@ cohort_students = db.Table('cohort_students',
 cohort_locations = db.Table('cohort_locations',
     db.Model.metadata,
     db.Column('location_id', db.Integer, db.ForeignKey('locations.id'), primary_key=True),
-    db.Column('template_id', db.Integer, db.ForeignKey('cohort_templates.id'), primary_key=True)
+    db.Column('template_id', db.Integer, db.ForeignKey('templates.id'), primary_key=True)
 )
 
 cohort_instructors = db.Table('instructors',

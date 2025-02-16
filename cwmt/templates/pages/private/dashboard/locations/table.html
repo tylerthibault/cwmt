@@ -1,0 +1,63 @@
+<!-- ...existing code... -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for location in locations %}
+        <tr>
+            <td>
+                <span class="editable" data-id="{{ location.id }}" data-column-name="id" data-route="{{ url_for('locations.update', id=location.id) }}">
+                    {{ location.id }}
+                </span>
+            </td>
+            <td>
+                <span class="editable" data-id="{{ location.id }}" data-column-name="name" data-route="{{ url_for('locations.update', id=location.id) }}">
+                    {{ location.name }}
+                </span>
+            </td>
+            <td>
+                <span class="editable" data-id="{{ location.id }}" data-column-name="description" data-route="{{ url_for('locations.update', id=location.id) }}">
+                    {% if location.description %}
+                    {{ location.description }}
+                    {% else %}
+                    No Description
+                    {% endif %}
+                </span>
+            </td>
+            <td>
+                <span class="editable" data-id="{{ location.id }}" data-column-name="street" data-route="{{ url_for('locations.update', id=location.id) }}">
+                    {{ location.street }}
+                </span>
+            </td>
+            <td>
+                <span class="editable" data-id="{{ location.id }}" data-column-name="city" data-route="{{ url_for('locations.update', id=location.id) }}">
+                    {{ location.city }}
+                </span>
+            </td>
+            <td>
+                <span class="editable" data-id="{{ location.id }}" data-column-name="state" data-route="{{ url_for('locations.update', id=location.id) }}">
+                    {{ location.state }}
+                </span>
+            </td>
+            <td>
+                <span class="editable" data-id="{{ location.id }}" data-column-name="zip_code" data-route="{{ url_for('locations.update', id=location.id) }}">
+                    {{ location.zip_code }}
+                </span>
+            </td>
+            <td>
+                <a href="{{ url_for('locations.delete', id=location.id) }}" class="btn">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

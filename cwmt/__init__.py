@@ -53,7 +53,7 @@ def init_db(app):
     from cwmt.models.teams import Team, team_members
     from cwmt.models.cohorts import Cohort, cohort_students, cohort_locations, cohort_instructors
     from cwmt.models.locations import Location
-    from cwmt.models.cohort_templates import CohortTemplate, template_cohort_locations
+    from cwmt.models.templates import Template, template_cohort_locations
 
     with app.app_context():
         app.db.create_all()

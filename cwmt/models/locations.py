@@ -18,6 +18,10 @@ class Location(db.Model):
 
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=True)
+    street = db.Column(db.String(255), nullable=True)
+    city = db.Column(db.String(255), nullable=True)
+    state = db.Column(db.String(255), nullable=True)
+    zip_code = db.Column(db.String(255), nullable=True)
 
     # RELATIONSHIPS
 
@@ -25,10 +29,15 @@ class Location(db.Model):
     def create(cls, data:dict):
         location = cls(
             name=data['name'],
-            description=data.get('description', None)
+            description=data.get('description', None),
+            street=data.get('street', None),
+            city=data.get('city', None),
+            state=data.get('state', None),
+            zip_code=data.get('zip_code', None)
         )
         db.session.add(location)
         db.session.commit()
+        core.logger.log(f'Location {location.name} created.', with_flash=True, flash_category='success')
         return location
     
     @classmethod

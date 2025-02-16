@@ -10,7 +10,7 @@ def create_roles():
     roles = [
         "Sys Admin",
         "Owner",
-        "Admin",
+        "Staff",
         "Instructor",
         "Student"
     ]
@@ -35,7 +35,7 @@ def create_users():
             "password": "password",
             "is_active": True,
             "has_verified_email": True,
-            "roles": ["Admin"]
+            "roles": ["Instructor"]
         },
     ]
     for user in users:

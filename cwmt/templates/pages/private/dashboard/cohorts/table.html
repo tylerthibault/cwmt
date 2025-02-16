@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Max Capacity</th>
+      <th>Description</th>
+      <th>Start Date</th>
+      <th>Number of Days</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cohort in cohorts %}
+    <tr>
+      <td>{{ cohort.id }}</td>
+      <td>{{ cohort.name }}</td>
+      <td>{{ cohort.max_capacity }}</td>
+      <td>{{ cohort.description }}</td>
+      <td>{{ cohort.start_date }}</td>
+      <td>{{ cohort.number_of_days }}</td>
+      <td>
+        <a href="{{ url_for('cohort.edit', id=cohort.id) }}">Edit</a>
+        <a href="{{ url_for('cohort.delete', id=cohort.id) }}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

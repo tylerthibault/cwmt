@@ -1,4 +1,29 @@
-<div>
-    <!-- ...new cohorts content... -->
-    <h1>Cohorts</h1>
+{% block dash_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
+{% endblock dash_styles %}
+
+<div class="row vh-100">
+    <div class="">
+        <div class="d-flex gap-3 align-items-center">
+            <h1>Cohorts</h1>
+            <button id="cohortModalButton" class="btn" data-modal-target="cohortModal">Add Cohort</button>
+        </div>
+        <div>
+            {% include 'pages/private/dashboard/cohorts/table.html' %}
+        </div>
+    </div>
 </div>
+
+
+<!-- Modal Markup -->
+<div id="cohortModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button cursor-pointer">❌</span>
+        {% include 'pages/private/dashboard/cohorts/forms/create.html' %}
+    </div>
+</div>
+
+
+{% block dash_scripts %}
+<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+{% endblock dash_scripts %}

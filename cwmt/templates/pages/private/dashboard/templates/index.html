@@ -1,4 +1,29 @@
-<div>
-    <!-- ...new templates content... -->
-    <h1>Templates</h1>
+{% block dash_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
+{% endblock dash_styles %}
+
+<div class="row">
+    <div class="">
+        <div class="d-flex gap-3 align-items-center">
+            <h1>Templates</h1>
+            <button id="templateModalButton" class="btn" data-modal-target="templateModal">Add Template</button>
+        </div>
+        <div>
+        {% include 'pages/private/dashboard/templates/table.html' %}
+        </div>
+    </div>
 </div>
+
+
+<!-- Modal Markup -->
+<div id="templateModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button cursor-pointer">❌</span>
+        {% include 'pages/private/dashboard/templates/forms/create.html' %}
+    </div>
+</div>
+
+
+{% block dash_scripts %}
+<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+{% endblock dash_scripts %}

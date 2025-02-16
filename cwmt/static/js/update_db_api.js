@@ -1,4 +1,16 @@
-// HTML Example: <span class="editable" data-id="{{ team.id }}" data-route="{{ url_for('teams.update') }}">{{ team.name }}</span>
+// HTML Example: <span class="editable" data-id="{{ team.id }}" data-column-name="id" data-route="{{ url_for('teams.update') }}">{{ team.name }}</span>
+
+// @locations_bp.post('/api/dashboard/locations/update')
+// def update():
+//     id = request.form.get('id')
+//     location = Location.get_by_id(id=id)
+//     if not location:
+//         core.logger.log(f'Location with ID {id} not found.', with_flash=True, status='error')
+//         return jsonify({'status': 'error'})
+    
+//     location.update(request.form)
+//     core.logger.log(f'Location {location.name} updated.', with_flash=True, flash_category='success')
+//     return jsonify({'status': 'success'})
 
 document.addEventListener('DOMContentLoaded', function () {
     // window.initEditableFields = function(updateUrl, selector = '.editable') {

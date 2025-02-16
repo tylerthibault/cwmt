@@ -2,48 +2,53 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
 {% endblock dash_styles %}
 
-<div class="">
-    <div class="d-flex justify-content-between align-items-center gap-3">
-        <h1>Members</h1>
-        <button class="btn modal-btn" data-modal-target="memberModal" data-modal-type="add-member">Add Member</button>
+<div class="row">
+    <div class="col-md-10">
+        <div class="d-flex justify-content-between align-items-center gap-3">
+            <h1>Members</h1>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in users %}
+                {% if "Owner" not in member.show_roles and "Sys Admin" not in member.show_roles %}
+                <tr>
+                    <td>
+                        <span class="editable" data-id="{{ member.id }}" data-column-name="first_name"
+                            data-route="{{ url_for('users.api_update') }}">{{ member.first_name }}</span>
+                    </td>
+                    <td>
+                        <span class="editable" data-id="{{ member.id }}" data-column-name="last_name"
+                            data-route="{{ url_for('users.api_update') }}">{{ member.last_name }}</span>
+                    </td>
+                    <td>
+                        <span class="editable" data-id="{{ member.id }}" data-column-name="email"
+                            data-route="{{ url_for('users.api_update') }}">{{ member.email }}</span>
+                    </td>
+                    <td>{{ member.show_roles }}</td>
+                    <td>
+                        <div>
+                            <a class="btn" href="{{ url_for('users.delete', id=member.id) }}">Delete</a>
+                            <a class="btn" href="#">Reset Password</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for member in users %}
-            {% if "Owner" not in member.show_roles and "Sys Admin" not in member.show_roles %}
-            <tr>
-                <td>
-                    <span class="editable" data-id="{{ member.id }}" data-column-name="first_name" data-route="{{ url_for('users.api_update') }}">{{ member.first_name }}</span>
-                    
-                </td>
-                <td>
-                    <span class="editable" data-id="{{ member.id }}" data-column-name="last_name" data-route="{{ url_for('users.api_update') }}">{{ member.last_name }}</span>
-                    
-                </td>
-                <td>
-                    <span class="editable" data-id="{{ member.id }}" data-column-name="email" data-route="{{ url_for('users.api_update') }}">{{ member.email }}</span>
-                    
-                </td>
-                <td>{{ member.show_roles }}</td>
-                <td>
-                    <div>
-                        <a class="btn" href="{{ url_for('users.delete', id=member.id) }}">Delete</a>
-                        <a class="btn" href="#">Reset Password</a>
-                    </div>
-                </td>
-            </tr>
-            {% endif %}
-            {% endfor %}
-        </tbody>
+    <div class="col-md-2 form-column">
+        {% include 'pages/private/dashboard/users/forms/admin_create.html' %}
+    </div>
 </div>
 
 <!-- Modal Markup -->

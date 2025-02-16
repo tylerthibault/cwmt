@@ -1,4 +1,17 @@
-<div >
-    <!-- ...new locations content... -->
-    <h1>Locations</h1>
+<div class="row h-100">
+    <div class="">
+        <div class="d-flex gap-3 align-items-center">
+            <h1>Locations</h1>
+            <button id="cohortModalButton" class="btn" data-modal-target="locationModal">Add Location</button>
+        </div>
+        {% include 'pages/private/dashboard/locations/table.html' %}
+    </div>
+</div>
+
+<!-- Modal Markup -->
+<div id="locationModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button cursor-pointer">❌</span>
+        {% include 'pages/private/dashboard/locations/forms/create.html' %}
+    </div>
 </div>

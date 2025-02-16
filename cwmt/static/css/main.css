@@ -11,6 +11,7 @@
 body {
     color: var(--light);
     background-color: var(--primary);
+    max-height: 100vh;
 }
 
 .page-wrapper {
@@ -59,4 +60,35 @@ li {
 .hover-gradient:hover {
     background: linear-gradient(to bottom right, var(--secondary), var(--accent));
     color: white;
+}
+
+.form-column {
+    background-color: var(--light);
+    height: 84vh;
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+
+    padding: 1em;
+
+    border: 0.15em solid var(--dark);
+    border-radius: 0.5em;
+
+    overflow: auto;
+}
+
+.form-column form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+
+.form-column form > * {
+    margin: 0.5em;
+    width: 100%;
 }

@@ -1,3 +1,15 @@
+// <button id="cohortModalButton" class="btn btn-primary" data-modal-target="cohortModal">Add Cohort</button>
+
+
+// <!-- Modal Markup -->
+{/* <div id="cohortModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button cursor-pointer">❌</span>
+        {% include 'pages/private/dashboard/cohorts/forms/create.html' %}
+    </div>
+</div> */}
+
+
 document.addEventListener('DOMContentLoaded', () => {
     // Open modal on button click
     document.querySelectorAll('[data-modal-target]').forEach(button => {

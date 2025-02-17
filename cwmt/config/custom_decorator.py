@@ -6,7 +6,7 @@ def login_required(func):
     """
     def decorator(func):
         @wraps(func)
-        def wrapper(*args, **kwargs):
+        def login_required_wrapper(*args, **kwargs):
             # --- Pre-processing logic ---
             # For example, check permissions or log function call
             print('Executing login_required on', func.__name__)
@@ -17,5 +17,5 @@ def login_required(func):
             # --- Post-processing logic ---
             # For example, modify the result or perform cleanup
             return result
-        return wrapper
+        return login_required_wrapper
     return decorator

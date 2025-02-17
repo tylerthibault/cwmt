@@ -26,7 +26,7 @@
       </thead>
       <tbody>
         {% for cohort in team_cohorts %}
-          {% if cohort.start_date > now %}
+          {% if cohort.start_date < now %}
         <tr class="cohort-row">
           <td>
             <span class="editable" data-id="{{ cohort.id }}" data-column-name="name" data-route="{{ url_for('base_routes.update', model_name='cohort') }}">{{ cohort.name }}</span>
@@ -45,7 +45,6 @@
           </td>
           <td>
             {% if cohort.primary_instructor_id %}
-              <a href="{{ url_for('cohorts.unassign_instructor', id=cohort.id, role='primary') }}">❌</a>
               {{ cohort.primary_instructor.name }}
             {% else %}
               {% if cohort.team and cohort.team.instructors %}
@@ -64,7 +63,6 @@
           </td>
           <td>
             {% if cohort.secondary_instructor %}
-              <a href="{{ url_for('cohorts.unassign_instructor', id=cohort.id, role='secondary') }}">❌</a>
               {{ cohort.secondary_instructor.name }}
             {% else %}
               {% if cohort.team and cohort.team.instructors %}

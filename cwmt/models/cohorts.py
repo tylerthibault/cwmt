@@ -1,6 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from cwmt import core
+from cwmt.models.teams import team_has_cohorts
+from cwmt.models import teams
+from cwmt.models import users
 
 app = core.app
 db = app.db
@@ -39,12 +42,27 @@ class Cohort(db.Model):
     description = db.Column(db.Text, nullable=True)
     start_date = db.Column(db.DateTime, nullable=False)
     number_of_days = db.Column(db.Integer, nullable=False)
+    primary_instructor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    secondary_instructor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
 
     # RELATIONSHIPS
-    # locations = db.relationship('Location', secondary=cohort_locations, backref='cohorts')
     students = db.relationship('User', secondary=cohort_students, backref='cohorts')
-    # instructors = db.relationship('User', secondary=cohort_instructors, backref='cohorts')
+    teams = db.relationship(
+        'Team',
+        secondary=team_has_cohorts,
+        back_populates='cohorts'
+    )
+    @property
+    def team(self):
+        return self.teams[0] if self.teams else None
 
+    @property
+    def primary_instructor(self):
+        return users.User.get(self.primary_instructor_id)
+    
+    @property
+    def secondary_instructor(self):
+        return users.User.get(self.secondary_instructor_id)
 
     @classmethod
     def create(cls, data:dict):
@@ -52,13 +70,12 @@ class Cohort(db.Model):
             name=data['name'],
             max_capacity=data.get('max_capacity', 10),
             description=data.get('description', None),
-            start_date=data['start_date'],
+            start_date=datetime.strptime(data['start_date'], '%Y-%m-%d'),
             number_of_days=data.get('number_of_days', 1),
-            location_id=data['location_id'],
-            team_id=data['team_id'],
-            cohort_template_id=data['cohort_template_id']
         )
         db.session.add(cohort)
+        team = teams.Team.get(data['team_id'])
+        team.cohorts.append(cohort)
         db.session.commit()
         return cohort
 
@@ -67,12 +84,12 @@ class Cohort(db.Model):
         return cls.query.all()
     
     @classmethod
-    def get_by_id(cls, id):
+    def get(cls, id):
         return cls.query.get(id)
     
     @classmethod
     def update(cls, data:dict):
-        cohort = cls.get_by_id(data['id'])
+        cohort = cls.get(data['id'])
         for key, value in data.items():
             setattr(cohort, key, value)
         db.session.commit()
@@ -80,7 +97,7 @@ class Cohort(db.Model):
     
     @classmethod
     def delete(cls, id):
-        cohort = cls.get_by_id(id)
+        cohort = cls.get(id)
         db.session.delete(cohort)
         db.session.commit()
         return cohort
@@ -120,12 +137,12 @@ class Cohort(db.Model):
 #         return cls.query.all()
     
 #     @classmethod
-#     def get_by_id(cls, id):
+#     def get(cls, id):
 #         return cls.query.get(id)
     
 #     @classmethod
 #     def update(cls, data:dict):
-#         cohort_has_users = cls.get_by_id(data['id'])
+#         cohort_has_users = cls.get(data['id'])
 #         for key, value in data.items():
 #             setattr(cohort_has_users, key, value)
 #         db.session.commit()
@@ -133,7 +150,7 @@ class Cohort(db.Model):
     
 #     @classmethod
 #     def delete(cls, id):
-#         cohort_has_users = cls.get_by_id(id)
+#         cohort_has_users = cls.get(id)
 #         db.session.delete(cohort_has_users)
 #         db.session.commit()
 #         return cohort_has_users

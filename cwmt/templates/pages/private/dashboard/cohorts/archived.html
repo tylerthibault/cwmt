@@ -1,0 +1,10 @@
+{% extends 'bases/dashboard.html' %}
+
+{% block dash_main %}
+<div class="main">
+    <h1>Archived Cohorts</h1>
+    <div>
+        {% include 'pages/private/dashboard/cohorts/table_archived.html' %}
+    </div>
+</div>
+{% endblock dash_main %}

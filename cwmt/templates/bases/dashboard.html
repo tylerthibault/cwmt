@@ -15,7 +15,11 @@
 
     /* Header */
     header {
-        /* background: linear-gradient(90deg, #09203f, #537895); */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px; /* set header height */
         color: #fff;
         padding: 15px 20px;
         text-align: center;
@@ -25,9 +29,11 @@
 
     /* Main Content */
     .main {
-        margin-left: 260px;
-        /* sidebar width plus margin */
+        margin-top: 20px; /* push below the fixed header */
+        margin-left: 260px; /* sidebar width plus margin */
         padding: 20px;
+        /* overflow-y: auto; */
+        /* height: calc(100vh - 60px); */
     }
 
     @media screen and (max-width: 768px) {
@@ -54,6 +60,9 @@
 <header class="gradient">
     <p>CWMT Dashboard</p>
 </header>
+<div class="main">
+    <p>{{ session['page_tracker'] }}</p>
+</div>
 {% endblock header %}
 
 

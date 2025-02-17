@@ -6,7 +6,7 @@
             <label for="template_id">Template:</label>
             <select name="template_id" id="template_id" data-fetch-trigger required>
                 {% for template in templates %}
-                <option value="{{ template.id }}">{{ template.name }}</option>
+                <option value="{{ template.id }}">{{ template.default_name }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -19,7 +19,7 @@
         <!-- These fields will be pre-populated based on the fetched defaults -->
         <div>
             <label for="name">Name:</label>
-            <input type="text" name="name" id="name" required>
+            <input type="text" name="name" id="name" data-fetch-field="default_name" required>
         </div>
         <div>
             <label for="max_capacity">Max Capacity:</label>

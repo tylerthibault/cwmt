@@ -20,6 +20,12 @@ body {
     background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
 }
 
+.main-content {
+    height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 main {
     display: flex;
     flex-direction: column;

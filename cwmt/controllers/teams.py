@@ -4,10 +4,13 @@ from cwmt.models.teams import Team
 from cwmt.models.roles import Role
 from cwmt import core
 
+from cwmt.config.page_tracker import get_previous_page, track_page
+
 # Create a Blueprint instance
 teams_bp = Blueprint('teams', __name__)
 
 @teams_bp.route('/dashboard/teams')
+@track_page
 def dash_index():
     selected_team_id = request.args.get('team_id', 1)  # added line
     context = {
@@ -33,7 +36,7 @@ def create():
 @teams_bp.post('/api/dashboard/teams/update')
 def update():
     id = request.form.get('id')
-    team = Team.get_by_id(id=id)
+    team = Team.get(id=id)
     if not team:
         core.logger.log(f'Team with ID {id} not found.', with_flash=True, status='error')
         return jsonify({'status': 'error'})
@@ -57,7 +60,7 @@ def remove_user():
 # DELETE
 @teams_bp.route('/dashboard/teams/<int:id>/delete')
 def delete(id):
-    team = Team.get_by_id(id)
+    team = Team.get(id)
     if not team:
         return redirect(url_for('teams.dash_index', tab='teams'))
     

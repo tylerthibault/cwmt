@@ -7,6 +7,7 @@
         <div class="d-flex gap-3 align-items-center">
             <h1>Cohorts</h1>
             <button id="cohortModalButton" class="btn" data-modal-target="cohortModal">Add Cohort</button>
+            <a href="{{ url_for('cohorts.archived') }}" class="btn">Archived</a> <!-- added Archived button -->
         </div>
         <div>
             {% include 'pages/private/dashboard/cohorts/table.html' %}

@@ -1,5 +1,12 @@
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify, session
 from cwmt.models.users import User
+from cwmt.models.cohorts import Cohort
+from cwmt.models.locations import Location
+from cwmt.models.templates import Template
+from cwmt.models.teams import Team
+from cwmt.models.roles import Role
+
+from cwmt import core
 
 # Create a Blueprint instance
 main_bp = Blueprint('main', __name__)
@@ -44,8 +51,10 @@ def dashboard():
     }
     return render_template('pages/private/dashboard/index.html', **context)
 
+
 @main_bp.route('/seed')
 def seed():
-    from cwmt.helpers.db.seed import seed_data
+    from instance.seed import seed_data
     seed_data()
     return 'Seed data inserted successfully'
+

@@ -35,7 +35,6 @@ class User(db.Model):
     password = db.Column(db.String(120), nullable=False)
     is_active = db.Column(db.Boolean, default=True)
     has_verified_email = db.Column(db.Boolean, default=False)
-
     
     # RELATIONSHIPS
     roles = db.relationship('Role', secondary=user_roles, lazy='subquery', backref=db.backref('users', lazy=True))
@@ -71,8 +70,6 @@ class User(db.Model):
 
             user = cls(**user_data)
 
-            print("*"*80)
-            print(data)
             if data.get('role_id'):
                 print("*"*80)
                 role = roles.Role.get_by_id(data.get('role_id'))
@@ -82,6 +79,7 @@ class User(db.Model):
 
             db.session.add(user)
             db.session.commit()
+            
             core.logger.log(f'User {user.first_name} {user.last_name} created.', with_flash=True, flash_category='success')
             return user
         

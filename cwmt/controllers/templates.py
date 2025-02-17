@@ -26,6 +26,5 @@ def update():
 
 @templates_bp.route('/dashboard/templates/<int:id>/delete')
 def delete(id):
-    template = Template.get_by_id(id)
     Template.delete(id)
     return redirect(url_for('cohorts.dash_index', tab='templates'))

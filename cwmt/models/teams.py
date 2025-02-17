@@ -14,6 +14,12 @@ team_members = db.Table('team_members',
     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
 )
 
+team_has_cohorts = db.Table('team_has_cohorts',
+    db.Model.metadata,
+    db.Column('team_id', db.Integer, db.ForeignKey('teams.id'), primary_key=True),  # modified foreign key
+    db.Column('cohort_id', db.Integer, db.ForeignKey('cohorts.id'), primary_key=True)
+)
+
 # -------------------------
 # Team Table
 # -------------------------
@@ -26,6 +32,20 @@ class Team(db.Model):
 
     name = db.Column(db.String(255), nullable=False)
 
+    cohorts = db.relationship(
+        'Cohort',
+        secondary=team_has_cohorts,
+        back_populates='teams'
+    )
+
+    # Assuming the 'users' relationship exists (via team_members join table)
+    # If not, please ensure it is defined as follows:
+    # users = db.relationship('User', secondary=team_members, backref='teams')
+    
+    # Updated instructors property: filter users whose any role's name is 'Instructor'
+    @property
+    def instructors(self):
+        return [user for user in self.users if any(role.name == 'Instructor' for role in user.roles)]
 
     @classmethod
     def create(cls, data: dict):
@@ -50,7 +70,7 @@ class Team(db.Model):
         return cls.query.all()
     
     @classmethod
-    def get_by_id(cls, id):
+    def get(cls, id):
         print(id)
         return cls.query.get(id)
     
@@ -116,4 +136,3 @@ class Team(db.Model):
    
         
         return is_valid
-    

@@ -37,14 +37,14 @@ class Template(db.Model):
     def create(cls, data:dict):
         try:
             cohort_template = cls(
-                name=data['name'],
+                default_name=data['default_name'],
                 description=data.get('description', None),
                 default_max_capacity=data.get('default_max_capacity', 10),
                 default_number_of_days=data.get('default_number_of_days', 10),
             )
             db.session.add(cohort_template)
             db.session.commit()
-            core.logger.log(f'Template {cohort_template.name} created.', with_flash=True, flash_category='success')
+            core.logger.log(f'Template {cohort_template.default_name} created.', with_flash=True, flash_category='success')
             return cohort_template
         except Exception as e:
             core.logger.log(f'Template creation failed. {str(e)}', with_flash=True, status='error')
@@ -55,7 +55,7 @@ class Template(db.Model):
         return cls.query.all()
     
     @classmethod
-    def get_by_id(cls, id):
+    def get(cls, id):
         return cls.query.get(id)
     
     @classmethod
@@ -66,10 +66,9 @@ class Template(db.Model):
         db.session.commit()
         return cohort_template
     
-    
     @classmethod
     def delete(cls, id):
-        cohort_template = cls.get_by_id(id)
-        db.session.delete(cohort_template)
+        template = cls.get_by_id(id)
+        db.session.delete(template)
         db.session.commit()
-        return cohort_template
+        return template

@@ -5,6 +5,8 @@ from cwmt.models.teams import team_has_cohorts
 from cwmt.models import teams
 from cwmt.models import users
 
+from cwmt.models.crud_base import CRUDModel
+
 app = core.app
 db = app.db
 bcrypt = app.bcrypt
@@ -30,7 +32,7 @@ cohort_instructors = db.Table('instructors',
 # -------------------------
 # Cohort Table
 # -------------------------
-class Cohort(db.Model):
+class Cohort(db.Model, CRUDModel):
     __tablename__ = 'cohorts'
 
     id = db.Column(db.Integer, primary_key=True)

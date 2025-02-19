@@ -5,12 +5,14 @@ from cwmt.models.roles import Role
 from cwmt import core
 
 from cwmt.config.page_tracker import get_previous_page, track_page
+from cwmt.utils.logbook import login_required
 
 # Create a Blueprint instance
 teams_bp = Blueprint('teams', __name__)
 
 @teams_bp.route('/dashboard/teams')
 @track_page
+@login_required
 def dash_index():
     selected_team_id = request.args.get('team_id', 1)  # added line
     context = {

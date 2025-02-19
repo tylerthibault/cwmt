@@ -155,3 +155,275 @@ INFO | 2025-02-17 02:03:23.657090: Primary instructor assigned for cohort Advanc
 INFO | 2025-02-17 02:04:49.007587: Primary instructor unassigned for cohort Advanced Riding Techniques.
 INFO | 2025-02-17 02:04:51.792208: Secondary instructor assigned for cohort Advanced Riding Techniques.
 INFO | 2025-02-17 02:05:07.889956: Primary instructor assigned for cohort Advanced Riding Techniques.
+INFO | 2025-02-17 03:45:13.764655: User Art Ivanenko created.
+INFO | 2025-02-17 03:45:14.001412: User Shy Pickard created.
+INFO | 2025-02-17 03:45:14.238905: User Alice Rider created.
+INFO | 2025-02-17 03:45:14.468439: User Emily Instructor created.
+INFO | 2025-02-17 03:45:14.707101: User Michael Instructor created.
+INFO | 2025-02-17 03:45:14.716124: Team Default Motorcycle Training Team created.
+INFO | 2025-02-17 03:45:14.721630: Location Main Training Ground created.
+INFO | 2025-02-17 03:45:14.725734: Location Downtown Training Facility created.
+INFO | 2025-02-17 03:45:14.730733: Template Basic Motorcycle Training created.
+INFO | 2025-02-17 03:45:14.734337: Template Advanced Riding Techniques created.
+ERROR | 2025-02-17 04:26:35.633688: Session token invalid or expired.
+INFO | 2025-02-17 04:27:02.357961: User Art Ivanenko created.
+INFO | 2025-02-17 04:27:02.598361: User Shy Pickard created.
+INFO | 2025-02-17 04:27:02.833866: User Alice Rider created.
+INFO | 2025-02-17 04:27:03.061533: User Emily Instructor created.
+INFO | 2025-02-17 04:27:03.288930: User Michael Instructor created.
+INFO | 2025-02-17 04:27:03.298960: Team Default Motorcycle Training Team created.
+INFO | 2025-02-17 04:27:03.305256: Location Main Training Ground created.
+INFO | 2025-02-17 04:27:03.309259: Location Downtown Training Facility created.
+INFO | 2025-02-17 04:27:03.315331: Template Basic Motorcycle Training created.
+INFO | 2025-02-17 04:27:03.318330: Template Advanced Riding Techniques created.
+INFO | 2025-02-17 04:28:53.968849: User Art Ivanenko created.
+INFO | 2025-02-17 04:28:54.203209: User Shy Pickard created.
+INFO | 2025-02-17 04:28:54.440095: User Alice Rider created.
+INFO | 2025-02-17 04:28:54.676211: User Emily Instructor created.
+INFO | 2025-02-17 04:28:54.910690: User Michael Instructor created.
+INFO | 2025-02-17 04:28:54.919707: Team Default Motorcycle Training Team created.
+INFO | 2025-02-17 04:28:54.924787: Location Main Training Ground created.
+INFO | 2025-02-17 04:28:54.927787: Location Downtown Training Facility created.
+INFO | 2025-02-17 04:28:54.932400: Template Basic Motorcycle Training created.
+INFO | 2025-02-17 04:28:54.935401: Template Advanced Riding Techniques created.
+ERROR | 2025-02-17 04:30:41.467157: Session token invalid or expired.
+ERROR | 2025-02-17 04:30:56.932238: Session token invalid or expired.
+ERROR | 2025-02-17 04:31:46.280718: Session token invalid or expired.
+ERROR | 2025-02-17 04:32:46.563082: Session token invalid or expired.
+ERROR | 2025-02-17 04:34:17.154946: Session token invalid or expired.
+ERROR | 2025-02-17 04:34:42.462203: Session token invalid or expired.
+ERROR | 2025-02-17 04:36:06.574519: Session token invalid or expired.
+INFO | 2025-02-17 04:39:05.399388: Session token is valid.
+INFO | 2025-02-17 04:39:05.400383: Session token is valid.
+INFO | 2025-02-17 04:39:25.810342: Session token is valid.
+INFO | 2025-02-17 04:39:25.810856: Session token is valid.
+INFO | 2025-02-17 04:39:29.610099: Session token is valid.
+INFO | 2025-02-17 04:39:29.611245: Session token is valid.
+INFO | 2025-02-17 04:39:31.478342: Session token is valid.
+INFO | 2025-02-17 04:39:31.479341: Session token is valid.
+INFO | 2025-02-17 04:40:05.819299: Session token is valid.
+INFO | 2025-02-17 04:40:05.820300: Session token is valid.
+INFO | 2025-02-17 04:40:07.025118: Session token is valid.
+INFO | 2025-02-17 04:40:07.026119: Session token is valid.
+INFO | 2025-02-17 04:40:08.309440: Session token is valid.
+INFO | 2025-02-17 04:40:08.309440: Session token is valid.
+INFO | 2025-02-17 04:41:10.017310: Session token is valid.
+INFO | 2025-02-17 04:41:10.018310: Session token is valid.
+ERROR | 2025-02-17 04:41:13.162959: Session token invalid or expired.
+ERROR | 2025-02-17 04:41:15.441347: Session token invalid or expired.
+INFO | 2025-02-17 04:41:39.521064: Session token is valid.
+INFO | 2025-02-17 04:41:39.522072: Session token is valid.
+INFO | 2025-02-17 04:41:42.101820: Session token is valid.
+INFO | 2025-02-17 04:41:42.102828: Session token is valid.
+INFO | 2025-02-17 04:41:43.562034: Session token is valid.
+INFO | 2025-02-17 04:41:43.563038: Session token is valid.
+INFO | 2025-02-17 04:42:16.360335: Session token is valid.
+INFO | 2025-02-17 04:42:16.362014: Session token is valid.
+INFO | 2025-02-17 04:42:27.507124: Session token is valid.
+INFO | 2025-02-17 04:42:27.508124: Session token is valid.
+INFO | 2025-02-17 04:42:30.699345: Session token is valid.
+INFO | 2025-02-17 04:42:30.700345: Session token is valid.
+INFO | 2025-02-17 04:42:41.148062: Team Motorcycle Training Team updated.
+INFO | 2025-02-17 04:42:41.386902: Session token is valid.
+INFO | 2025-02-17 04:42:41.386902: Session token is valid.
+INFO | 2025-02-17 04:42:59.016750: Session token is valid.
+INFO | 2025-02-17 04:42:59.017752: Session token is valid.
+INFO | 2025-02-17 04:43:29.927972: Session token is valid.
+INFO | 2025-02-17 04:43:29.928972: Session token is valid.
+INFO | 2025-02-17 04:43:35.617204: Session token is valid.
+INFO | 2025-02-17 04:43:35.618208: Session token is valid.
+INFO | 2025-02-17 04:44:02.199009: Session token is valid.
+INFO | 2025-02-17 04:44:02.201021: Session token is valid.
+INFO | 2025-02-17 04:44:06.095928: Session token is valid.
+INFO | 2025-02-17 04:44:06.096921: Session token is valid.
+INFO | 2025-02-17 04:44:12.455933: Session token is valid.
+INFO | 2025-02-17 04:44:12.456934: Session token is valid.
+ERROR | 2025-02-17 04:49:09.696359: Session token failed timeout.
+ERROR | 2025-02-17 04:49:09.696359: Session token invalid or expired.
+INFO | 2025-02-17 04:50:14.200113: Session token is valid.
+INFO | 2025-02-17 04:50:14.200113: Session token is valid.
+INFO | 2025-02-17 04:51:55.345177: Session token is valid.
+INFO | 2025-02-17 04:51:55.346176: Session token is valid.
+INFO | 2025-02-17 04:52:10.292299: Session token is valid.
+INFO | 2025-02-17 04:52:10.293298: Session token is valid.
+INFO | 2025-02-17 04:53:28.234778: Session token is valid.
+INFO | 2025-02-17 04:53:28.235773: Session token is valid.
+INFO | 2025-02-17 04:53:49.722770: Session token is valid.
+INFO | 2025-02-17 04:53:49.723776: Session token is valid.
+INFO | 2025-02-17 04:54:19.036214: Session token is valid.
+INFO | 2025-02-17 04:54:19.037212: Session token is valid.
+INFO | 2025-02-17 04:54:29.514961: Session token is valid.
+INFO | 2025-02-17 04:54:29.515475: Session token is valid.
+INFO | 2025-02-17 04:54:48.882186: Session token is valid.
+INFO | 2025-02-17 04:54:48.884011: Session token is valid.
+INFO | 2025-02-17 04:54:59.079324: Session token is valid.
+INFO | 2025-02-17 04:54:59.080323: Session token is valid.
+INFO | 2025-02-17 04:55:14.617515: Session token is valid.
+INFO | 2025-02-17 04:55:14.618513: Session token is valid.
+INFO | 2025-02-17 04:55:31.492520: Session token is valid.
+INFO | 2025-02-17 04:55:31.494512: Session token is valid.
+INFO | 2025-02-17 04:55:37.522287: Session token is valid.
+INFO | 2025-02-17 04:55:37.523286: Session token is valid.
+INFO | 2025-02-17 04:55:40.928809: Session token is valid.
+INFO | 2025-02-17 04:55:40.929809: Session token is valid.
+INFO | 2025-02-17 04:55:52.355489: Session token is valid.
+INFO | 2025-02-17 04:55:52.356489: Session token is valid.
+INFO | 2025-02-17 04:55:58.540535: Session token is valid.
+INFO | 2025-02-17 04:55:58.541537: Session token is valid.
+INFO | 2025-02-17 05:11:24.084014: Session token is valid.
+INFO | 2025-02-17 05:11:24.085014: Session token is valid.
+ERROR | 2025-02-17 05:12:17.746291: Session token failed timeout.
+ERROR | 2025-02-17 05:12:17.747296: Session token invalid or expired.
+INFO | 2025-02-17 05:14:10.635848: Session token is valid.
+INFO | 2025-02-17 05:14:10.636847: Session token is valid.
+INFO | 2025-02-17 05:14:14.008300: Session token is valid.
+INFO | 2025-02-17 05:14:14.009299: Session token is valid.
+INFO | 2025-02-17 05:14:15.921835: Session token is valid.
+INFO | 2025-02-17 05:14:15.922835: Session token is valid.
+INFO | 2025-02-17 05:14:20.354447: Session token is valid.
+INFO | 2025-02-17 05:14:20.355447: Session token is valid.
+INFO | 2025-02-17 05:14:27.337853: Session token is valid.
+INFO | 2025-02-17 05:14:27.338855: Session token is valid.
+INFO | 2025-02-17 05:14:35.937802: Session token is valid.
+INFO | 2025-02-17 05:14:35.938800: Session token is valid.
+INFO | 2025-02-17 05:15:04.230187: Session token is valid.
+INFO | 2025-02-17 05:15:04.230187: Session token is valid.
+ERROR | 2025-02-17 05:15:28.275524: Session token failed timeout.
+ERROR | 2025-02-17 05:15:28.275524: Session token invalid or expired.
+INFO | 2025-02-17 05:16:11.576811: Session token is valid.
+INFO | 2025-02-17 05:16:11.577812: Session token is valid.
+INFO | 2025-02-17 05:16:14.273035: Session token is valid.
+INFO | 2025-02-17 05:16:14.274037: Session token is valid.
+INFO | 2025-02-17 05:16:17.109693: Session token is valid.
+INFO | 2025-02-17 05:16:17.110693: Session token is valid.
+INFO | 2025-02-17 05:17:02.618133: Session token is valid.
+INFO | 2025-02-17 05:17:02.619135: Session token is valid.
+INFO | 2025-02-17 05:17:53.578755: Session token is valid.
+INFO | 2025-02-17 05:17:53.581770: Session token is valid.
+INFO | 2025-02-17 05:17:55.139383: Session token is valid.
+INFO | 2025-02-17 05:17:55.140387: Session token is valid.
+ERROR | 2025-02-17 05:18:47.702012: Session token failed timeout.
+ERROR | 2025-02-17 05:18:47.702012: Session token invalid or expired.
+INFO | 2025-02-17 05:19:06.558041: Session token is valid.
+INFO | 2025-02-17 05:19:06.559041: Session token is valid.
+INFO | 2025-02-17 05:19:10.278559: Session token is valid.
+INFO | 2025-02-17 05:19:10.279559: Session token is valid.
+INFO | 2025-02-17 05:19:44.470722: Session token is valid.
+INFO | 2025-02-17 05:19:44.471723: Session token is valid.
+INFO | 2025-02-17 05:19:46.017175: Session token is valid.
+INFO | 2025-02-17 05:19:46.018174: Session token is valid.
+INFO | 2025-02-17 05:20:02.358761: Session token is valid.
+INFO | 2025-02-17 05:20:02.358761: Session token is valid.
+INFO | 2025-02-17 05:20:04.074597: Session token is valid.
+INFO | 2025-02-17 05:20:04.074597: Session token is valid.
+ERROR | 2025-02-17 05:20:17.570291: Session token failed timeout.
+ERROR | 2025-02-17 05:20:17.571276: Session token invalid or expired.
+INFO | 2025-02-17 05:21:17.682667: Session token is valid.
+INFO | 2025-02-17 05:21:17.683674: Session token is valid.
+INFO | 2025-02-17 05:21:23.586354: Session token is valid.
+INFO | 2025-02-17 05:21:23.587353: Session token is valid.
+INFO | 2025-02-17 05:21:27.250944: Session token is valid.
+INFO | 2025-02-17 05:21:27.251945: Session token is valid.
+INFO | 2025-02-17 05:21:29.586353: Session token is valid.
+INFO | 2025-02-17 05:21:29.587352: Session token is valid.
+INFO | 2025-02-17 05:21:33.246402: Session token is valid.
+INFO | 2025-02-17 05:21:33.247403: Session token is valid.
+INFO | 2025-02-17 05:21:42.263637: Session token is valid.
+INFO | 2025-02-17 05:21:42.263637: Session token is valid.
+INFO | 2025-02-17 05:22:06.709584: Session token is valid.
+INFO | 2025-02-17 05:22:06.710584: Session token is valid.
+INFO | 2025-02-17 05:22:12.800608: Session token is valid.
+INFO | 2025-02-17 05:22:12.802610: Session token is valid.
+INFO | 2025-02-17 05:22:29.829858: Session token is valid.
+INFO | 2025-02-17 05:22:29.831861: Session token is valid.
+INFO | 2025-02-17 05:22:34.501761: Session token is valid.
+INFO | 2025-02-17 05:22:34.502761: Session token is valid.
+INFO | 2025-02-17 05:22:39.762484: Session token is valid.
+INFO | 2025-02-17 05:22:39.763485: Session token is valid.
+INFO | 2025-02-17 05:23:15.319480: Session token is valid.
+INFO | 2025-02-17 05:23:15.319480: Session token is valid.
+INFO | 2025-02-17 05:23:20.193950: Shy Pickard added to Motorcycle Training Team.
+INFO | 2025-02-17 05:23:20.205957: Session token is valid.
+INFO | 2025-02-17 05:23:20.208963: Session token is valid.
+INFO | 2025-02-17 05:23:23.219413: Emily Instructor added to Motorcycle Training Team.
+INFO | 2025-02-17 05:23:23.230412: Session token is valid.
+INFO | 2025-02-17 05:23:23.231411: Session token is valid.
+INFO | 2025-02-17 05:23:26.051747: Michael Instructor added to Motorcycle Training Team.
+INFO | 2025-02-17 05:23:26.062749: Session token is valid.
+INFO | 2025-02-17 05:23:26.063748: Session token is valid.
+INFO | 2025-02-17 05:23:30.291163: Session token is valid.
+INFO | 2025-02-17 05:23:30.292163: Session token is valid.
+INFO | 2025-02-17 05:23:41.173465: Session token is valid.
+INFO | 2025-02-17 05:23:41.173465: Session token is valid.
+INFO | 2025-02-17 05:23:51.243812: Session token is valid.
+INFO | 2025-02-17 05:23:51.244813: Session token is valid.
+INFO | 2025-02-17 05:23:55.451218: Session token is valid.
+INFO | 2025-02-17 05:23:55.451218: Session token is valid.
+INFO | 2025-02-17 05:24:01.997398: Team Team A updated.
+INFO | 2025-02-17 05:24:02.257853: Session token is valid.
+INFO | 2025-02-17 05:24:02.258852: Session token is valid.
+INFO | 2025-02-17 05:24:07.021638: Team Team B created.
+INFO | 2025-02-17 05:24:07.030645: Session token is valid.
+INFO | 2025-02-17 05:24:07.031651: Session token is valid.
+INFO | 2025-02-17 05:24:11.834505: Shy Pickard added to Team B.
+INFO | 2025-02-17 05:24:11.844011: Session token is valid.
+INFO | 2025-02-17 05:24:11.845018: Session token is valid.
+INFO | 2025-02-17 05:24:14.675390: Michael Instructor added to Team B.
+INFO | 2025-02-17 05:24:14.687555: Session token is valid.
+INFO | 2025-02-17 05:24:14.688559: Session token is valid.
+INFO | 2025-02-17 05:24:17.219741: Session token is valid.
+INFO | 2025-02-17 05:24:17.220741: Session token is valid.
+INFO | 2025-02-17 05:24:30.715074: Session token is valid.
+INFO | 2025-02-17 05:24:30.716074: Session token is valid.
+INFO | 2025-02-17 05:24:52.651810: Session token is valid.
+INFO | 2025-02-17 05:24:52.652818: Session token is valid.
+INFO | 2025-02-17 05:25:30.435671: Primary instructor assigned for cohort Advanced Riding Techniques.
+INFO | 2025-02-17 05:25:30.721903: Session token is valid.
+INFO | 2025-02-17 05:25:30.722902: Session token is valid.
+INFO | 2025-02-17 05:25:33.628875: Secondary instructor assigned for cohort Advanced Riding Techniques.
+INFO | 2025-02-17 05:25:33.636876: Session token is valid.
+INFO | 2025-02-17 05:25:33.637878: Session token is valid.
+INFO | 2025-02-17 05:25:34.653598: Primary instructor assigned for cohort Basic Motorcycle Training.
+INFO | 2025-02-17 05:25:34.662596: Session token is valid.
+INFO | 2025-02-17 05:25:34.662596: Session token is valid.
+INFO | 2025-02-17 05:25:38.800045: Primary instructor unassigned for cohort Basic Motorcycle Training.
+INFO | 2025-02-17 05:25:38.895588: Session token is valid.
+INFO | 2025-02-17 05:25:38.895588: Session token is valid.
+INFO | 2025-02-17 05:25:42.001083: Primary instructor assigned for cohort Basic Motorcycle Training.
+INFO | 2025-02-17 05:25:42.011092: Session token is valid.
+INFO | 2025-02-17 05:25:42.012092: Session token is valid.
+INFO | 2025-02-17 05:25:44.440556: Secondary instructor assigned for cohort Basic Motorcycle Training.
+INFO | 2025-02-17 05:25:44.453557: Session token is valid.
+INFO | 2025-02-17 05:25:44.454559: Session token is valid.
+INFO | 2025-02-17 05:25:47.427175: Primary instructor assigned for cohort Basic Motorcycle Training.
+INFO | 2025-02-17 05:25:47.435178: Session token is valid.
+INFO | 2025-02-17 05:25:47.436176: Session token is valid.
+INFO | 2025-02-17 05:25:49.728777: Secondary instructor assigned for cohort Basic Motorcycle Training.
+INFO | 2025-02-17 05:25:49.737781: Session token is valid.
+INFO | 2025-02-17 05:25:49.738015: Session token is valid.
+INFO | 2025-02-17 05:26:13.529488: Session token is valid.
+INFO | 2025-02-17 05:26:13.530487: Session token is valid.
+INFO | 2025-02-17 05:26:24.800965: Session token is valid.
+INFO | 2025-02-17 05:26:24.801966: Session token is valid.
+INFO | 2025-02-17 05:27:00.415776: Session token is valid.
+INFO | 2025-02-17 05:27:00.416773: Session token is valid.
+INFO | 2025-02-17 05:27:01.884108: Session token is valid.
+INFO | 2025-02-17 05:27:01.885109: Session token is valid.
+INFO | 2025-02-17 05:27:05.564332: Session token is valid.
+INFO | 2025-02-17 05:27:05.565332: Session token is valid.
+INFO | 2025-02-17 05:27:07.669284: Session token is valid.
+INFO | 2025-02-17 05:27:07.670281: Session token is valid.
+ERROR | 2025-02-17 05:28:43.600131: Session token failed timeout.
+ERROR | 2025-02-17 05:28:43.601129: Session token invalid or expired.
+ERROR | 2025-02-17 11:16:10.833256: Session token invalid or expired.
+ERROR | 2025-02-17 11:16:11.849905: Session token invalid or expired.
+INFO | 2025-02-17 14:18:08.732798: Session token is valid.
+INFO | 2025-02-17 14:18:08.733799: Session token is valid.
+INFO | 2025-02-17 14:18:11.058095: Session token is valid.
+INFO | 2025-02-17 14:18:11.059094: Session token is valid.
+INFO | 2025-02-17 14:18:12.967213: Session token is valid.
+INFO | 2025-02-17 14:18:12.968180: Session token is valid.
+INFO | 2025-02-17 14:18:18.195972: Session token is valid.
+INFO | 2025-02-17 14:18:18.196972: Session token is valid.
+INFO | 2025-02-17 14:18:19.246523: Session token is valid.
+INFO | 2025-02-17 14:18:19.247523: Session token is valid.

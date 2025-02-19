@@ -29,7 +29,7 @@
 
     /* Main Content */
     .main {
-        margin-top: 20px; /* push below the fixed header */
+        margin-top: 80px; /* push below the fixed header */
         margin-left: 260px; /* sidebar width plus margin */
         padding: 20px;
         /* overflow-y: auto; */
@@ -60,9 +60,6 @@
 <header class="gradient">
     <p>CWMT Dashboard</p>
 </header>
-<div class="main">
-    <p>{{ session['page_tracker'] }}</p>
-</div>
 {% endblock header %}
 
 
@@ -72,7 +69,6 @@
 
 
 {% block dash_main %}
-    
 <div class="main">
     <div class="card hover-gradient">
         <h3>Dashboard Overview</h3>

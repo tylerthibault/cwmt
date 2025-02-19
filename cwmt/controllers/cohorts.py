@@ -6,6 +6,7 @@ from cwmt.models.templates import Template
 from cwmt.models.teams import Team
 
 from cwmt.config.page_tracker import get_previous_page, track_page, get_current_page
+from cwmt.utils.logbook import login_required
 
 from cwmt import core
 import datetime  # added import
@@ -15,6 +16,7 @@ cohorts_bp = Blueprint('cohorts', __name__)
 
 @cohorts_bp.route('/dashboard/cohorts')
 @track_page
+@login_required
 def dash_index():
     context = {
         'user': User.get(session.get('user')),
@@ -29,6 +31,7 @@ def dash_index():
 
 @cohorts_bp.get('/dashboard/cohorts/archived')
 @track_page
+@login_required
 def archived():
     context = {
         'user': User.get(session.get('user')),

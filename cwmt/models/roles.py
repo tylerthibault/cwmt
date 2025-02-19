@@ -35,7 +35,7 @@ class Role(db.Model):
         return cls.query.all()
     
     @classmethod
-    def get_by_id(cls, id):
+    def get(cls, id):
         return cls.query.get(id)
     
     @classmethod

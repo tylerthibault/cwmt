@@ -20,11 +20,7 @@ body {
     background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
 }
 
-.main-content {
-    height: 80vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
+
 
 main {
     display: flex;
@@ -36,6 +32,12 @@ main {
     border-left: 0.5em solid black;
     border-right: 0.5em solid black;
     background-color: var(--primary);
+}
+
+.main-content {
+    height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 h1,

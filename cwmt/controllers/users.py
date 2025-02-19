@@ -5,9 +5,6 @@ from cwmt.models.users import User
 # Create a Blueprint instance
 users_bp = Blueprint('users', __name__)
 
-@users_bp.post('/login')
-def check_login():
-    pass
 
 # CREATE
 @users_bp.post('/users/create')

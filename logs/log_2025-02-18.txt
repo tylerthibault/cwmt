@@ -1,0 +1,39 @@
+Log file created on 2025-02-18
+INFO | 2025-02-19 02:25:05.365663: Session token is valid.
+INFO | 2025-02-19 02:25:05.366660: Session token is valid.
+INFO | 2025-02-19 02:26:07.234107: User Art Ivanenko created.
+ERROR | 2025-02-19 02:26:07.797189: Email already exists.
+ERROR | 2025-02-19 02:26:07.798191: User creation failed.
+ERROR | 2025-02-19 02:26:24.484973: Email already exists.
+ERROR | 2025-02-19 02:26:24.485971: User creation failed.
+ERROR | 2025-02-19 02:27:35.699215: Email already exists.
+ERROR | 2025-02-19 02:27:35.699215: User creation failed.
+INFO | 2025-02-19 02:27:35.948803: User Shy Pickard created.
+INFO | 2025-02-19 02:27:36.185846: User Alice Rider created.
+INFO | 2025-02-19 02:27:36.426406: User Emily Instructor created.
+INFO | 2025-02-19 02:27:36.657488: User Michael Instructor created.
+INFO | 2025-02-19 02:27:36.667489: Team Default Motorcycle Training Team created.
+INFO | 2025-02-19 02:27:36.673489: Location Main Training Ground created.
+INFO | 2025-02-19 02:27:36.677490: Location Downtown Training Facility created.
+INFO | 2025-02-19 02:27:36.682489: Template Basic Motorcycle Training created.
+INFO | 2025-02-19 02:27:36.686489: Template Advanced Riding Techniques created.
+INFO | 2025-02-19 02:27:49.833990: Session token is valid.
+INFO | 2025-02-19 02:27:49.834992: Session token is valid.
+INFO | 2025-02-19 02:28:01.977115: Session token is valid.
+INFO | 2025-02-19 02:28:01.979110: Session token is valid.
+INFO | 2025-02-19 02:28:05.667807: Session token is valid.
+INFO | 2025-02-19 02:28:05.667807: Session token is valid.
+INFO | 2025-02-19 02:28:07.171970: Session token is valid.
+INFO | 2025-02-19 02:28:07.172967: Session token is valid.
+INFO | 2025-02-19 02:28:09.926854: Session token is valid.
+INFO | 2025-02-19 02:28:09.928319: Session token is valid.
+INFO | 2025-02-19 02:28:50.013902: Session token is valid.
+INFO | 2025-02-19 02:28:50.014902: Session token is valid.
+INFO | 2025-02-19 02:29:09.894704: Session token is valid.
+INFO | 2025-02-19 02:29:09.895706: Session token is valid.
+INFO | 2025-02-19 02:29:48.635366: Session token is valid.
+INFO | 2025-02-19 02:29:48.635366: Session token is valid.
+INFO | 2025-02-19 02:29:55.415981: Session token is valid.
+INFO | 2025-02-19 02:29:55.416979: Session token is valid.
+INFO | 2025-02-19 02:29:57.611742: Session token is valid.
+INFO | 2025-02-19 02:29:57.611742: Session token is valid.

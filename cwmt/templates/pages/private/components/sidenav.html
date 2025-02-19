@@ -36,16 +36,26 @@
 </style>
 
 <div class="sidenav bg-dark">
-    <h2 class="text-capitalize">{{ user.first_name }} {{ user.last_name }}</h2>
+    <div class="d-flex flex-column align-items-center text-light pb-3 border-bottom">
+        <h2 class="text-capitalize">{{ session.first_name }} {{ session.last_name }}</h2>
+        <span class="text-capitalize">({{ session['role'] }})</span>
+    </div>
     <div class="d-flex flex-column justify-content-between py-3 h-90 ">
         <div>
-            <a href="/">Home</a>
+            <a href="/">Landing Page</a>
             <a href="/dashboard">Dashboard</a>
-            <!-- <a href="#">Overview</a> -->
-            <a href="{{ url_for('teams.dash_index') }}">Teams</a>
-            <a href="{{ url_for('cohorts.dash_index') }}">Cohorts</a>
+            {% if session['role'] == 'admin' %}
+                <a href="{{ url_for('teams.dash_index') }}">Teams</a>
+                <a href="{{ url_for('cohorts.dash_index') }}">Cohorts</a>
+                <a href="/admin">Admin Panel</a>
+            {% endif %}
+            <hr>
+            {% if session['role'] == 'instructor' %}
+                <!-- <a href="/my-team">My Team</a>
+                <a href="/my-cohort">My Cohort</a> -->
+                <a href="{{ url_for('cohorts.dash_index') }}">Cohort Signup</a>
+            {% endif %}
         </div>
-        <!-- <a href="#">Reports</a> -->
         <div>
             <a href="#">Settings</a>
             <a href="{{ url_for('main.logout') }}">Logout</a>

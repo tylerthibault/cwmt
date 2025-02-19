@@ -1,10 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify, session
 from cwmt.models.users import User
-from cwmt.models.cohorts import Cohort
-from cwmt.models.locations import Location
-from cwmt.models.templates import Template
-from cwmt.models.teams import Team
-from cwmt.models.roles import Role
+from cwmt.models.logbook import LogBook
+from cwmt.utils.logbook import login_required
 
 from cwmt import core
 
@@ -34,22 +31,41 @@ def check_login():
         return redirect(url_for('main.login'))
 
     # create session
-    session['user'] = user.id
+    session_token = LogBook.create({
+        'user_id': user.id,
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'ip_address': request.remote_addr,
+        'user_role': user.roles[0].name,
+        'user_agent': request.headers.get('User-Agent')
+    })
+    session['session_token'] = session_token
+    session['first_name'] = user.first_name
+    session['last_name'] = user.last_name
 
     # redirect to dashboard
     return redirect(url_for('main.dashboard'))
 
 @main_bp.route('/logout')
 def logout():
-    session.pop('user', None)
+    session.pop('session_token', None)
+    session.pop('first_name', None)
+    session.pop('last_name', None)
     return redirect(url_for('main.index'))
 
 @main_bp.route('/dashboard')
+@login_required
 def dashboard():
     context = {
         'user': User.get(session.get('user'))
     }
     return render_template('pages/private/dashboard/index.html', **context)
+
+@main_bp.route('/api/update_timestamp')
+def update_timestamp():
+    session_token = session.get('session_token')
+    LogBook.update_timestamp(session_token)
+    return jsonify({'status': 'success'})
 
 
 @main_bp.route('/seed')

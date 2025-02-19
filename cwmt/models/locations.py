@@ -45,12 +45,12 @@ class Location(db.Model):
         return cls.query.all()
     
     @classmethod
-    def get_by_id(cls, id):
+    def get(cls, id):
         return cls.query.get(id)
     
     @classmethod
     def update(cls, data:dict):
-        location = cls.get_by_id(data['id'])
+        location = cls.get(data['id'])
         for key, value in data.items():
             setattr(location, key, value)
         db.session.commit()
@@ -59,7 +59,7 @@ class Location(db.Model):
     
     @classmethod
     def delete(cls, id):
-        location = cls.get_by_id(id)
+        location = cls.get(id)
         db.session.delete(location)
         db.session.commit()
         return location

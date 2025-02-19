@@ -15,7 +15,7 @@ def create():
 @templates_bp.post('/api/dashboard/templates/update')
 def update():
     id = request.form.get('id')
-    template = Template.get_by_id(id=id)
+    template = Template.get(id=id)
     if not template:
         core.logger.log(f'Template with ID {id} not found.', with_flash=True, status='error')
         return jsonify({'status': 'error'})

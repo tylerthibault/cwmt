@@ -35,7 +35,9 @@ class Team(db.Model):
     cohorts = db.relationship(
         'Cohort',
         secondary=team_has_cohorts,
-        back_populates='teams'
+        back_populates='teams',
+        cascade="all, delete",
+        passive_deletes=True
     )
 
     # Assuming the 'users' relationship exists (via team_members join table)

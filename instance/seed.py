@@ -13,10 +13,10 @@ app = core.app
 
 def create_roles():
     roles = [
-        "Sys Admin",
-        "Owner",
-        "Instructor",
-        "Student",
+        "sys admin",
+        "owner",
+        "instructor",
+        "student",
     ]
     for role in roles:
         Role.create(role)
@@ -30,7 +30,7 @@ def create_users():
             "password": "password",
             "is_active": True,
             "has_verified_email": True,
-            "roles": ["Owner"]
+            "roles": ["owner"]
         },
         {
             "first_name": "Shy",
@@ -39,7 +39,7 @@ def create_users():
             "password": "password",
             "is_active": True,
             "has_verified_email": True,
-            "roles": ["Instructor"]
+            "roles": ["instructor"]
         },
         {
             "first_name": "Alice",
@@ -48,7 +48,7 @@ def create_users():
             "password": "password",
             "is_active": True,
             "has_verified_email": True,
-            "roles": ["Student"]
+            "roles": ["student"]
         },
         {
             "first_name": "Emily",
@@ -57,7 +57,7 @@ def create_users():
             "password": "password",
             "is_active": True,
             "has_verified_email": True,
-            "roles": ["Instructor"],
+            "roles": ["instructor"],
         },
         {
             "first_name": "Michael",
@@ -66,7 +66,7 @@ def create_users():
             "password": "password",
             "is_active": True,
             "has_verified_email": True,
-            "roles": ["Instructor"],
+            "roles": ["instructor"],
         }
     ]
     for user_data in users:

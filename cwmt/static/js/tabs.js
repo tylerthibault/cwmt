@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
             let url = new URL(window.location);
             url.searchParams.set('tab', this.getAttribute('data-tab'));
             history.pushState({}, '', url);
+
+            fetch('/api/update_timestamp')
+                .then(response => response.json())
+                .catch(error => console.error('Error updating timestamp:', error));
         });
     });
 });

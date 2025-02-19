@@ -72,7 +72,7 @@ class User(db.Model):
 
             if data.get('role_id'):
                 print("*"*80)
-                role = roles.Role.get_by_id(data.get('role_id'))
+                role = roles.Role.get(data.get('role_id'))
                 print(role)
                 if role:
                     user.roles.append(role)

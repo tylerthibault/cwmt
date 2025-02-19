@@ -60,7 +60,7 @@ class Template(db.Model):
     
     @classmethod
     def update(cls, data:dict):
-        cohort_template = cls.get_by_id(data['id'])
+        cohort_template = cls.get(data['id'])
         for key, value in data.items():
             setattr(cohort_template, key, value)
         db.session.commit()
@@ -68,7 +68,7 @@ class Template(db.Model):
     
     @classmethod
     def delete(cls, id):
-        template = cls.get_by_id(id)
+        template = cls.get(id)
         db.session.delete(template)
         db.session.commit()
         return template

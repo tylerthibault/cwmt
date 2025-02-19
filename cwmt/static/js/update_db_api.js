@@ -3,7 +3,7 @@
 // @locations_bp.post('/api/dashboard/locations/update')
 // def update():
 //     id = request.form.get('id')
-//     location = Location.get_by_id(id=id)
+//     location = Location.get(id=id)
 //     if not location:
 //         core.logger.log(f'Location with ID {id} not found.', with_flash=True, status='error')
 //         return jsonify({'status': 'error'})

@@ -40,6 +40,10 @@ def create_app():
     def status():
         return "Server is running", 200
     
+    @app.route("/")
+    def home():
+        return "Welcome to CWMT! The application is running. Visit /status for health check.", 200
+    
     return app
 
 def setup_tables(app):
